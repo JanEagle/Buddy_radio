@@ -2,7 +2,7 @@
 html, body { margin:0; height:100%; background:#14202a; color:var(--lit); font:14px/1.35 "Public Sans", system-ui, sans-serif; }
 #map { position:fixed; inset:0; background:#14202a; }
 .leaflet-container { background:#14202a; font:inherit; }
-.leaflet-tile { filter: invert(1) hue-rotate(185deg) brightness(.55) saturate(.25) contrast(1.15); }
+.leaflet-tile { filter: invert(1) hue-rotate(185deg) brightness(.75) saturate(.3) contrast(1.05); }
 .leaflet-control-attribution { background:#1d2329cc !important; color:var(--lit-2) !important; }
 .leaflet-control-attribution a { color:var(--lit) !important; }
 .leaflet-bar a { background:var(--panel-solid); color:var(--lit); border-color:var(--line); }
