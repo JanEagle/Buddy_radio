@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Buddy Radio: AI radio controllers for DCS World</title>
+<meta name="description" content="Overlord GCI, airfield tower and ATIS, a Case I landing trainer and a helpful wingman, talking to your whole flight on SRS with live mission data.">
+<meta property="og:title" content="Buddy Radio">
+<meta property="og:description" content="AI radio controllers for your DCS World server, on SRS, with live mission data.">
+<meta property="og:image" content="/assets/img/og.png">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="5" fill="#2b3035"/><path d="M5 17h4l3-8 4 15 3-11 2 4h6" fill="none" stroke="#f2b705" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/></svg>Buddy Radio</a>
+    <nav aria-label="Main">
+      <a href="/" aria-current="page">Home</a>
+      <a href="/guide">Radio guide</a>
+      <a href="/setup">Setup</a>
+      <a href="/map">Live map</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Your DCS server, on the radio.</h1>
+      <p class="lede">Buddy Radio puts AI controllers on your group's SRS frequencies. Ask Overlord for a picture, get taxi from the tower, learn the carrier break from Paddles. Every number comes from the live mission.</p>
+      <div class="actions">
+        <a class="btn primary" href="/guide">Read the radio guide</a>
+        <a class="btn" href="/setup">Set it up</a>
+      </div>
+    </div>
+
+    <div class="radio" aria-label="Example radio calls by station">
+      <ul class="channels" role="tablist" aria-label="Stations" data-channels>
+        <li><button role="tab" data-key="overlord" aria-selected="true"><span class="f">251.000</span><span class="n">Overlord</span></button></li>
+        <li><button role="tab" data-key="tower" aria-selected="false" tabindex="-1"><span class="f">251.500</span><span class="n">Tower</span></button></li>
+        <li><button role="tab" data-key="atis" aria-selected="false" tabindex="-1"><span class="f">251.750</span><span class="n">ATIS</span></button></li>
+        <li><button role="tab" data-key="buddy" aria-selected="false" tabindex="-1"><span class="f">252.000</span><span class="n">Buddy</span></button></li>
+        <li><button role="tab" data-key="paddles" aria-selected="false" tabindex="-1"><span class="f">253.000</span><span class="n">Paddles</span></button></li>
+      </ul>
+      <div class="readout" role="tabpanel" aria-live="polite">
+        <div class="freq" data-freq>251.000<small>AM</small></div>
+        <div class="who" data-who>Overlord. GCI: the air and ground picture.</div>
+        <ol class="log" data-log></ol>
+        <p class="note" data-note></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="what">
+  <div class="wrap split">
+    <div>
+      <h2>Controllers that know the mission</h2>
+      <p>A small script in the mission sends positions, airfields, weather and carriers to a program on your PC. That program listens on SRS, works out the answer and speaks it back on the frequency.</p>
+    </div>
+    <dl class="facts">
+      <div><dt>The whole flight hears it</dt><dd>The stations join your SRS server like any other radio. Everyone tuned in hears the call, and each pilot is tracked on their own, by name.</dd></div>
+      <div><dt>Real numbers, not guesses</dt><dd>Bearings, ranges, altitudes, runways, wind and coordinates are calculated from the mission as it runs. The AI only puts them into words.</dd></div>
+      <div><dt>Most calls cost nothing</dt><dd>Bogey dope, taxi, ATIS, threat warnings, talk-downs, coordinates and the whole landing trainer run in code. Claude is used only for free-form questions, which comes to cents per evening.</dd></div>
+      <div><dt>Free speech, no menus</dt><dd>Talk the way you would to a real controller. No F10 menu, no VoiceAttack profile, no fixed phrases to learn.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section id="stations">
+  <div class="wrap">
+    <h2>The stations</h2>
+    <p>Frequencies are the defaults; change them, add towers for other airfields, or switch stations off in one settings file.</p>
+    <div class="table-scroll">
+    <table class="comm">
+      <thead><tr><th scope="col">Frequency</th><th scope="col">Station</th><th scope="col">Ask it for</th><th scope="col">Calls it makes on its own</th></tr></thead>
+      <tbody>
+        <tr><td class="f">251.000</td><td class="s"><a href="/guide#overlord">Overlord</a></td><td>Picture, bogey dope, ground threats, target coordinates, vectors</td><td>Air threats inside 25 and 10 miles, SAM and triple-A zones</td></tr>
+        <tr><td class="f">251.500</td><td class="s"><a href="/guide#tower">Tower</a></td><td>Start-up, taxi, takeoff, landing, traffic, precision approach</td><td>Hold position, go around, airborne hand-off, traffic alerts</td></tr>
+        <tr><td class="f">251.750</td><td class="s"><a href="/guide#atis">ATIS</a></td><td>Just listen</td><td>Runway, wind, visibility, clouds, temperature, altimeter</td></tr>
+        <tr><td class="f">252.000</td><td class="s"><a href="/guide#buddy">Buddy</a></td><td>Mission briefing, nearest airfields, weapon and system how-tos</td><td>Nothing; Buddy waits to be asked</td></tr>
+        <tr><td class="f">253.000</td><td class="s"><a href="/guide#paddles">Paddles</a></td><td>BRC, wind over the deck, a debrief of your last pass</td><td>Case I pattern coaching, groove calls, wave-offs, grades</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap split">
+    <div>
+      <h2>How it fits together</h2>
+      <p>Nothing changes for the pilots: they fly DCS and talk on SRS as usual. The server runs a mission with the Buddy bridge, and one PC runs Radio Ops.</p>
+      <p>Speech recognition (Whisper) and voices (Piper) run locally on that PC. Only the free-form questions go to Claude.</p>
+    </div>
+    <figure class="figure">
+      <svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram: the DCS server sends mission data to Radio Ops; Radio Ops talks to pilots through the SRS server, asks Claude only for free-form questions, posts to Discord and serves the live map." viewBox="0 0 760 420" font-family="Public Sans, system-ui, sans-serif" font-size="14">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#16191b"/></marker>
+  </defs>
+  <rect width="760" height="420" fill="#d3d5d0"/>
+  <!-- DCS server -->
+  <rect x="20" y="40" width="210" height="130" rx="6" fill="#c4c7c1" stroke="#16191b" stroke-width="2"/>
+  <text x="36" y="72" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-weight="800" font-size="26" fill="#16191b">DCS server</text>
+  <text x="36" y="100" fill="#16191b">Mission running</text>
+  <text x="36" y="122" fill="#16191b">+ Buddy bridge script</text>
+  <text x="36" y="150" fill="#474d52" font-size="13">positions, airfields, weather</text>
+  <!-- SRS -->
+  <rect x="20" y="250" width="210" height="130" rx="6" fill="#c4c7c1" stroke="#16191b" stroke-width="2"/>
+  <text x="36" y="282" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-weight="800" font-size="26" fill="#16191b">SRS server</text>
+  <text x="36" y="310" fill="#16191b">External AWACS Mode on</text>
+  <text x="36" y="332" fill="#16191b">Pilots talk as usual</text>
+  <text x="36" y="360" fill="#474d52" font-size="13">voice in and out</text>
+  <!-- Radio Ops -->
+  <rect x="300" y="110" width="200" height="200" rx="10" fill="#2b3035"/>
+  <text x="318" y="146" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-weight="800" font-size="30" fill="#f2b705">Radio Ops</text>
+  <text x="318" y="174" fill="#e6ecdc">on one PC</text>
+  <text x="318" y="210" fill="#e6ecdc">Hears: Whisper</text>
+  <text x="318" y="234" fill="#e6ecdc">Thinks: code first</text>
+  <text x="318" y="258" fill="#e6ecdc">Speaks: Piper voices</text>
+  <text x="318" y="290" fill="#a9b2a6" font-size="13">Overlord, Tower, ATIS,</text>
+  <text x="318" y="306" fill="#a9b2a6" font-size="13">Buddy, Paddles</text>
+  <!-- right side -->
+  <rect x="570" y="40" width="170" height="80" rx="6" fill="none" stroke="#16191b" stroke-width="2"/>
+  <text x="586" y="72" font-weight="700" fill="#16191b">Claude API</text>
+  <text x="586" y="96" fill="#474d52" font-size="13">free-form questions only</text>
+  <rect x="570" y="170" width="170" height="80" rx="6" fill="none" stroke="#16191b" stroke-width="2"/>
+  <text x="586" y="202" font-weight="700" fill="#16191b">Discord</text>
+  <text x="586" y="226" fill="#474d52" font-size="13">targets, greenie board</text>
+  <rect x="570" y="300" width="170" height="80" rx="6" fill="none" stroke="#16191b" stroke-width="2"/>
+  <text x="586" y="332" font-weight="700" fill="#16191b">Live map</text>
+  <text x="586" y="356" fill="#474d52" font-size="13">any browser or tablet</text>
+  <!-- arrows -->
+  <path d="M230 105 C 270 105 270 160 298 160" fill="none" stroke="#16191b" stroke-width="2" marker-end="url(#a)"/>
+  <text x="236" y="96" fill="#474d52" font-size="12">mission data</text>
+  <path d="M232 315 C 270 315 270 262 298 262" fill="none" stroke="#16191b" stroke-width="2" marker-start="url(#a)" marker-end="url(#a)"/>
+  <text x="240" y="340" fill="#474d52" font-size="12">voice</text>
+  <path d="M502 150 C 540 150 540 82 568 82" fill="none" stroke="#16191b" stroke-width="2" marker-start="url(#a)" marker-end="url(#a)"/>
+  <path d="M502 210 L 568 210" fill="none" stroke="#16191b" stroke-width="2" marker-end="url(#a)"/>
+  <path d="M502 270 C 540 270 540 340 568 340" fill="none" stroke="#16191b" stroke-width="2" marker-end="url(#a)"/>
+  <path d="M230 135 C 252 135 252 120 230 120" fill="none" stroke="none"/>
+  <text x="20" y="22" fill="#474d52" font-size="12">The bridge also receives subtitles and F10 map markers back from Radio Ops.</text>
+</svg>
+    </figure>
+  </div>
+</section>
+
+<section id="map">
+  <div class="wrap split">
+    <div>
+      <h2>A live map for your tablet</h2>
+      <p>Radio Ops also serves a map: friendlies and hostiles, SAM rings, airfields with the runway in use, carriers, bullseye, and every target Overlord has read out. Tap anything for bearing and range from your jet.</p>
+      <p><a class="btn" href="/map">Open the live map</a></p>
+    </div>
+    <figure class="figure">
+      <div class="shot"><img src="/assets/img/map.png" alt="The live map: aircraft with altitude and speed labels, an SA-6 with its range ring, a carrier and the side panel with airfields and frequencies." width="1180" height="760" loading="lazy"></div>
+      <figcaption>The map in demo mode. Connected to Radio Ops it shows your mission as it runs.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="discord">
+  <div class="wrap">
+    <h2>Straight into your Discord</h2>
+    <p>Targets Overlord reads out land in one channel, ready to copy from a phone. Every carrier pass lands on the greenie board with its grade and the squadron ranking.</p>
+    <div class="posts" aria-label="Example Discord posts">
+      <div class="post">
+        <div class="chan"># targets</div>
+        <div class="meta"><b>Overlord</b><span>Today at 21:14</span></div>
+        <div class="embed" style="border-color:#c0392b">
+          <div class="t">SA-6</div>
+          <div>Requested by <b>Kupi 3-1</b></div>
+          <div class="g">
+            <div><div class="k">Lat / Long</div><div class="v"><code>N 33 01.234  E 035 42.567</code></div></div>
+            <div><div class="k">MGRS</div><div class="v"><code>36S YB 61409 54764</code></div></div>
+            <div><div class="k">Elevation</div><div class="v">984 ft</div></div>
+            <div><div class="k">From Kupi 3-1</div><div class="v">085° / 16 nm</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="post">
+        <div class="chan"># greenie-board</div>
+        <div class="meta"><b>Paddles</b><span>Today at 21:31</span></div>
+        <div class="embed" style="border-color:#f1c40f">
+          <div class="t">Lama 1-1, fair pass</div>
+          <div class="g">
+            <div><div class="k">Grade</div><div class="v">(OK), 3 points</div></div>
+            <div><div class="k">Wire</div><div class="v">3</div></div>
+            <div style="grid-column:1/-1"><div class="k">LSO comment</div><div class="v"><code>(LUL)X H_IM  WIRE# 3</code><br>a little lined up left at the start, high in the middle</div></div>
+            <div style="grid-column:1/-1"><div class="k">Greenie board</div><div class="v">1. Kupi 3-1  3.75 (8)<br>2. Lama 1-1  3.40 (5)<br>3. Viking 1-1  2.90 (6)</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div>
+      <p><b>Buddy Radio</b> is a community project for DCS World groups.</p>
+      <p>Not affiliated with Eagle Dynamics or the DCS-SRS project.</p>
+    </div>
+    <div>
+      <p>Built on the SRS External AWACS Mode protocol as documented by SkyEye (MIT), ideas from AI_ATC by Avalanche110 (CC0), faster-whisper, Piper, Leaflet and OpenStreetMap.</p>
+    </div>
+  </div>
+</footer>
+<script src="/assets/site.js"></script>
+</body>
+</html>

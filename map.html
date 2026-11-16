@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Live map: Buddy Radio</title>
+<meta name="description" content="The live F10-style map from Buddy Radio: aircraft, SAM rings, airfields, carriers and called targets.">
+<meta property="og:image" content="/assets/img/og.png">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/assets/leaflet/leaflet.css">
+<link rel="stylesheet" href="/assets/map.css">
+</head>
+<body>
+<div id="map" aria-label="Live mission map"></div>
+
+<header id="bar">
+  <a class="brand" href="/" title="Buddy Radio home"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="5" fill="#363c42"/><path d="M5 17h4l3-8 4 15 3-11 2 4h6" fill="none" stroke="#f2b705" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/></svg><span>Buddy Radio</span></a>
+  <button id="status" class="status demo" type="button" title="Connection">Demo</button>
+  <span id="clock">--:--</span>
+  <span class="sp"></span>
+  <label class="me"><span class="vh">Your aircraft</span><select id="me"><option value="">Pick your aircraft</option></select></label>
+  <button id="follow" type="button" aria-pressed="false">Follow</button>
+  <button id="rings" type="button" aria-pressed="true">SAM rings</button>
+  <button id="lbls" type="button" aria-pressed="true">Labels</button>
+  <button id="panelBtn" type="button" aria-expanded="false" aria-controls="side">Info</button>
+</header>
+
+<aside id="side" aria-label="Mission info">
+  <h2>Airfields</h2><div id="abList"></div>
+  <h2>Targets called</h2><div id="tgtList"></div>
+  <h2>Greenie board</h2><div id="greenie"></div>
+  <h2>Radio</h2><div id="stations"></div>
+</aside>
+
+<dialog id="connect">
+  <form method="dialog" id="connectForm">
+    <h2>Connect to Radio Ops</h2>
+    <p>Paste the https address your tunnel printed and the map key from <code>stations.json</code>. <a href="/setup#live-map">How to get an address</a></p>
+    <label>Radio Ops address<input id="server" type="url" inputmode="url" placeholder="https://your-tunnel.trycloudflare.com" autocomplete="off" spellcheck="false"></label>
+    <label>Map key<input id="key" type="text" placeholder="leave empty if you didn't set one" autocomplete="off" spellcheck="false"></label>
+    <p id="connErr" class="err" role="alert"></p>
+    <div class="row">
+      <button type="submit" id="doConnect" class="primary" value="connect">Connect</button>
+      <button type="button" id="useDemo">Show the demo</button>
+      <button type="button" id="share" title="Copy a link with this address and key">Copy share link</button>
+    </div>
+  </form>
+</dialog>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="/assets/leaflet/leaflet.js"></script>
+<script src="/assets/map.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 420" font-family="Public Sans, system-ui, sans-serif" font-size="14">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#16191b"/></marker>
+  </defs>
+  <rect width="760" height="420" fill="#d3d5d0"/>
+  <!-- DCS server -->
+  <rect x="20" y="40" width="210" height="130" rx="6" fill="#c4c7c1" stroke="#16191b" stroke-width="2"/>
+  <text x="36" y="72" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-weight="800" font-size="26" fill="#16191b">DCS server</text>
+  <text x="36" y="100" fill="#16191b">Mission running</text>
+  <text x="36" y="122" fill="#16191b">+ Buddy bridge script</text>
+  <text x="36" y="150" fill="#474d52" font-size="13">positions, airfields, weather</text>
+  <!-- SRS -->
+  <rect x="20" y="250" width="210" height="130" rx="6" fill="#c4c7c1" stroke="#16191b" stroke-width="2"/>
+  <text x="36" y="282" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-weight="800" font-size="26" fill="#16191b">SRS server</text>
+  <text x="36" y="310" fill="#16191b">External AWACS Mode on</text>
+  <text x="36" y="332" fill="#16191b">Pilots talk as usual</text>
+  <text x="36" y="360" fill="#474d52" font-size="13">voice in and out</text>
+  <!-- Radio Ops -->
+  <rect x="300" y="110" width="200" height="200" rx="10" fill="#2b3035"/>
+  <text x="318" y="146" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-weight="800" font-size="30" fill="#f2b705">Radio Ops</text>
+  <text x="318" y="174" fill="#e6ecdc">on one PC</text>
+  <text x="318" y="210" fill="#e6ecdc">Hears: Whisper</text>
+  <text x="318" y="234" fill="#e6ecdc">Thinks: code first</text>
+  <text x="318" y="258" fill="#e6ecdc">Speaks: Piper voices</text>
+  <text x="318" y="290" fill="#a9b2a6" font-size="13">Overlord, Tower, ATIS,</text>
+  <text x="318" y="306" fill="#a9b2a6" font-size="13">Buddy, Paddles</text>
+  <!-- right side -->
+  <rect x="570" y="40" width="170" height="80" rx="6" fill="none" stroke="#16191b" stroke-width="2"/>
+  <text x="586" y="72" font-weight="700" fill="#16191b">Claude API</text>
+  <text x="586" y="96" fill="#474d52" font-size="13">free-form questions only</text>
+  <rect x="570" y="170" width="170" height="80" rx="6" fill="none" stroke="#16191b" stroke-width="2"/>
+  <text x="586" y="202" font-weight="700" fill="#16191b">Discord</text>
+  <text x="586" y="226" fill="#474d52" font-size="13">targets, greenie board</text>
+  <rect x="570" y="300" width="170" height="80" rx="6" fill="none" stroke="#16191b" stroke-width="2"/>
+  <text x="586" y="332" font-weight="700" fill="#16191b">Live map</text>
+  <text x="586" y="356" fill="#474d52" font-size="13">any browser or tablet</text>
+  <!-- arrows -->
+  <path d="M230 105 C 270 105 270 160 298 160" fill="none" stroke="#16191b" stroke-width="2" marker-end="url(#a)"/>
+  <text x="236" y="96" fill="#474d52" font-size="12">mission data</text>
+  <path d="M232 315 C 270 315 270 262 298 262" fill="none" stroke="#16191b" stroke-width="2" marker-start="url(#a)" marker-end="url(#a)"/>
+  <text x="240" y="340" fill="#474d52" font-size="12">voice</text>
+  <path d="M502 150 C 540 150 540 82 568 82" fill="none" stroke="#16191b" stroke-width="2" marker-start="url(#a)" marker-end="url(#a)"/>
+  <path d="M502 210 L 568 210" fill="none" stroke="#16191b" stroke-width="2" marker-end="url(#a)"/>
+  <path d="M502 270 C 540 270 540 340 568 340" fill="none" stroke="#16191b" stroke-width="2" marker-end="url(#a)"/>
+  <path d="M230 135 C 252 135 252 120 230 120" fill="none" stroke="none"/>
+  <text x="20" y="22" fill="#474d52" font-size="12">The bridge also receives subtitles and F10 map markers back from Radio Ops.</text>
+</svg>

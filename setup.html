@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Setup: Buddy Radio</title>
+<meta name="description" content="Install Buddy Radio on a DCS World server: SRS, mission scripting, Python, the API key, Discord and the live map.">
+<meta property="og:image" content="/assets/img/og.png">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="5" fill="#2b3035"/><path d="M5 17h4l3-8 4 15 3-11 2 4h6" fill="none" stroke="#f2b705" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/></svg>Buddy Radio</a>
+    <nav aria-label="Main">
+      <a href="/">Home</a>
+      <a href="/guide">Radio guide</a>
+      <a href="/setup" aria-current="page">Setup</a>
+      <a href="/map">Live map</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap" style="padding-top:clamp(32px,5vw,56px)">
+    <h1 style="font-size:clamp(44px,6vw,72px);margin-bottom:.4em">Setup</h1>
+    <p>Everything runs on one Windows PC next to your DCS server: the server itself, the SRS server and Buddy's Radio Ops. Pilots install nothing.</p>
+    <div class="callout" style="margin:20px 0 8px">The program files aren't published yet. This guide is for groups testing Buddy Radio.</div>
+  </div>
+
+  <section style="border-top:0;padding-top:28px">
+    <div class="wrap split">
+      <div>
+        <h2>What you need</h2>
+        <p>A PC that can host DCS. Speech recognition runs on the processor whenever someone talks, so a stronger CPU means quicker replies.</p>
+      </div>
+      <dl class="facts">
+        <div><dt>Memory</dt><dd>16 GB at least, 32 GB is comfortable with a big mission like Foothold.</dd></div>
+        <div><dt>Software</dt><dd>DCS World Server, the DCS-SRS server, and Python 3.11 or newer.</dd></div>
+        <div><dt>Claude API key</dt><dd>From console.anthropic.com with a few dollars of prepaid credit. A busy evening with five pilots costs well under a dollar.</dd></div>
+        <div><dt>Optional</dt><dd>A Discord server for target and greenie-board posts, and a tablet for the live map.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Install</h2>
+      <ol class="steps">
+        <li>
+          <h3>Turn on External AWACS Mode in SRS</h3>
+          <p>In the SRS server settings, switch External AWACS Mode on and set a password for each coalition. The Buddy stations join SRS this way, like an AWACS client.</p>
+        </li>
+        <li>
+          <h3>Let missions talk to Buddy</h3>
+          <p>Open <code>Scripts\MissionScripting.lua</code> in the DCS server's install folder and comment out three lines, so the block reads:</p>
+<pre>sanitizeModule('os')
+--sanitizeModule('io')
+--sanitizeModule('lfs')
+--_G['require'] = nil
+_G['loadlib'] = nil
+--_G['package'] = nil</pre>
+          <p>DCS updates put this file back. If the log ever says <code>attempt to index global 'lfs'</code>, make the edit again.</p>
+        </li>
+        <li>
+          <h3>Copy Buddy into the server profile</h3>
+          <p>Put the <code>Buddy</code> folder in <code>Saved Games\&lt;server profile&gt;\Scripts\</code> and <code>buddy_bridge_hook.lua</code> in <code>Scripts\Hooks\</code>. The hook loads the bridge into every mission, including campaigns like Foothold. Restart the DCS server once so it picks up the hook.</p>
+        </li>
+        <li>
+          <h3>Install Python and the packages</h3>
+          <p>Install Python from python.org and tick "Add Python to PATH". Then in PowerShell:</p>
+<pre>pip install anthropic faster-whisper piper-tts av numpy sounddevice keyboard pypdf</pre>
+        </li>
+        <li>
+          <h3>Store your API key</h3>
+          <p>The key never goes in a file. This asks for it without showing what you paste:</p>
+<pre>$s = Read-Host "Paste your Anthropic API key" -AsSecureString
+[Environment]::SetEnvironmentVariable("ANTHROPIC_API_KEY", [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($s)), "User")</pre>
+          <p>Keep auto-reload off in the Anthropic console, so the credit you bought is the most you can spend.</p>
+        </li>
+        <li>
+          <h3>Connect Discord (optional)</h3>
+          <p>Create webhooks for a <code>#targets</code> and a <code>#greenie-board</code> channel (Server Settings, Integrations, Webhooks) and store each address the same way, as <code>BUDDY_DISCORD_TARGETS</code> and <code>BUDDY_DISCORD_GREENIE</code>. Test with <code>python discord_post.py targets "Hello"</code>.</p>
+        </li>
+        <li>
+          <h3>Start in this order</h3>
+          <p>The DCS server running a mission, then the SRS server, then <code>Start Overlord.bat</code> in the Buddy folder. The window lists every station under "On the air" and prints the address of the tablet map. The first start downloads the speech model and voices.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap split">
+      <div>
+        <h2>Change the stations</h2>
+        <p>Every station lives in <code>stations.json</code> next to the program. Change a frequency or voice, add a tower for another airfield, or remove a station you don't use. Restart Radio Ops after editing.</p>
+      </div>
+<pre>{
+  "type": "tower",
+  "name": "Ramat David Tower",
+  "airfield": "Ramat David",
+  "freq": 250.950,
+  "mod": "AM",
+  "voice": "en_US-ryan-medium"
+}</pre>
+    </div>
+  </section>
+
+  <section id="live-map">
+    <div class="wrap split">
+      <div>
+        <h2>Put the live map online</h2>
+        <p>On your home network the map is at the address Radio Ops prints. To open it from this website, Radio Ops needs a secure public address. A tunnel gives it one without opening ports on your router.</p>
+      </div>
+      <div>
+        <ol class="steps" style="max-width:none">
+          <li>
+            <h3>Pick an access key</h3>
+            <p>Add a line to <code>stations.json</code> so only people with the key see your mission:</p>
+<pre>"map_key": "pick-any-word"</pre>
+          </li>
+          <li>
+            <h3>Start a tunnel</h3>
+            <p>Either Cloudflare (free, new address every time):</p>
+<pre>cloudflared tunnel --url http://localhost:8080</pre>
+            <p>or Tailscale Funnel (free, the same address every time):</p>
+<pre>tailscale funnel 8080</pre>
+          </li>
+          <li>
+            <h3>Connect the map</h3>
+            <p>Open the <a href="/map">live map</a>, choose Connect, and paste the https address the tunnel printed and your key. Share the link it gives you with your group.</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>When something's wrong</h2>
+      <div class="table-scroll">
+      <table class="comm">
+        <thead><tr><th scope="col">You see</th><th scope="col">What it means</th></tr></thead>
+        <tbody>
+          <tr><td><code>no DCS data yet</code></td><td>No mission is running, or the bridge didn't load. Check the DCS log for "BuddyBridge started"; if it's missing, redo step 2 and restart the server.</td></tr>
+          <tr><td><code>Cannot reach the SRS server</code></td><td>Start the SRS server first, and check <code>srs_server</code> in stations.json.</td></tr>
+          <tr><td><code>(not for Buddy)</code> in the log</td><td>The station heard a call that wasn't addressed to it. The text shows what it heard, which tells you if the name got clipped.</td></tr>
+          <tr><td><code>Port 10081 is busy</code></td><td>Another copy of Radio Ops is already running. Close it.</td></tr>
+          <tr><td>A station says "say again"</td><td>It couldn't make sense of the call. Read the <code>rx</code> line to see what it heard, and keep calls short.</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div>
+      <p><b>Buddy Radio</b> is a community project for DCS World groups.</p>
+      <p>Not affiliated with Eagle Dynamics or the DCS-SRS project.</p>
+    </div>
+    <div>
+      <p>Built on the SRS External AWACS Mode protocol as documented by SkyEye (MIT), ideas from AI_ATC by Avalanche110 (CC0), faster-whisper, Piper, Leaflet and OpenStreetMap.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radio guide: Buddy Radio</title>
+<meta name="description" content="What to say to Overlord, the tower, ATIS, Buddy and Paddles, and what they say back.">
+<meta property="og:image" content="/assets/img/og.png">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="5" fill="#2b3035"/><path d="M5 17h4l3-8 4 15 3-11 2 4h6" fill="none" stroke="#f2b705" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/></svg>Buddy Radio</a>
+    <nav aria-label="Main">
+      <a href="/">Home</a>
+      <a href="/guide" aria-current="page">Radio guide</a>
+      <a href="/setup">Setup</a>
+      <a href="/map">Live map</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap doc">
+  <nav class="toc" aria-label="Stations">
+    <a href="#basics"><span class="f">Basics</span>How to call</a>
+    <a href="#overlord"><span class="f">251.000</span>Overlord</a>
+    <a href="#tower"><span class="f">251.500</span>Tower</a>
+    <a href="#atis"><span class="f">251.750</span>ATIS</a>
+    <a href="#buddy"><span class="f">252.000</span>Buddy</a>
+    <a href="#paddles"><span class="f">253.000</span>Paddles</a>
+    <a href="#extras"><span class="f">Extras</span>Map and Discord</a>
+  </nav>
+
+  <article>
+    <section id="basics">
+      <h1 style="font-size:clamp(44px,6vw,72px);margin-bottom:.4em">Radio guide</h1>
+      <p>Tune the station's frequency in SRS (AM), press your push-to-talk, wait half a second, and talk like you would to a real controller. Keep each call to one request.</p>
+      <p>The order is the same everywhere: <b>who you're calling, who you are, what you want</b>. "Overlord, Kupi 3-1, picture." The station knows who you are from your SRS name, so pick a name like your callsign.</p>
+      <div class="callout"><b>Cold jet?</b> The radios need electrical power before SRS can transmit. Tune exactly to the frequency, for example 251.500, not 251.5 on a different preset.</div>
+      <h3 style="margin-top:28px">If a station doesn't answer</h3>
+      <ul class="plain">
+        <li>Check you're on the right frequency and AM.</li>
+        <li>Wait half a second after pressing push-to-talk. SRS clips the first moment of every transmission, and a clipped station name is the most common miss.</li>
+        <li>Say it again, shorter. "Tower, Lama 1-1, request taxi" works better than one long sentence.</li>
+      </ul>
+    </section>
+
+    <section id="overlord">
+      <div class="station-head"><span class="f">251.000</span><h2>Overlord</h2></div>
+      <p>The GCI controller: an older, calm voice with the whole picture. Overlord shares the frequency with your group, so it answers calls with its name, or with a clear GCI request like "picture" or "bogey dope" if the start of the call got clipped.</p>
+      <table class="says">
+        <thead><tr><th scope="col">You say</th><th scope="col">Overlord answers</th></tr></thead>
+        <tbody>
+          <tr><td>Overlord, Kupi 3-1, bogey dope.</td><td>Kupi 3-1, Overlord, BRAA, two-seven-zero, 25, 15 thousand, hot, single contact, Fishbed.</td></tr>
+          <tr><td>Overlord, Kupi 3-1, picture.</td><td>All groups in range, nearest first, with BRAA, altitude, aspect and count.</td></tr>
+          <tr><td>Overlord, Kupi 3-1, ground threats.</td><td>The three nearest hostile ground groups by bearing and range, then "stand by to copy coordinates" for the nearest.</td></tr>
+          <tr><td>Overlord, Kupi 3-1, request coordinates two.</td><td>Coordinates for the second threat on that list.</td></tr>
+          <tr><td>Overlord, Kupi 3-1, say friendlies.</td><td>Where the other friendly flights are, by bearing, range and altitude.</td></tr>
+          <tr><td>Overlord, Kupi 3-1, threat warnings off. <em>(or on)</em></td><td>Stops or restarts the automatic warnings, for you only.</td></tr>
+        </tbody>
+      </table>
+      <h3>Warnings you get without asking</h3>
+      <ul class="plain">
+        <li><b>Air threats</b> when a hostile group comes inside 25 miles, and again inside 10. Groups flying away from you are left out.</li>
+        <li><b>SAM and triple-A</b> about 3 miles before you enter a site's range: "SAM threat, SA-6, zero-eight-five, 16, approaching its range." Around 30 types are known, from SA-2 and SA-10 down to Shilkas and MANPADS.</li>
+      </ul>
+      <h3>Coordinates you can write down</h3>
+      <p>After "stand by to copy" there's a five-second pause, then the coordinates are read once, digit by digit, with a pause between groups. Jets get latitude and longitude in degrees and decimal minutes; the Apache, A-10 and helicopters get an MGRS grid.</p>
+      <p>At the same time the coordinates appear as a block on your screen, a marker appears on your flight's F10 map, and the target is posted to Discord.</p>
+      <div class="callout">Enemy aircraft are always called by their reporting names: Fishbed, Fulcrum, Flanker, Frogfoot, Hind, Hip. "Threat" on its own means ground threats; ask for bogey dope or picture for air.</div>
+    </section>
+
+    <section id="tower">
+      <div class="station-head"><span class="f">251.500</span><h2>Tower</h2></div>
+      <p>Ground and tower for one airfield in a single station (Rosh Pina by default; add more airfields in the settings). Tower answers every call on its frequency, so the station name is optional.</p>
+      <table class="says">
+        <thead><tr><th scope="col">You say</th><th scope="col">Tower answers</th></tr></thead>
+        <tbody>
+          <tr><td>Rosh Pina Tower, Lama 1-1, request start-up.</td><td>Start-up approved, runway in use, wind, altimeter.</td></tr>
+          <tr><td>Tower, Lama 1-1, request taxi.</td><td>Taxi to holding point runway three three, wind, altimeter, hold short runway three three.</td></tr>
+          <tr><td>Lama 1-1, ready for takeoff.</td><td>Cleared for takeoff, or hold short with the reason (traffic on the runway or on final).</td></tr>
+          <tr><td>Tower, Lama 1-1, inbound for landing, with information Bravo.</td><td>Runway, wind, altimeter and your place in the landing sequence.</td></tr>
+          <tr><td>Tower, Lama 1-1, request PAR.</td><td>A precision approach talk-down (see below).</td></tr>
+          <tr><td>Tower, Lama 1-1, request traffic.</td><td>Nearby traffic as clock positions: "two o'clock, three miles, four thousand five hundred, Hornet."</td></tr>
+        </tbody>
+      </table>
+      <h3>Calls Tower makes on its own</h3>
+      <ul class="plain">
+        <li><b>Hold position</b> if you roll onto the runway without a takeoff clearance.</li>
+        <li><b>Airborne, contact Overlord</b> after a cleared takeoff.</li>
+        <li><b>Go around</b> if you're inside about a mile on final while someone is on the runway.</li>
+        <li><b>Welcome, exit the runway</b> after you land.</li>
+        <li><b>Traffic alerts</b> when another aircraft is closing on you. Your own flight and aircraft flying formation with you are left out.</li>
+      </ul>
+      <h3>Precision approach (PAR)</h3>
+      <p>Tower vectors you onto the extended centreline if you aren't lined up, then talks you down every few seconds: "four miles from touchdown, slightly right of course, turn left heading three-two-niner, on glidepath." Around three miles out it clears you to land if the runway is clear, and ends with "over landing threshold, take over visually." Say "cancel PAR" to stop.</p>
+    </section>
+
+    <section id="atis">
+      <div class="station-head"><span class="f">251.750</span><h2>ATIS</h2></div>
+      <p>A recorded-style weather broadcast on a loop, built from the live mission: information letter, zulu time, runway in use, wind, visibility, clouds, temperature and altimeter. The letter changes every hour and whenever the runway in use changes. It only transmits while someone is tuned in.</p>
+      <p>Listen before you call Tower, then report the letter: "with information Bravo." If yours is out of date, Tower tells you the current one.</p>
+    </section>
+
+    <section id="buddy">
+      <div class="station-head"><span class="f">252.000</span><h2>Buddy</h2></div>
+      <p>A relaxed squadron mate with a joke ready, who knows the mission and has read the manuals. Buddy goes quiet on the jokes when you sound busy.</p>
+      <table class="says">
+        <thead><tr><th scope="col">You say</th><th scope="col">Buddy answers</th></tr></thead>
+        <tbody>
+          <tr><td>Buddy, Lama 1-1, how do I set up a JDAM?</td><td>Three or four steps from your aircraft's manual, then "say next for the rest."</td></tr>
+          <tr><td>Next.</td><td>The next steps.</td></tr>
+          <tr><td>Buddy, what's our task?</td><td>The mission briefing, time and weather.</td></tr>
+          <tr><td>Buddy, nearest airfields?</td><td>Bearing, range, owner, runway in use and tower frequency.</td></tr>
+          <tr><td>Buddy, where's the nearest bandit?</td><td>The same live picture Overlord has, in a friendlier voice.</td></tr>
+        </tbody>
+      </table>
+      <h3>Teach Buddy your aircraft</h3>
+      <p>Put PDF manuals and your own cheat sheets (.txt or .md) in the <code>docs</code> folder, one folder per aircraft: <code>docs\F-18</code>, <code>docs\Apache</code>, <code>docs\General</code>. Buddy searches the folder for the aircraft you're flying and builds the steps from what it finds, using the manual's own switch and page names. If something isn't in the manuals, it says so before giving its best guess.</p>
+    </section>
+
+    <section id="paddles">
+      <div class="station-head"><span class="f">253.000</span><h2>Paddles</h2></div>
+      <p>The Case I landing trainer: it watches you from the initial to the wire, coaches each point of the pattern, makes the groove calls of a Landing Signal Officer, and grades the pass.</p>
+      <figure class="figure" style="max-width:600px;margin:22px 0">
+        <svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Top-down diagram of the Case I pattern: initial 3 miles astern at 800 feet, break over the bow, downwind at 600 feet 1.1 to 1.3 miles abeam, the 90 at 450 feet, the 45 at about 350 feet, and the groove." viewBox="0 0 600 640" font-family="Public Sans, system-ui, sans-serif" font-size="14">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#16191b"/></marker>
+  </defs>
+  <rect width="600" height="640" fill="#d3d5d0"/>
+  <!-- sea track -->
+  <line x1="330" y1="40" x2="330" y2="610" stroke="#9da19b" stroke-width="1.5" stroke-dasharray="4 6"/>
+  <text x="338" y="54" fill="#474d52" font-size="12">ship's heading (BRC)</text>
+  <!-- carrier -->
+  <g transform="translate(330 280)">
+    <path d="M-9 50 L-9 -38 L0 -52 L9 -38 L9 50 Z" fill="#2b3035"/>
+    <line x1="-6" y1="48" x2="2" y2="-4" stroke="#f2b705" stroke-width="2"/>
+  </g>
+  <!-- initial up the starboard side -->
+  <path d="M352 600 L352 228" fill="none" stroke="#16191b" stroke-width="3" marker-end="url(#ar)"/>
+  <!-- break -->
+  <path d="M352 220 A 97 97 0 0 0 158 220" fill="none" stroke="#16191b" stroke-width="3"/>
+  <!-- downwind -->
+  <path d="M158 220 L158 338" fill="none" stroke="#16191b" stroke-width="3" marker-end="url(#ar)"/>
+  <!-- final turn -->
+  <path d="M158 342 C 158 470, 330 500, 343 418" fill="none" stroke="#16191b" stroke-width="3"/>
+  <!-- groove -->
+  <path d="M343 418 L 330 336" fill="none" stroke="#b0301b" stroke-width="4" marker-end="url(#ar)"/>
+  <!-- labels -->
+  <circle cx="352" cy="560" r="5" fill="#16191b"/>
+  <text x="366" y="556" font-weight="700">Initial</text>
+  <text x="366" y="574" fill="#474d52">3 nm astern, 800 ft, 350 kt</text>
+  <circle cx="352" cy="210" r="5" fill="#16191b"/>
+  <text x="372" y="196" font-weight="700">Break</text>
+  <text x="372" y="214" fill="#474d52">over or past the bow,</text>
+  <text x="372" y="232" fill="#474d52">left turn, level at 800 ft</text>
+  <text x="24" y="250" font-weight="700">Downwind</text>
+  <text x="24" y="268" fill="#474d52">600 ft</text>
+  <text x="24" y="286" fill="#474d52">1.1 to 1.3 nm</text>
+  <text x="24" y="304" fill="#474d52">abeam the ship</text>
+  <text x="24" y="322" fill="#474d52">gear, flaps, hook</text>
+  <circle cx="158" cy="338" r="5" fill="#16191b"/>
+  <text x="24" y="362" font-weight="700">Abeam</text>
+  <text x="24" y="380" fill="#474d52">start the turn</text>
+  <circle cx="198" cy="452" r="5" fill="#16191b"/>
+  <text x="120" y="494" font-weight="700">The 90</text>
+  <text x="120" y="512" fill="#474d52">450 ft</text>
+  <circle cx="300" cy="470" r="5" fill="#16191b"/>
+  <text x="256" y="512" font-weight="700">The 45</text>
+  <text x="256" y="530" fill="#474d52">about 350 ft</text>
+  <text x="358" y="410" font-weight="700" fill="#b0301b">Groove</text>
+  <text x="358" y="428" fill="#474d52">15 to 18 seconds,</text>
+  <text x="358" y="446" fill="#474d52">fly the ball, lineup, AoA</text>
+  <!-- scale -->
+  <line x1="40" y1="600" x2="140" y2="600" stroke="#16191b" stroke-width="2"/>
+  <line x1="40" y1="594" x2="40" y2="606" stroke="#16191b" stroke-width="2"/>
+  <line x1="140" y1="594" x2="140" y2="606" stroke="#16191b" stroke-width="2"/>
+  <text x="40" y="624" fill="#474d52" font-size="12">about 1 nm (not to scale near the ship)</text>
+</svg>
+        <figcaption>The Case I pattern Paddles coaches. Distances near the ship are stretched for clarity.</figcaption>
+      </figure>
+      <table class="says">
+        <thead><tr><th scope="col">Where you are</th><th scope="col">Paddles says</th></tr></thead>
+        <tbody>
+          <tr><td>3 miles astern, heading with the ship</td><td>At the initial. B R C two-six-five. Eight hundred feet, three fifty knots.</td></tr>
+          <tr><td>Past the bow</td><td>Break when ready. Left turn, level at eight hundred.</td></tr>
+          <tr><td>Downwind</td><td>You're wide at 1.7 miles, move in, come down to six hundred.</td></tr>
+          <tr><td>Abeam the landing area</td><td>Abeam. Start your turn, thirty degrees of bank, easy descent.</td></tr>
+          <tr><td>The 90 and the 45</td><td>Ninety, you're high, ease it down.</td></tr>
+          <tr><td>Three quarters of a mile</td><td>Call the ball. Then: power, right for lineup, you're high, you're slow.</td></tr>
+          <tr><td>After the pass</td><td>Trap, three wire. Fair pass. A little high in the middle.</td></tr>
+        </tbody>
+      </table>
+      <h3>Grades</h3>
+      <table class="grades">
+        <thead><tr><th scope="col">Grade</th><th scope="col">Points</th><th scope="col">Meaning</th></tr></thead>
+        <tbody>
+          <tr><td><span class="sq" style="background:#2ecc71"></span>_OK_</td><td>5</td><td>Perfect: no errors, three wire, groove 15 to 19 seconds</td></tr>
+          <tr><td><span class="sq" style="background:#2ecc71"></span>OK</td><td>4</td><td>Small corrections only</td></tr>
+          <tr><td><span class="sq" style="background:#f1c40f"></span>(OK) fair</td><td>3</td><td>Noticeable errors, or a groove that was too short or too long</td></tr>
+          <tr><td><span class="sq" style="background:#3498db"></span>Bolter</td><td>2.5</td><td>Touched down past the wires</td></tr>
+          <tr><td><span class="sq" style="background:#8e5a2b"></span>No grade</td><td>2</td><td>Large errors that got aboard anyway</td></tr>
+          <tr><td><span class="sq" style="background:#e74c3c"></span>Wave-off</td><td>1</td><td>Too low, too high, off the centreline, or a foul deck in close</td></tr>
+        </tbody>
+      </table>
+      <p>Ask "Paddles, how was my pass?" for a debrief with one concrete fix per error. "Paddles, say BRC" gives the ship's heading, final bearing and wind over the deck.</p>
+      <div class="callout"><b>Coaching, not the lens.</b> Glideslope calls are calculated from your position, so fly the ball and treat Paddles as an instructor. Fast and slow calls need an angle-of-attack reference and currently cover the Hornet.</div>
+    </section>
+
+    <section id="extras">
+      <div class="station-head"><span class="f">Extras</span><h2>Map and Discord</h2></div>
+      <p>Everything a station says to you also appears as a short subtitle on your screen, for you only. Coordinates stay up longer.</p>
+      <p>The <a href="/map">live map</a> shows the mission on any tablet or phone, and the targets Overlord reads out. Two Discord channels can receive posts: one for targets and one for the greenie board.</p>
+    </section>
+  </article>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div>
+      <p><b>Buddy Radio</b> is a community project for DCS World groups.</p>
+      <p>Not affiliated with Eagle Dynamics or the DCS-SRS project.</p>
+    </div>
+    <div>
+      <p>Built on the SRS External AWACS Mode protocol as documented by SkyEye (MIT), ideas from AI_ATC by Avalanche110 (CC0), faster-whisper, Piper, Leaflet and OpenStreetMap.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
