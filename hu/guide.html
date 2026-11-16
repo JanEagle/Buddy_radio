@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rádiós útmutató: Buddy Radio</title>
+<meta name="description" content="Mit mondj Overlordnak, a toronynak, az ATIS-nak, Buddynak és Paddlesnek, és mit válaszolnak.">
+<meta property="og:image" content="/assets/img/og.png">
+<link rel="alternate" hreflang="en" href="/hu/guide">
+<link rel="alternate" hreflang="hu" href="/hu/guide">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="/hu/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="5" fill="#2b3035"/><path d="M5 17h4l3-8 4 15 3-11 2 4h6" fill="none" stroke="#f2b705" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/></svg>Buddy Radio</a>
+    <nav aria-label="Fő navigáció">
+      <a href="/hu/">Főoldal</a>
+      <a href="/hu/guide" aria-current="page">Rádiós útmutató</a>
+      <a href="/hu/setup">Telepítés</a>
+      <a href="/hu/map">Élő térkép</a>
+      <a class="lang" href="/guide" hreflang="en" lang="en">English</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap doc">
+  <nav class="toc" aria-label="Állomások">
+    <a href="#basics"><span class="f">Alapok</span>Hogyan hívj</a>
+    <a href="#overlord"><span class="f">251.000</span>Overlord</a>
+    <a href="#tower"><span class="f">251.500</span>Torony</a>
+    <a href="#atis"><span class="f">251.750</span>ATIS</a>
+    <a href="#buddy"><span class="f">252.000</span>Buddy</a>
+    <a href="#paddles"><span class="f">253.000</span>Paddles</a>
+    <a href="#extras"><span class="f">Extrák</span>Térkép és Discord</a>
+  </nav>
+
+  <article>
+    <section id="basics">
+      <h1 style="font-size:clamp(44px,6vw,72px);margin-bottom:.4em">Rádiós útmutató</h1>
+      <p>Állítsd be az állomás frekvenciáját az SRS-ben (AM), nyomd meg a push-to-talkot, várj fél másodpercet, és beszélj úgy, ahogy egy valódi irányítóval. Egy hívásban egy kérés legyen.</p>
+      <p>A sorrend mindenhol ugyanaz: <b>kit hívsz, ki vagy, mit kérsz</b>. "Overlord, Kupi 3-1, picture." Az állomás az SRS nevedből tudja, ki vagy, ezért a hívójeledet add meg névnek.</p>
+      <div class="callout"><b>Hideg gép?</b> A rádióknak áram kell, mielőtt az SRS adni tud. Pontosan a frekvenciára hangolj, például 251.500-ra.</div>
+      <h3 style="margin-top:28px">Ha egy állomás nem válaszol</h3>
+      <ul class="plain">
+        <li>Ellenőrizd, hogy jó frekvencián és AM-en vagy.</li>
+        <li>A push-to-talk megnyomása után várj fél másodpercet. Az SRS minden adás elejéből levág egy pillanatot, és a leggyakoribb hiba, hogy az állomás neve lemarad.</li>
+        <li>Mondd újra, rövidebben. A "Tower, Lama 1-1, request taxi" jobban működik, mint egy hosszú mondat.</li>
+      </ul>
+    </section>
+
+    <section id="overlord">
+      <div class="station-head"><span class="f">251.000</span><h2>Overlord</h2></div>
+      <p>A GCI irányító: egy idősebb, nyugodt hang, aki látja a teljes helyzetet. Overlord a csapatoddal közös frekvencián van, ezért azokra a hívásokra válaszol, amelyekben elhangzik a neve, vagy egy egyértelmű GCI kérés, mint a "picture" vagy a "bogey dope", ha a hívás eleje levágódott.</p>
+      <table class="says">
+        <thead><tr><th scope="col">Te mondod</th><th scope="col">Overlord válasza</th></tr></thead>
+        <tbody>
+          <tr><td>Overlord, Kupi 3-1, bogey dope.</td><td>Kupi 3-1, Overlord, BRAA, two-seven-zero, 25, 15 thousand, hot, single contact, Fishbed.</td></tr>
+          <tr><td>Overlord, Kupi 3-1, picture.</td><td>Minden csoport a hatótávon belül, a legközelebbivel kezdve: BRAA, magasság, aspektus és darabszám.</td></tr>
+          <tr><td>Overlord, Kupi 3-1, ground threats.</td><td>A három legközelebbi ellenséges földi csoport iránnyal és távolsággal, majd "stand by to copy coordinates" a legközelebbihez.</td></tr>
+          <tr><td>Overlord, Kupi 3-1, request coordinates two.</td><td>A lista második fenyegetésének koordinátái.</td></tr>
+          <tr><td>Overlord, Kupi 3-1, say friendlies.</td><td>Hol vannak a többi saját kötelékek: irány, távolság és magasság.</td></tr>
+          <tr><td>Overlord, Kupi 3-1, threat warnings off. <em>(vagy on)</em></td><td>Kikapcsolja vagy visszakapcsolja az automatikus figyelmeztetéseket, csak neked.</td></tr>
+        </tbody>
+      </table>
+      <h3>Figyelmeztetések, amiket kérés nélkül kapsz</h3>
+      <ul class="plain">
+        <li><b>Légi fenyegetés</b>, amikor egy ellenséges csoport 25 mérföldön belülre ér, és újra 10-en belül. A tőled távolodó csoportokról nem szól.</li>
+        <li><b>SAM és légvédelmi tüzérség</b> nagyjából 3 mérfölddel azelőtt, hogy egy állás hatótávjába érnél: "SAM threat, SA-6, zero-eight-five, 16, approaching its range." Kb. 30 típust ismer, az SA-2-től és SA-10-től a Silkáig és a vállról indítható rakétákig.</li>
+      </ul>
+      <h3>Koordináták, amiket le tudsz írni</h3>
+      <p>A "stand by to copy" után öt másodperc szünet jön, majd egyszer felolvassa a koordinátákat, számjegyenként, a csoportok között szünettel. A vadászgépek fokban és tizedes percben kapják a szélességet és hosszúságot, az Apache, az A-10 és a helikopterek MGRS rácsot.</p>
+      <p>Ezzel egy időben a koordináták megjelennek a képernyődön, egy jelölő kerül a köteléked F10 térképére, és a cél felkerül Discordra.</p>
+      <div class="callout">Az ellenséges gépeket mindig a NATO kódnevükön mondja: Fishbed, Fulcrum, Flanker, Frogfoot, Hind, Hip. A "threat" önmagában földi fenyegetést jelent, a légi helyzethez kérj bogey dope-ot vagy picture-t.</div>
+    </section>
+
+    <section id="tower">
+      <div class="station-head"><span class="f">251.500</span><h2>Torony</h2></div>
+      <p>Föld és torony egy repülőtérhez, egyetlen állomásban (alapból Rosh Pina, a beállításokban adhatsz hozzá másikat). A torony minden hívásra válaszol a frekvenciáján, így az állomás nevét nem kötelező mondani.</p>
+      <table class="says">
+        <thead><tr><th scope="col">Te mondod</th><th scope="col">A torony válasza</th></tr></thead>
+        <tbody>
+          <tr><td>Rosh Pina Tower, Lama 1-1, request start-up.</td><td>Indítás engedélyezve, használt pálya, szél, légnyomás.</td></tr>
+          <tr><td>Tower, Lama 1-1, request taxi.</td><td>Gurulás a 33-as pálya várópontjához, szél, légnyomás, várakozás a pálya előtt.</td></tr>
+          <tr><td>Lama 1-1, ready for takeoff.</td><td>Felszállás engedélyezve, vagy várakozás az okkal együtt (forgalom a pályán vagy a végső egyenesen).</td></tr>
+          <tr><td>Tower, Lama 1-1, inbound for landing, with information Bravo.</td><td>Pálya, szél, légnyomás és a helyed a leszállási sorrendben.</td></tr>
+          <tr><td>Tower, Lama 1-1, request PAR.</td><td>Precíziós megközelítés levezetéssel (lásd lent).</td></tr>
+          <tr><td>Tower, Lama 1-1, request traffic.</td><td>A közeli forgalom óraállásban: "two o'clock, three miles, four thousand five hundred, Hornet."</td></tr>
+        </tbody>
+      </table>
+      <h3>Amit a torony magától mond</h3>
+      <ul class="plain">
+        <li><b>Hold position</b>, ha felszállási engedély nélkül gurulsz a pályára.</li>
+        <li><b>Airborne, contact Overlord</b> engedélyezett felszállás után.</li>
+        <li><b>Go around</b>, ha kb. egy mérföldön belül vagy a végső egyenesen, és valaki a pályán van.</li>
+        <li><b>Welcome, exit the runway</b> leszállás után.</li>
+        <li><b>Forgalmi figyelmeztetés</b>, ha egy másik gép közeledik feléd. A saját kötelékedről és a veled kötelékben repülő gépekről nem szól.</li>
+      </ul>
+      <h3>Precíziós megközelítés (PAR)</h3>
+      <p>Ha nem vagy a tengelyen, a torony rávezet a meghosszabbított középvonalra, majd néhány másodpercenként levezet: "four miles from touchdown, slightly right of course, turn left heading three-two-niner, on glidepath." Kb. három mérföldnél engedélyezi a leszállást, ha szabad a pálya, és így fejezi be: "over landing threshold, take over visually." A leállításhoz mondd: "cancel PAR".</p>
+    </section>
+
+    <section id="atis">
+      <div class="station-head"><span class="f">251.750</span><h2>ATIS</h2></div>
+      <p>Folyamatosan ismétlődő időjárás-adás az élő küldetésből: információs betűjel, zulu idő, használt pálya, szél, látástávolság, felhőzet, hőmérséklet és légnyomás. A betűjel óránként és a használt pálya változásakor vált. Csak akkor ad, ha valaki rá van hangolva.</p>
+      <p>Hallgasd meg, mielőtt hívod a tornyot, és mondd be a betűjelet: "with information Bravo." Ha a tiéd elavult, a torony megmondja az aktuálisat.</p>
+    </section>
+
+    <section id="buddy">
+      <div class="station-head"><span class="f">252.000</span><h2>Buddy</h2></div>
+      <p>Egy laza századtárs, akinek mindig van egy poénja, ismeri a küldetést és elolvasta a kézikönyveket. Ha elfoglaltnak hangzol, Buddy abbahagyja a viccelődést.</p>
+      <table class="says">
+        <thead><tr><th scope="col">Te mondod</th><th scope="col">Buddy válasza</th></tr></thead>
+        <tbody>
+          <tr><td>Buddy, Lama 1-1, how do I set up a JDAM?</td><td>Három-négy lépés a géped kézikönyvéből, majd "say next for the rest."</td></tr>
+          <tr><td>Next.</td><td>A következő lépések.</td></tr>
+          <tr><td>Buddy, what's our task?</td><td>A küldetés eligazítása, az idő és az időjárás.</td></tr>
+          <tr><td>Buddy, nearest airfields?</td><td>Irány, távolság, tulajdonos, használt pálya és toronyfrekvencia.</td></tr>
+          <tr><td>Buddy, where's the nearest bandit?</td><td>Ugyanaz az élő kép, amit Overlord lát, barátságosabb hangon.</td></tr>
+        </tbody>
+      </table>
+      <h3>Tanítsd meg Buddynak a gépedet</h3>
+      <p>Tedd a PDF kézikönyveket és a saját puskáidat (.txt vagy .md) a <code>docs</code> mappába, géptípusonként külön mappába: <code>docs\F-18</code>, <code>docs\Apache</code>, <code>docs\General</code>. Buddy annak a gépnek a mappájában keres, amivel repülsz, és abból rakja össze a lépéseket, a kézikönyv saját kapcsoló- és oldalneveivel. Ha valami nincs a kézikönyvekben, ezt megmondja, mielőtt tippelne.</p>
+    </section>
+
+    <section id="paddles">
+      <div class="station-head"><span class="f">253.000</span><h2>Paddles</h2></div>
+      <p>A Case I leszállásoktató: figyel az initialtól a kötélig, a kör minden pontján segít, LSO-ként mondja a groove hívásokat, és osztályozza a leszállást.</p>
+      <figure class="figure" style="max-width:600px;margin:22px 0">
+        <svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A Case I kör felülnézetből: initial 3 mérfölddel a hajó mögött 800 lábon, break az orr felett, downwind 600 lábon 1,1-1,3 mérföldre oldalt, a 90 450 lábon, a 45 kb. 350 lábon, majd a groove." viewBox="0 0 600 640" font-family="Public Sans, system-ui, sans-serif" font-size="14">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#16191b"/></marker>
+  </defs>
+  <rect width="600" height="640" fill="#d3d5d0"/>
+  <!-- sea track -->
+  <line x1="330" y1="40" x2="330" y2="610" stroke="#9da19b" stroke-width="1.5" stroke-dasharray="4 6"/>
+  <text x="338" y="54" fill="#474d52" font-size="12">a hajó iránya (BRC)</text>
+  <!-- carrier -->
+  <g transform="translate(330 280)">
+    <path d="M-9 50 L-9 -38 L0 -52 L9 -38 L9 50 Z" fill="#2b3035"/>
+    <line x1="-6" y1="48" x2="2" y2="-4" stroke="#f2b705" stroke-width="2"/>
+  </g>
+  <!-- initial up the starboard side -->
+  <path d="M352 600 L352 228" fill="none" stroke="#16191b" stroke-width="3" marker-end="url(#ar)"/>
+  <!-- break -->
+  <path d="M352 220 A 97 97 0 0 0 158 220" fill="none" stroke="#16191b" stroke-width="3"/>
+  <!-- downwind -->
+  <path d="M158 220 L158 338" fill="none" stroke="#16191b" stroke-width="3" marker-end="url(#ar)"/>
+  <!-- final turn -->
+  <path d="M158 342 C 158 470, 330 500, 343 418" fill="none" stroke="#16191b" stroke-width="3"/>
+  <!-- groove -->
+  <path d="M343 418 L 330 336" fill="none" stroke="#b0301b" stroke-width="4" marker-end="url(#ar)"/>
+  <!-- labels -->
+  <circle cx="352" cy="560" r="5" fill="#16191b"/>
+  <text x="366" y="556" font-weight="700">Initial</text>
+  <text x="366" y="574" fill="#474d52">3 nm a hajó mögött, 800 ft, 350 kt</text>
+  <circle cx="352" cy="210" r="5" fill="#16191b"/>
+  <text x="372" y="196" font-weight="700">Break</text>
+  <text x="372" y="214" fill="#474d52">az orr felett vagy után,</text>
+  <text x="372" y="232" fill="#474d52">balforduló, 800 ft-on vízszintben</text>
+  <text x="24" y="250" font-weight="700">Downwind</text>
+  <text x="24" y="268" fill="#474d52">600 ft</text>
+  <text x="24" y="286" fill="#474d52">1,1-1,3 nm</text>
+  <text x="24" y="304" fill="#474d52">a hajó mellett</text>
+  <text x="24" y="322" fill="#474d52">futó, fékszárny, horog</text>
+  <circle cx="158" cy="338" r="5" fill="#16191b"/>
+  <text x="24" y="362" font-weight="700">Abeam</text>
+  <text x="24" y="380" fill="#474d52">kezdd a fordulót</text>
+  <circle cx="198" cy="452" r="5" fill="#16191b"/>
+  <text x="120" y="494" font-weight="700">The 90</text>
+  <text x="120" y="512" fill="#474d52">450 ft</text>
+  <circle cx="300" cy="470" r="5" fill="#16191b"/>
+  <text x="256" y="512" font-weight="700">The 45</text>
+  <text x="256" y="530" fill="#474d52">kb. 350 ft</text>
+  <text x="358" y="410" font-weight="700" fill="#b0301b">Groove</text>
+  <text x="358" y="428" fill="#474d52">15-18 másodperc,</text>
+  <text x="358" y="446" fill="#474d52">labda, tengely, AoA</text>
+  <!-- scale -->
+  <line x1="40" y1="600" x2="140" y2="600" stroke="#16191b" stroke-width="2"/>
+  <line x1="40" y1="594" x2="40" y2="606" stroke="#16191b" stroke-width="2"/>
+  <line x1="140" y1="594" x2="140" y2="606" stroke="#16191b" stroke-width="2"/>
+  <text x="40" y="624" fill="#474d52" font-size="12">kb. 1 nm (a hajó közelében nem méretarányos)</text>
+</svg>
+        <figcaption>A Case I kör, amit Paddles oktat. A hajó közelében a távolságok az áttekinthetőség kedvéért nyújtva vannak.</figcaption>
+      </figure>
+      <table class="says">
+        <thead><tr><th scope="col">Hol vagy</th><th scope="col">Paddles mondja</th></tr></thead>
+        <tbody>
+          <tr><td>3 mérfölddel a hajó mögött, vele egy irányban</td><td>At the initial. B R C two-six-five. Eight hundred feet, three fifty knots.</td></tr>
+          <tr><td>Az orr után</td><td>Break when ready. Left turn, level at eight hundred.</td></tr>
+          <tr><td>Downwind</td><td>You're wide at 1.7 miles, move in, come down to six hundred.</td></tr>
+          <tr><td>A leszállómező mellett</td><td>Abeam. Start your turn, thirty degrees of bank, easy descent.</td></tr>
+          <tr><td>A 90 és a 45</td><td>Ninety, you're high, ease it down.</td></tr>
+          <tr><td>Háromnegyed mérföld</td><td>Call the ball. Then: power, right for lineup, you're high, you're slow.</td></tr>
+          <tr><td>A leszállás után</td><td>Trap, three wire. Fair pass. A little high in the middle.</td></tr>
+        </tbody>
+      </table>
+      <h3>Osztályzatok</h3>
+      <table class="grades">
+        <thead><tr><th scope="col">Osztályzat</th><th scope="col">Pont</th><th scope="col">Jelentés</th></tr></thead>
+        <tbody>
+          <tr><td><span class="sq" style="background:#2ecc71"></span>_OK_</td><td>5</td><td>Tökéletes: nincs hiba, hármas kötél, groove 15-19 másodperc</td></tr>
+          <tr><td><span class="sq" style="background:#2ecc71"></span>OK</td><td>4</td><td>Csak apró korrekciók</td></tr>
+          <tr><td><span class="sq" style="background:#f1c40f"></span>(OK) elfogadható</td><td>3</td><td>Észrevehető hibák, vagy túl rövid vagy túl hosszú groove</td></tr>
+          <tr><td><span class="sq" style="background:#3498db"></span>Bolter</td><td>2.5</td><td>A kötelek után ért le</td></tr>
+          <tr><td><span class="sq" style="background:#8e5a2b"></span>Nincs osztályzat</td><td>2</td><td>Nagy hibák, de végül fent van</td></tr>
+          <tr><td><span class="sq" style="background:#e74c3c"></span>Wave-off</td><td>1</td><td>Túl alacsony, túl magas, tengelyen kívül, vagy foglalt fedélzet közelről</td></tr>
+        </tbody>
+      </table>
+      <p>A "Paddles, how was my pass?" kérdésre értékelést kapsz, hibánként egy konkrét javítással. A "Paddles, say BRC" megadja a hajó irányát, a végső irányt és a fedélzeti szelet.</p>
+      <div class="callout"><b>Oktatás, nem a lencse.</b> A siklópálya-hívások a pozíciódból számolódnak, ezért a labdát repüld, Paddlest pedig oktatóként kezeld. A gyors és lassú hívásokhoz állásszög-referencia kell, ez jelenleg a Hornetre van meg.</div>
+    </section>
+
+    <section id="extras">
+      <div class="station-head"><span class="f">Extrák</span><h2>Térkép és Discord</h2></div>
+      <p>Amit egy állomás neked mond, rövid feliratként a képernyődön is megjelenik, csak neked. A koordináták tovább maradnak kint.</p>
+      <p>Az <a href="/hu/map">élő térkép</a> mutatja a küldetést bármely tableten vagy telefonon, az Overlord által felolvasott célokkal együtt. Két Discord csatornára mehetnek posztok: egy a céloknak, egy a greenie boardnak.</p>
+    </section>
+  </article>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div>
+      <p>A <b>Buddy Radio</b> közösségi projekt DCS World csapatoknak.</p>
+      <p>Nem kapcsolódik az Eagle Dynamicshez vagy a DCS-SRS projekthez.</p>
+    </div>
+    <div>
+      <p>Az SRS External AWACS Mode protokollra épül a SkyEye (MIT) leírása alapján, ötletek az Avalanche110 AI_ATC projektjéből (CC0). Felhasznált eszközök: faster-whisper, Piper, Leaflet és OpenStreetMap.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

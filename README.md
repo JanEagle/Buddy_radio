@@ -13,6 +13,17 @@ A plain static site, no build step:
 | Setup | `setup.html` |
 | Live map | `map.html` + `assets/map.js` |
 
+## Hungarian pages
+
+`hu/` holds the Hungarian version of every page (`/hu/`, `/hu/guide`, `/hu/setup`, `/hu/map`).
+They are generated from the English pages by `tools/build_hu.py`, which lists every
+English string with its Hungarian text. After editing an English page, run
+
+    python tools/build_hu.py
+
+It stops and names any English string it can no longer find, so the translation never
+silently falls behind. Radio calls stay in English on purpose.
+
 ## Deploy on Vercel
 
 Import this repository in Vercel and keep the defaults (Framework preset: Other, no build

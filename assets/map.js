@@ -3,6 +3,9 @@
 (function () {
   "use strict";
   const $ = id => document.getElementById(id);
+  const HU = document.documentElement.lang === "hu";
+  const T = HU ? {"tilesOutline": "A térképcsempék nem töltődtek be, ezért ez egy egyszerű körvonaltérkép. Az egységek ugyanúgy élőben látszanak.", "tilesFail": "A térkép háttere nem töltődött be. Az egységek így is látszanak.", "fromYou": "Tőled", "fromBull": "Bullseye-tól", "pick": "Válaszd ki a gépedet", "heading": "irány", "fuel": "üzemanyag", "unit": "egység", "units": "egység", "moving": "mozog", "range": "hatótáv", "runway": "pálya", "wind": "szél", "tower": "torony", "forCs": "kérte:", "noAirfields": "Még nincs adat", "noTargets": "Még nincs. Kérd Overlordtól a földi fenyegetéseket.", "noPasses": "Még nincs leszállás", "avgRow": "{0} átlag, {1} leszállás", "missionTime": "küldetésidő", "noData": "A Radio Ops fut, de még nincs küldetésadat", "live": "Élő", "wrongKey": "Rossz térképkulcs", "noReach": "A Radio Ops nem érhető el", "keyToast": "A térképkulcs nem egyezik a stations.json map_key értékével.", "noAnswer": "Nincs válasz innen: {0}. Fut a Radio Ops, és nyitva van a tunnel?", "demo": "Demó", "needHttps": "A cím https://-sel kezdődik", "mixed": "A tunnel https címét használd. A böngészők biztonságos oldalról letiltják a sima http-t.", "pasteAddr": "Illeszd be a címet, amit a tunnel kiírt, vagy válaszd a demót.", "connecting": "Csatlakozás", "addFirst": "Előbb add meg a Radio Ops címét.", "copied": "Link kimásolva. Aki megkapja, látja a küldetéstérképet.", "demoToast": "Ez egy demó küldetés. Felül a Demó gombbal csatlakoztathatod a sajátodat."} : {"tilesOutline": "Map tiles didn't load, so this is a simple outline map. Units are live as usual.", "tilesFail": "Map background didn't load. Units are still shown.", "fromYou": "From you", "fromBull": "From bullseye", "pick": "Pick your aircraft", "heading": "heading", "fuel": "fuel", "unit": "unit", "units": "units", "moving": "moving", "range": "range", "runway": "runway", "wind": "wind", "tower": "tower", "forCs": "for", "noAirfields": T.noAirfields, "noTargets": T.noTargets, "noPasses": T.noPasses, "avgRow": "{0} over {1} passes", "missionTime": "mission time", "noData": T.noData, "live": "Live", "wrongKey": "Wrong map key", "noReach": "Can't reach Radio Ops", "keyToast": "The map key doesn't match map_key in stations.json.", "noAnswer": "No answer from {0}. Is Radio Ops running and the tunnel open?", "demo": "Demo", "needHttps": T.needHttps, "mixed": T.mixed, "pasteAddr": T.pasteAddr, "connecting": "Connecting", "addFirst": T.addFirst, "copied": "Link copied. Anyone with it can see your mission map.", "demoToast": "Showing a demo mission. Choose Demo at the top to connect your own."};
+  const tr = (k, ...a) => T[k].replace(/\{(\d)\}/g, (_, i) => a[i]);
   const store = {
     get(k) { try { return localStorage.getItem(k) || ""; } catch (e) { return ""; } },
     set(k, v) { try { v ? localStorage.setItem(k, v) : localStorage.removeItem(k); } catch (e) {} },
@@ -34,8 +37,8 @@
       L.geoJSON(g.land, { style: { color: "#55626c", weight: 1, fillColor: "#25303a", fillOpacity: 1 }, interactive: false }).addTo(fallback);
       L.geoJSON(g.borders, { style: { color: "#55626c", weight: 1, dashArray: "4 4" }, interactive: false }).addTo(fallback);
       fallback.eachLayer(l => l.bringToBack());
-      toast("Map tiles didn't load, so this is a simple outline map. Units are live as usual.");
-    } catch (e) { toast("Map background didn't load. Units are still shown."); }
+      toast(T.tilesOutline);
+    } catch (e) { toast(T.tilesFail); }
   }
 
   const layers = { air: L.layerGroup().addTo(map), ground: L.layerGroup().addTo(map), rings: L.layerGroup().addTo(map),
@@ -63,8 +66,8 @@
   function popup(title, sub, pos) {
     const mine = state.air.find(a => a.name === me);
     let s = `<b>${esc(title)}</b>${sub ? "<br>" + sub : ""}`;
-    if (mine && pos && (mine.lat !== pos.lat || mine.lon !== pos.lon)) { const b = braa(mine, pos); s += `<br>From you: <b>${b.brg} / ${b.nm} nm</b>`; }
-    if (state.bullseye && state.bullseye.lat && pos) { const b = braa(state.bullseye, pos); s += `<br>From bullseye: ${b.brg} / ${b.nm} nm`; }
+    if (mine && pos && (mine.lat !== pos.lat || mine.lon !== pos.lon)) { const b = braa(mine, pos); s += `<br>${T.fromYou}: <b>${b.brg} / ${b.nm} nm</b>`; }
+    if (state.bullseye && state.bullseye.lat && pos) { const b = braa(state.bullseye, pos); s += `<br>${T.fromBull}: ${b.brg} / ${b.nm} nm`; }
     return s;
   }
   function upsert(k, layer, ll, opts) {
@@ -86,7 +89,7 @@
     tick++;
     const sel = $("me");
     const humans = state.air.filter(a => a.player && a.side === "friendly");
-    const opts = '<option value="">Pick your aircraft</option>' + humans.map(a => `<option value="${esc(a.name)}"${a.name === me ? " selected" : ""}>${esc(a.player)}</option>`).join("");
+    const opts = `<option value="">${T.pick}</option>` + humans.map(a => `<option value="${esc(a.name)}"${a.name === me ? " selected" : ""}>${esc(a.player)}</option>`).join("");
     if (sel.dataset.last !== opts) { sel.innerHTML = opts; sel.dataset.last = opts; }
 
     // one label per flight when its aircraft fly close together (wingmen would overlap the lead)
@@ -96,18 +99,18 @@
       const show = u.name === me || !labelled.some(l => l.group && l.group === u.group && close(l, u));
       if (show) labelled.push(u);
       upsert("a:" + u.name, layers.air, [u.lat, u.lon], { icon: airIcon(u, show), zIndexOffset: u.side === "hostile" ? 500 : 400 })
-        .bindPopup(() => popup(u.player || u.type, `${esc(u.type)}<br>${u.alt_ft.toLocaleString()} ft, ${u.kt} kt, heading ${deg3(u.hdg - state.magvar)}${u.player && u.fuel != null ? `, fuel ${Math.round(u.fuel * 100)}%` : ""}`, u));
+        .bindPopup(() => popup(u.player || u.type, `${esc(u.type)}<br>${u.alt_ft.toLocaleString()} ft, ${u.kt} kt, ${T.heading} ${deg3(u.hdg - state.magvar)}${u.player && u.fuel != null ? `, ${T.fuel} ${Math.round(u.fuel * 100)}%` : ""}`, u));
     });
     layers.rings.clearLayers();
     state.ground.forEach(g => {
       upsert("g:" + g.group, layers.ground, [g.lat, g.lon], { icon: L.divIcon({ className: "", iconSize: [13, 13], iconAnchor: [7, 7], html: `<div class="gnd${g.sam_nm ? " sam" : ""}"></div>` }) })
-        .bindPopup(() => popup(g.name, `${g.count} unit${g.count > 1 ? "s" : ""}${g.moving ? ", moving" : ""}${g.sam_nm ? `, range ${g.sam_nm} nm` : ""}`, g));
+        .bindPopup(() => popup(g.name, `${g.count} ${g.count > 1 ? T.units : T.unit}${g.moving ? ", " + T.moving : ""}${g.sam_nm ? `, ${T.range} ${g.sam_nm} nm` : ""}`, g));
       if (rings && g.sam_nm) L.circle([g.lat, g.lon], { radius: g.sam_nm * 1852, color: C.deck, weight: 1, fillColor: C.deck, fillOpacity: .07, interactive: false }).addTo(layers.rings);
     });
     state.airbases.forEach(a => {
       if (a.kind === "helipad" && map.getZoom() < 10) return;
       upsert("b:" + a.name, layers.ab, [a.lat, a.lon], { icon: L.divIcon({ className: "", iconSize: [10, 10], iconAnchor: [5, 5], html: `<div class="ab ${esc(a.side)}"></div>` }), zIndexOffset: -100 })
-        .bindPopup(() => popup(a.name, [a.runway && `runway ${esc(a.runway)}`, a.wind && `wind ${esc(a.wind)}`, a.freq && `tower ${a.freq.toFixed(3)}`].filter(Boolean).join(", "), a));
+        .bindPopup(() => popup(a.name, [a.runway && `${T.runway} ${esc(a.runway)}`, a.wind && `${T.wind} ${esc(a.wind)}`, a.freq && `${T.tower} ${a.freq.toFixed(3)}`].filter(Boolean).join(", "), a));
     });
     state.carriers.forEach(c => {
       const col = c.side === "blue" ? C.friend : C.foe;
@@ -117,7 +120,7 @@
     });
     state.targets.forEach(t => {
       upsert("t:" + t.key, layers.tgt, [t.lat, t.lon], { icon: L.divIcon({ className: "", iconSize: [18, 18], iconAnchor: [9, 9], html: '<div class="tgt"></div>' }), zIndexOffset: 600 })
-        .bindPopup(() => popup(t.name, `for ${esc(t.callsign)}<br><code>${esc(t.latlong)}</code><br><code>${esc(t.mgrs)}</code>, ${t.elev_ft} ft`, t));
+        .bindPopup(() => popup(t.name, `${T.forCs} ${esc(t.callsign)}<br><code>${esc(t.latlong)}</code><br><code>${esc(t.mgrs)}</code>, ${t.elev_ft} ft`, t));
     });
     if (state.bullseye && state.bullseye.lat)
       upsert("bull", layers.misc, [state.bullseye.lat, state.bullseye.lon], { icon: L.divIcon({ className: "", iconSize: [22, 22], iconAnchor: [11, 11], html: '<div class="bull" title="Bullseye"></div>' }), interactive: false, zIndexOffset: -200 });
@@ -131,12 +134,12 @@
     }
 
     const rows = (arr, f, empty) => arr.length ? arr.map(f).join("") : `<div class="row"><span>${empty}</span></div>`;
-    $("abList").innerHTML = rows(state.airbases.filter(a => a.kind !== "helipad").slice(0, 12), a => `<div class="row"><span>${esc(a.name)}</span><span>${a.runway ? "runway " + esc(a.runway) : ""} ${esc(a.wind || "")}</span></div>`, "None reported yet");
-    $("tgtList").innerHTML = rows(state.targets.slice().reverse(), t => `<div class="row"><span>${esc(t.name)}<br><small>${esc(t.callsign)}</small></span><span>${esc(t.mgrs)}</span></div>`, "None yet. Ask Overlord for ground threats.");
-    $("greenie").innerHTML = rows(state.greenie || [], (g, i) => `<div class="row"><span>${i + 1}. ${esc(g.pilot)}</span><span>${g.avg} over ${g.passes} ${esc(g.squares)}</span></div>`, "No passes yet");
+    $("abList").innerHTML = rows(state.airbases.filter(a => a.kind !== "helipad").slice(0, 12), a => `<div class="row"><span>${esc(a.name)}</span><span>${a.runway ? T.runway + " " + esc(a.runway) : ""} ${esc(a.wind || "")}</span></div>`, T.noAirfields);
+    $("tgtList").innerHTML = rows(state.targets.slice().reverse(), t => `<div class="row"><span>${esc(t.name)}<br><small>${esc(t.callsign)}</small></span><span>${esc(t.mgrs)}</span></div>`, T.noTargets);
+    $("greenie").innerHTML = rows(state.greenie || [], (g, i) => `<div class="row"><span>${i + 1}. ${esc(g.pilot)}</span><span>${tr("avgRow", g.avg, g.passes)} ${esc(g.squares)}</span></div>`, T.noPasses);
     $("stations").innerHTML = rows(state.stations || [], s => `<div class="row"><span>${esc(s.name)}</span><span>${s.freq.toFixed(3)} AM</span></div>`, "");
     const t = state.time;
-    $("clock").textContent = t == null ? "" : `${String(Math.floor(t / 3600) % 24).padStart(2, "0")}:${String(Math.floor(t / 60) % 60).padStart(2, "0")} mission time`;
+    $("clock").textContent = t == null ? "" : `${String(Math.floor(t / 3600) % 24).padStart(2, "0")}:${String(Math.floor(t / 60) % 60).padStart(2, "0")} ${T.missionTime}`;
   }
 
   // ----- data: live or demo -----
@@ -148,14 +151,14 @@
       const r = await fetch(url, { cache: "no-store", signal: ctl.signal });
       if (r.status === 403) throw new Error("key");
       const s = await r.json();
-      if (s.error && !s.air.length) setStatus("down", s.error.includes("no DCS data") ? "Radio Ops is up, but no mission data yet" : s.error);
-      else setStatus("live", "Live");
+      if (s.error && !s.air.length) setStatus("down", s.error.includes("no DCS data") ? T.noData : s.error);
+      else setStatus("live", T.live);
       failures = 0;
       return s;
     } catch (e) {
       failures++;
-      setStatus("down", e.message === "key" ? "Wrong map key" : "Can't reach Radio Ops");
-      if (failures === 3) toast(e.message === "key" ? "The map key doesn't match map_key in stations.json." : `No answer from ${server}. Is Radio Ops running and the tunnel open?`);
+      setStatus("down", e.message === "key" ? T.wrongKey : T.noReach);
+      if (failures === 3) toast(e.message === "key" ? T.keyToast : tr("noAnswer", server));
       return null;
     } finally { clearTimeout(to); }
   }
@@ -164,7 +167,7 @@
   async function loop() {
     let s = null;
     if (mode === "live") s = await fetchLive();
-    else { s = demo(Date.now() / 1000); setStatus("demo", "Demo"); }
+    else { s = demo(Date.now() / 1000); setStatus("demo", T.demo); }
     if (s) { state = s; render(); }
     setTimeout(loop, 1000);
   }
@@ -229,23 +232,23 @@
   $("status").onclick = () => { $("server").value = server; $("key").value = key; $("connErr").textContent = ""; dlg.showModal(); };
   $("connectForm").addEventListener("submit", e => {
     const s = $("server").value.trim().replace(/\/+$/, "");
-    const err = s ? (!/^https?:\/\//.test(s) ? "The address starts with https://"
+    const err = s ? (!/^https?:\/\//.test(s) ? T.needHttps
       : (location.protocol === "https:" && s.startsWith("http://") && !/^http:\/\/(localhost|127\.0\.0\.1)/.test(s))
-        ? "Use the https address from your tunnel. Browsers block plain http from a secure page." : "")
-      : "Paste the address your tunnel printed, or choose Show the demo.";
+        ? T.mixed : "")
+      : T.pasteAddr;
     if (err) { e.preventDefault(); $("connErr").textContent = err; return; }
     server = s; key = $("key").value.trim(); store.set("buddy.server", server); store.set("buddy.key", key);
-    mode = "live"; failures = 0; centred = false; setStatus("down", "Connecting");
+    mode = "live"; failures = 0; centred = false; setStatus("down", T.connecting);
   });
   $("useDemo").onclick = () => { mode = "demo"; server = ""; store.set("buddy.server", ""); centred = false; dlg.close(); };
   $("share").onclick = async () => {
     const s = $("server").value.trim().replace(/\/+$/, ""), k = $("key").value.trim();
-    if (!s) { $("connErr").textContent = "Add the Radio Ops address first."; return; }
+    if (!s) { $("connErr").textContent = T.addFirst; return; }
     const link = `${location.origin}${location.pathname}?server=${encodeURIComponent(s)}${k ? "&key=" + encodeURIComponent(k) : ""}`;
-    try { await navigator.clipboard.writeText(link); $("connErr").textContent = ""; toast("Link copied. Anyone with it can see your mission map."); }
+    try { await navigator.clipboard.writeText(link); $("connErr").textContent = ""; toast(T.copied); }
     catch (e) { $("connErr").textContent = link; }
   };
 
-  if (mode === "demo") toast("Showing a demo mission. Choose Demo at the top to connect your own.");
+  if (mode === "demo") toast(T.demoToast);
   loop();
 })();

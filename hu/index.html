@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Buddy Radio: AI rádiós irányítók DCS Worldhöz</title>
+<meta name="description" content="Overlord GCI, repülőtéri torony és ATIS, Case I leszállásoktató és egy segítőkész szárnytárs, akik SRS-en beszélnek az egész köteléggel, élő küldetésadatokkal.">
+<meta property="og:title" content="Buddy Radio">
+<meta property="og:description" content="AI rádiós irányítók a DCS World szerveredre, SRS-en, élő küldetésadatokkal.">
+<meta property="og:image" content="/assets/img/og.png">
+<link rel="alternate" hreflang="en" href="/hu/">
+<link rel="alternate" hreflang="hu" href="/hu/">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="/hu/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="5" fill="#2b3035"/><path d="M5 17h4l3-8 4 15 3-11 2 4h6" fill="none" stroke="#f2b705" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/></svg>Buddy Radio</a>
+    <nav aria-label="Fő navigáció">
+      <a href="/hu/" aria-current="page">Főoldal</a>
+      <a href="/hu/guide">Rádiós útmutató</a>
+      <a href="/hu/setup">Telepítés</a>
+      <a href="/hu/map">Élő térkép</a>
+      <a class="lang" href="/" hreflang="en" lang="en">English</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <h1>A DCS szervered, a rádión.</h1>
+      <p class="lede">A Buddy Radio AI irányítókat tesz a csapatod SRS frekvenciáira. Kérj helyzetképet Overlordtól, gurulási engedélyt a toronytól, tanuld meg a hordozós breaket Paddlestől. Minden szám az élő küldetésből jön.</p>
+      <div class="actions">
+        <a class="btn primary" href="/hu/guide">Rádiós útmutató</a>
+        <a class="btn" href="/hu/setup">Telepítés</a>
+      </div>
+    </div>
+
+    <div class="radio" aria-label="Példa rádióhívások állomásonként">
+      <ul class="channels" role="tablist" aria-label="Állomások" data-channels>
+        <li><button role="tab" data-key="overlord" aria-selected="true"><span class="f">251.000</span><span class="n">Overlord</span></button></li>
+        <li><button role="tab" data-key="tower" aria-selected="false" tabindex="-1"><span class="f">251.500</span><span class="n">Torony</span></button></li>
+        <li><button role="tab" data-key="atis" aria-selected="false" tabindex="-1"><span class="f">251.750</span><span class="n">ATIS</span></button></li>
+        <li><button role="tab" data-key="buddy" aria-selected="false" tabindex="-1"><span class="f">252.000</span><span class="n">Buddy</span></button></li>
+        <li><button role="tab" data-key="paddles" aria-selected="false" tabindex="-1"><span class="f">253.000</span><span class="n">Paddles</span></button></li>
+      </ul>
+      <div class="readout" role="tabpanel" aria-live="polite">
+        <div class="freq" data-freq>251.000<small>AM</small></div>
+        <div class="who" data-who>Overlord. GCI: a légi és földi helyzetkép.</div>
+        <ol class="log" data-log></ol>
+        <p class="note" data-note></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="what">
+  <div class="wrap split">
+    <div>
+      <h2>Irányítók, akik ismerik a küldetést</h2>
+      <p>Egy kis szkript a küldetésben elküldi a pozíciókat, repülőtereket, időjárást és hordozókat egy programnak a gépeden. Ez a program figyel az SRS-en, kiszámolja a választ, és visszamondja a frekvencián.</p>
+    </div>
+    <dl class="facts">
+      <div><dt>Az egész kötelék hallja</dt><dd>Az állomások úgy csatlakoznak az SRS szerveredhez, mint bármelyik másik rádió. Mindenki hallja, aki a frekvencián van, és minden pilótát külön, név szerint követnek.</dd></div>
+      <div><dt>Valódi számok, nem tippek</dt><dd>Az irányszögek, távolságok, magasságok, pályák, szél és koordináták a futó küldetésből számolódnak. Az AI csak szavakba önti őket.</dd></div>
+      <div><dt>A legtöbb hívás ingyenes</dt><dd>A bogey dope, a gurulás, az ATIS, a fenyegetés-figyelmeztetések, a levezetés, a koordináták és az egész leszállásoktató programkódból fut. Claude csak a szabad kérdésekhez kell, ez esténként néhány cent.</dd></div>
+      <div><dt>Szabad beszéd, nincs menü</dt><dd>Úgy beszélj, ahogy egy valódi irányítóval. Nincs F10 menü, nincs VoiceAttack profil, nincsenek bemagolandó mondatok.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section id="stations">
+  <div class="wrap">
+    <h2>Az állomások</h2>
+    <p>Ezek az alapértelmezett frekvenciák. Egyetlen beállításfájlban módosíthatod őket, adhatsz hozzá tornyot más repülőterekhez, vagy kikapcsolhatsz állomásokat.</p>
+    <div class="table-scroll">
+    <table class="comm">
+      <thead><tr><th scope="col">Frekvencia</th><th scope="col">Állomás</th><th scope="col">Mit kérhetsz tőle</th><th scope="col">Magától mit mond</th></tr></thead>
+      <tbody>
+        <tr><td class="f">251.000</td><td class="s"><a href="/hu/guide#overlord">Overlord</a></td><td>Helyzetkép (picture), bogey dope, földi fenyegetések, célkoordináták, vektorok</td><td>Légi fenyegetés 25 és 10 mérföldön belül, SAM és légvédelmi tüzérségi zónák</td></tr>
+        <tr><td class="f">251.500</td><td class="s"><a href="/hu/guide#tower">Torony</a></td><td>Hajtóműindítás, gurulás, felszállás, leszállás, forgalom, precíziós megközelítés</td><td>Állj meg, átstartolás, átadás felszállás után, forgalmi figyelmeztetés</td></tr>
+        <tr><td class="f">251.750</td><td class="s"><a href="/hu/guide#atis">ATIS</a></td><td>Csak hallgasd</td><td>Pálya, szél, látástávolság, felhőzet, hőmérséklet, légnyomás</td></tr>
+        <tr><td class="f">252.000</td><td class="s"><a href="/hu/guide#buddy">Buddy</a></td><td>Eligazítás, legközelebbi repülőterek, fegyver- és rendszerhasználat lépésről lépésre</td><td>Semmit, Buddy megvárja, amíg kérdezel</td></tr>
+        <tr><td class="f">253.000</td><td class="s"><a href="/hu/guide#paddles">Paddles</a></td><td>BRC, fedélzeti szél, az utolsó leszállásod értékelése</td><td>Case I kör oktatása, groove hívások, wave-off, osztályzat</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap split">
+    <div>
+      <h2>Hogyan áll össze</h2>
+      <p>A pilótáknak semmi sem változik: ugyanúgy repülnek DCS-ben és beszélnek SRS-en. A szerveren a Buddy bridge-dzsel futó küldetés megy, egy gépen pedig a Radio Ops.</p>
+      <p>A beszédfelismerés (Whisper) és a hangok (Piper) helyben futnak ezen a gépen. Csak a szabad kérdések mennek Claude-hoz.</p>
+    </div>
+    <figure class="figure">
+      <svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ábra: a DCS szerver küldetésadatokat küld a Radio Opsnak; a Radio Ops az SRS szerveren keresztül beszél a pilótákkal, csak a szabad kérdésekhez fordul Claude-hoz, Discordra posztol és kiszolgálja az élő térképet." viewBox="0 0 760 420" font-family="Public Sans, system-ui, sans-serif" font-size="14">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#16191b"/></marker>
+  </defs>
+  <rect width="760" height="420" fill="#d3d5d0"/>
+  <!-- DCS server -->
+  <rect x="20" y="40" width="210" height="130" rx="6" fill="#c4c7c1" stroke="#16191b" stroke-width="2"/>
+  <text x="36" y="72" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-weight="800" font-size="26" fill="#16191b">DCS server</text>
+  <text x="36" y="100" fill="#16191b">Futó küldetés</text>
+  <text x="36" y="122" fill="#16191b">+ Buddy bridge szkript</text>
+  <text x="36" y="150" fill="#474d52" font-size="13">pozíciók, repterek, időjárás</text>
+  <!-- SRS -->
+  <rect x="20" y="250" width="210" height="130" rx="6" fill="#c4c7c1" stroke="#16191b" stroke-width="2"/>
+  <text x="36" y="282" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-weight="800" font-size="26" fill="#16191b">SRS server</text>
+  <text x="36" y="310" fill="#16191b">External AWACS Mode be</text>
+  <text x="36" y="332" fill="#16191b">A pilóták a szokásos módon beszélnek</text>
+  <text x="36" y="360" fill="#474d52" font-size="13">hang be és ki</text>
+  <!-- Radio Ops -->
+  <rect x="300" y="110" width="200" height="200" rx="10" fill="#2b3035"/>
+  <text x="318" y="146" font-family="Big Shoulders Display, Arial Narrow, sans-serif" font-weight="800" font-size="30" fill="#f2b705">Radio Ops</text>
+  <text x="318" y="174" fill="#e6ecdc">egy gépen</text>
+  <text x="318" y="210" fill="#e6ecdc">Hall: Whisper</text>
+  <text x="318" y="234" fill="#e6ecdc">Gondolkodik: előbb kód</text>
+  <text x="318" y="258" fill="#e6ecdc">Beszél: Piper hangok</text>
+  <text x="318" y="290" fill="#a9b2a6" font-size="13">Overlord, Torony, ATIS,</text>
+  <text x="318" y="306" fill="#a9b2a6" font-size="13">Buddy, Paddles</text>
+  <!-- right side -->
+  <rect x="570" y="40" width="170" height="80" rx="6" fill="none" stroke="#16191b" stroke-width="2"/>
+  <text x="586" y="72" font-weight="700" fill="#16191b">Claude API</text>
+  <text x="586" y="96" fill="#474d52" font-size="13">csak szabad kérdések</text>
+  <rect x="570" y="170" width="170" height="80" rx="6" fill="none" stroke="#16191b" stroke-width="2"/>
+  <text x="586" y="202" font-weight="700" fill="#16191b">Discord</text>
+  <text x="586" y="226" fill="#474d52" font-size="13">célpontok, greenie board</text>
+  <rect x="570" y="300" width="170" height="80" rx="6" fill="none" stroke="#16191b" stroke-width="2"/>
+  <text x="586" y="332" font-weight="700" fill="#16191b">Élő térkép</text>
+  <text x="586" y="356" fill="#474d52" font-size="13">bármely böngésző, tablet</text>
+  <!-- arrows -->
+  <path d="M230 105 C 270 105 270 160 298 160" fill="none" stroke="#16191b" stroke-width="2" marker-end="url(#a)"/>
+  <text x="236" y="96" fill="#474d52" font-size="12">küldetésadat</text>
+  <path d="M232 315 C 270 315 270 262 298 262" fill="none" stroke="#16191b" stroke-width="2" marker-start="url(#a)" marker-end="url(#a)"/>
+  <text x="240" y="340" fill="#474d52" font-size="12">hang</text>
+  <path d="M502 150 C 540 150 540 82 568 82" fill="none" stroke="#16191b" stroke-width="2" marker-start="url(#a)" marker-end="url(#a)"/>
+  <path d="M502 210 L 568 210" fill="none" stroke="#16191b" stroke-width="2" marker-end="url(#a)"/>
+  <path d="M502 270 C 540 270 540 340 568 340" fill="none" stroke="#16191b" stroke-width="2" marker-end="url(#a)"/>
+  <path d="M230 135 C 252 135 252 120 230 120" fill="none" stroke="none"/>
+  <text x="20" y="22" fill="#474d52" font-size="12">A bridge feliratokat és F10 térképjelöléseket is kap vissza a Radio Opstól.</text>
+</svg>
+    </figure>
+  </div>
+</section>
+
+<section id="map">
+  <div class="wrap split">
+    <div>
+      <h2>Élő térkép a tabletedre</h2>
+      <p>A Radio Ops térképet is kiszolgál: saját és ellenséges gépek, SAM körök, repterek a használt pályával, hordozók, bullseye, és minden cél, amit Overlord felolvasott. Bármire koppintva látod az irányt és a távolságot a gépedtől.</p>
+      <p><a class="btn" href="/hu/map">Élő térkép megnyitása</a></p>
+    </div>
+    <figure class="figure">
+      <div class="shot"><img src="/assets/img/map.png" alt="Az élő térkép: repülőgépek magasság- és sebességcímkével, egy SA-6 a hatótávkörével, egy hordozó és az oldalpanel a repterekkel és frekvenciákkal." width="1180" height="760" loading="lazy"></div>
+      <figcaption>A térkép demó módban. A Radio Opshoz csatlakozva a futó küldetésedet mutatja.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="discord">
+  <div class="wrap">
+    <h2>Egyenesen a Discordodra</h2>
+    <p>Az Overlord által felolvasott célok egy csatornába kerülnek, telefonról is kimásolhatók. Minden hordozós leszállás felkerül a greenie boardra az osztályzattal és a század rangsorával.</p>
+    <div class="posts" aria-label="Példa Discord posztok">
+      <div class="post">
+        <div class="chan"># targets</div>
+        <div class="meta"><b>Overlord</b><span>Ma 21:14-kor</span></div>
+        <div class="embed" style="border-color:#c0392b">
+          <div class="t">SA-6</div>
+          <div>Kérte: <b>Kupi 3-1</b></div>
+          <div class="g">
+            <div><div class="k">Szél. / hossz.</div><div class="v"><code>N 33 01.234  E 035 42.567</code></div></div>
+            <div><div class="k">MGRS</div><div class="v"><code>36S YB 61409 54764</code></div></div>
+            <div><div class="k">Tengerszint feletti magasság</div><div class="v">984 ft</div></div>
+            <div><div class="k">Kupi 3-1-től</div><div class="v">085° / 16 nm</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="post">
+        <div class="chan"># greenie-board</div>
+        <div class="meta"><b>Paddles</b><span>Ma 21:31-kor</span></div>
+        <div class="embed" style="border-color:#f1c40f">
+          <div class="t">Lama 1-1, elfogadható leszállás</div>
+          <div class="g">
+            <div><div class="k">Osztályzat</div><div class="v">(OK), 3 pont</div></div>
+            <div><div class="k">Kötél</div><div class="v">3</div></div>
+            <div style="grid-column:1/-1"><div class="k">LSO megjegyzés</div><div class="v"><code>(LUL)X H_IM  WIRE# 3</code><br>az elején kicsit balra a tengelytől, középen magas</div></div>
+            <div style="grid-column:1/-1"><div class="k">Greenie board</div><div class="v">1. Kupi 3-1  3.75 (8)<br>2. Lama 1-1  3.40 (5)<br>3. Viking 1-1  2.90 (6)</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div>
+      <p>A <b>Buddy Radio</b> közösségi projekt DCS World csapatoknak.</p>
+      <p>Nem kapcsolódik az Eagle Dynamicshez vagy a DCS-SRS projekthez.</p>
+    </div>
+    <div>
+      <p>Az SRS External AWACS Mode protokollra épül a SkyEye (MIT) leírása alapján, ötletek az Avalanche110 AI_ATC projektjéből (CC0). Felhasznált eszközök: faster-whisper, Piper, Leaflet és OpenStreetMap.</p>
+    </div>
+  </div>
+</footer>
+<script src="/assets/site.js"></script>
+</body>
+</html>

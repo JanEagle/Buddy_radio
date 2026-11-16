@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Telepítés: Buddy Radio</title>
+<meta name="description" content="A Buddy Radio telepítése DCS World szerverre: SRS, küldetés-szkriptelés, Python, API kulcs, Discord és az élő térkép.">
+<meta property="og:image" content="/assets/img/og.png">
+<link rel="alternate" hreflang="en" href="/hu/setup">
+<link rel="alternate" hreflang="hu" href="/hu/setup">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="/hu/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="5" fill="#2b3035"/><path d="M5 17h4l3-8 4 15 3-11 2 4h6" fill="none" stroke="#f2b705" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/></svg>Buddy Radio</a>
+    <nav aria-label="Fő navigáció">
+      <a href="/hu/">Főoldal</a>
+      <a href="/hu/guide">Rádiós útmutató</a>
+      <a href="/hu/setup" aria-current="page">Telepítés</a>
+      <a href="/hu/map">Élő térkép</a>
+      <a class="lang" href="/setup" hreflang="en" lang="en">English</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap" style="padding-top:clamp(32px,5vw,56px)">
+    <h1 style="font-size:clamp(44px,6vw,72px);margin-bottom:.4em">Telepítés</h1>
+    <p>Minden egy Windowsos gépen fut a DCS szervered mellett: maga a szerver, az SRS szerver és a Buddy Radio Ops. A pilótáknak semmit sem kell telepíteniük.</p>
+    <div class="callout" style="margin:20px 0 8px">A programfájlok még nem nyilvánosak. Ez az útmutató a Buddy Radiót tesztelő csapatoknak szól.</div>
+  </div>
+
+  <section style="border-top:0;padding-top:28px">
+    <div class="wrap split">
+      <div>
+        <h2>Amire szükséged lesz</h2>
+        <p>Egy gép, ami elbír egy DCS szervert. A beszédfelismerés a processzoron fut, valahányszor valaki beszél, ezért erősebb CPU gyorsabb válaszokat jelent.</p>
+      </div>
+      <dl class="facts">
+        <div><dt>Memória</dt><dd>Legalább 16 GB, egy nagy küldetéshez, mint a Foothold, a 32 GB kényelmes.</dd></div>
+        <div><dt>Szoftver</dt><dd>DCS World Server, DCS-SRS szerver és Python 3.11 vagy újabb.</dd></div>
+        <div><dt>Claude API kulcs</dt><dd>A console.anthropic.com oldalról, néhány dollár előre fizetett kerettel. Egy mozgalmas este öt pilótával jóval egy dollár alatt marad.</dd></div>
+        <div><dt>Opcionális</dt><dd>Egy Discord szerver a célpont- és greenie board posztoknak, és egy tablet az élő térképhez.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Telepítés lépésről lépésre</h2>
+      <ol class="steps">
+        <li>
+          <h3>Kapcsold be az External AWACS Mode-ot az SRS-ben</h3>
+          <p>Az SRS szerver beállításaiban kapcsold be az External AWACS Mode-ot, és adj meg jelszót mindkét koalíciónak. A Buddy állomások így csatlakoznak az SRS-hez, AWACS kliensként.</p>
+        </li>
+        <li>
+          <h3>Engedd, hogy a küldetések beszéljenek Buddyval</h3>
+          <p>Nyisd meg a <code>Scripts\MissionScripting.lua</code> fájlt a DCS szerver telepítési mappájában, és kommenteld ki ezt a három sort, hogy így nézzen ki a blokk:</p>
+<pre>sanitizeModule('os')
+--sanitizeModule('io')
+--sanitizeModule('lfs')
+--_G['require'] = nil
+_G['loadlib'] = nil
+--_G['package'] = nil</pre>
+          <p>A DCS frissítések visszaállítják ezt a fájlt. Ha a naplóban azt látod, hogy <code>attempt to index global 'lfs'</code>, csináld meg újra a módosítást.</p>
+        </li>
+        <li>
+          <h3>Másold a Buddyt a szerverprofilba</h3>
+          <p>Tedd a <code>Buddy</code> mappát a <code>Saved Games\&lt;szerverprofil&gt;\Scripts\</code> mappába, a <code>buddy_bridge_hook.lua</code> fájlt pedig a <code>Scripts\Hooks\</code> mappába. A hook minden küldetésbe betölti a bridge-et, a Foothold-szerű kampányokba is. Indítsd újra egyszer a DCS szervert, hogy felvegye a hookot.</p>
+        </li>
+        <li>
+          <h3>Telepítsd a Pythont és a csomagokat</h3>
+          <p>Telepítsd a Pythont a python.org oldalról, és pipáld be az "Add Python to PATH" opciót. Utána PowerShellben:</p>
+<pre>pip install anthropic faster-whisper piper-tts av numpy sounddevice keyboard pypdf</pre>
+        </li>
+        <li>
+          <h3>Mentsd el az API kulcsodat</h3>
+          <p>A kulcs soha nem kerül fájlba. Ez úgy kéri be, hogy nem mutatja, mit illesztesz be:</p>
+<pre>$s = Read-Host "Paste your Anthropic API key" -AsSecureString
+[Environment]::SetEnvironmentVariable("ANTHROPIC_API_KEY", [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($s)), "User")</pre>
+          <p>Hagyd kikapcsolva az automatikus feltöltést az Anthropic konzolban, így legfeljebb annyit költhetsz, amennyi keretet vettél.</p>
+        </li>
+        <li>
+          <h3>Kösd be a Discordot (opcionális)</h3>
+          <p>Hozz létre webhookot egy <code>#targets</code> és egy <code>#greenie-board</code> csatornához (Szerverbeállítások, Integrációk, Webhookok), és mentsd el mindkét címet ugyanígy, <code>BUDDY_DISCORD_TARGETS</code> és <code>BUDDY_DISCORD_GREENIE</code> néven. Tesztelés: <code>python discord_post.py targets "Hello"</code>.</p>
+        </li>
+        <li>
+          <h3>Ebben a sorrendben indíts</h3>
+          <p>Először a DCS szerver egy futó küldetéssel, aztán az SRS szerver, végül a <code>Start Overlord.bat</code> a Buddy mappában. Az ablak az "On the air" alatt felsorolja az állomásokat, és kiírja a tablet térkép címét. Az első indításkor letölti a beszédmodellt és a hangokat.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap split">
+      <div>
+        <h2>Az állomások módosítása</h2>
+        <p>Minden állomás a program melletti <code>stations.json</code> fájlban van. Módosíthatsz frekvenciát vagy hangot, adhatsz hozzá tornyot más repülőtérhez, vagy törölhetsz olyan állomást, amit nem használsz. Szerkesztés után indítsd újra a Radio Opsot.</p>
+      </div>
+<pre>{
+  "type": "tower",
+  "name": "Ramat David Tower",
+  "airfield": "Ramat David",
+  "freq": 250.950,
+  "mod": "AM",
+  "voice": "en_US-ryan-medium"
+}</pre>
+    </div>
+  </section>
+
+  <section id="live-map">
+    <div class="wrap split">
+      <div>
+        <h2>Az élő térkép az interneten</h2>
+        <p>Otthoni hálózaton a térkép azon a címen érhető el, amit a Radio Ops kiír. Ahhoz, hogy erről a weboldalról is megnyíljon, a Radio Opsnak biztonságos nyilvános cím kell. Ezt egy tunnel adja meg anélkül, hogy portot kellene nyitnod a routeren.</p>
+      </div>
+      <div>
+        <ol class="steps" style="max-width:none">
+          <li>
+            <h3>Válassz hozzáférési kulcsot</h3>
+            <p>Adj hozzá egy sort a <code>stations.json</code> fájlhoz, hogy csak az lássa a küldetésedet, akinek megvan a kulcs:</p>
+<pre>"map_key": "barmilyen-szo"</pre>
+          </li>
+          <li>
+            <h3>Indíts egy tunnelt</h3>
+            <p>Vagy Cloudflare (ingyenes, minden indításkor új cím):</p>
+<pre>cloudflared tunnel --url http://localhost:8080</pre>
+            <p>vagy Tailscale Funnel (ingyenes, mindig ugyanaz a cím):</p>
+<pre>tailscale funnel 8080</pre>
+          </li>
+          <li>
+            <h3>Csatlakoztasd a térképet</h3>
+            <p>Nyisd meg az <a href="/hu/map">élő térképet</a>, válaszd a Csatlakozás gombot, és illeszd be a tunnel által kiírt https címet és a kulcsodat. A kapott linket megoszthatod a csapatoddal.</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Ha valami nem működik</h2>
+      <div class="table-scroll">
+      <table class="comm">
+        <thead><tr><th scope="col">Ezt látod</th><th scope="col">Mit jelent</th></tr></thead>
+        <tbody>
+          <tr><td><code>no DCS data yet</code></td><td>Nem fut küldetés, vagy a bridge nem töltődött be. Keresd a DCS naplóban a "BuddyBridge started" sort, ha hiányzik, csináld meg újra a 2. lépést, és indítsd újra a szervert.</td></tr>
+          <tr><td><code>Cannot reach the SRS server</code></td><td>Előbb indítsd el az SRS szervert, és ellenőrizd az <code>srs_server</code> értéket a stations.json-ban.</td></tr>
+          <tr><td><code>(not for Buddy)</code> a naplóban</td><td>Az állomás hallott egy hívást, ami nem neki szólt. A szövegből látod, mit hallott, és azt is, hogy levágódott-e a név.</td></tr>
+          <tr><td><code>Port 10081 is busy</code></td><td>Már fut egy másik Radio Ops. Zárd be.</td></tr>
+          <tr><td>Az állomás azt mondja: "say again"</td><td>Nem értette a hívást. Az <code>rx</code> sorból látod, mit hallott, és tartsd röviden a hívásokat.</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div>
+      <p>A <b>Buddy Radio</b> közösségi projekt DCS World csapatoknak.</p>
+      <p>Nem kapcsolódik az Eagle Dynamicshez vagy a DCS-SRS projekthez.</p>
+    </div>
+    <div>
+      <p>Az SRS External AWACS Mode protokollra épül a SkyEye (MIT) leírása alapján, ötletek az Avalanche110 AI_ATC projektjéből (CC0). Felhasznált eszközök: faster-whisper, Piper, Leaflet és OpenStreetMap.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

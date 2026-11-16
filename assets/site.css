@@ -57,6 +57,7 @@ h3 { font-size: 27px; margin-bottom: .35em; }
 .site-head nav a[aria-current="page"] { background: var(--ink); color: var(--gull); }
 .site-head nav a:hover { background: var(--gull-2); color: var(--ink); }
 .site-head nav a[aria-current="page"]:hover { background: var(--ink); color: var(--gull); }
+.site-head nav a.lang { border: 2px solid var(--ink); padding: 6px 10px; margin-left: 6px; }
 
 /* ---------- hero ---------- */
 .hero { padding: clamp(36px, 6vw, 72px) 0 clamp(48px, 7vw, 88px); }
@@ -133,7 +134,7 @@ section { padding: clamp(48px, 7vw, 84px) 0; border-top: 2px solid var(--ink); }
 .embed code { background: #1e1f22; padding: 1px 4px; border-radius: 3px; font-size: 12.5px; }
 
 /* ---------- guide ---------- */
-.doc { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); padding: clamp(32px, 5vw, 56px) 0 80px; }
+.doc { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); padding-top: clamp(32px, 5vw, 56px); padding-bottom: 80px; }
 .toc { position: sticky; top: 20px; align-self: start; font-size: 15px; }
 .toc a { display: block; padding: 6px 0 6px 12px; text-decoration: none; border-left: 2px solid var(--rule); }
 .toc a .f { display: block; font: 700 20px/1 var(--display); font-variant-numeric: tabular-nums; }
@@ -184,6 +185,8 @@ pre .c { color: var(--lit-2); }
 }
 @media (max-width: 640px) {
   body { font-size: 16px; }
+  .site-head .wrap { position: relative; }
+  .site-head nav a.lang { position: absolute; top: 12px; right: var(--gutter); margin: 0; padding: 5px 9px; }
   .radio { grid-template-columns: minmax(0, 1fr); min-height: 0; }
   .channels { display: flex; overflow-x: auto; padding: 0; border-right: 0; border-bottom: 1px solid #454c53; }
   .channels li { flex: 0 0 auto; }

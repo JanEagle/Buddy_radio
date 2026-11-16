@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Élő térkép: Buddy Radio</title>
+<meta name="description" content="A Buddy Radio élő, F10-stílusú térképe: repülőgépek, SAM körök, repterek, hordozók és bemondott célok.">
+<meta property="og:image" content="/assets/img/og.png">
+<link rel="alternate" hreflang="en" href="/hu/map">
+<link rel="alternate" hreflang="hu" href="/hu/map">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/assets/leaflet/leaflet.css">
+<link rel="stylesheet" href="/assets/map.css">
+</head>
+<body>
+<div id="map" aria-label="Élő küldetéstérkép"></div>
+
+<header id="bar">
+  <a class="brand" href="/hu/" title="Buddy Radio főoldal"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="5" fill="#363c42"/><path d="M5 17h4l3-8 4 15 3-11 2 4h6" fill="none" stroke="#f2b705" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/></svg><span>Buddy Radio</span></a>
+  <button id="status" class="status demo" type="button" title="Kapcsolat">Demó</button>
+  <span id="clock">--:--</span>
+  <span class="sp"></span>
+  <label class="me"><span class="vh">A géped</span><select id="me"><option value="">Válaszd ki a gépedet</option></select></label>
+  <button id="follow" type="button" aria-pressed="false">Követés</button>
+  <button id="rings" type="button" aria-pressed="true">SAM körök</button>
+  <button id="lbls" type="button" aria-pressed="true">Feliratok</button>
+  <button id="panelBtn" type="button" aria-expanded="false" aria-controls="side">Infó</button>
+  <a class="lang" href="/map" hreflang="en" lang="en">English</a>
+</header>
+
+<aside id="side" aria-label="Küldetés infó">
+  <h2>Repülőterek</h2><div id="abList"></div>
+  <h2>Bemondott célok</h2><div id="tgtList"></div>
+  <h2>Greenie board</h2><div id="greenie"></div>
+  <h2>Rádió</h2><div id="stations"></div>
+</aside>
+
+<dialog id="connect">
+  <form method="dialog" id="connectForm">
+    <h2>Csatlakozás a Radio Opshoz</h2>
+    <p>Illeszd be a tunnel által kiírt https címet és a térképkulcsot a <code>stations.json</code>-ból. <a href="/hu/setup#live-map">Hogyan kapsz címet</a></p>
+    <label>Radio Ops cím<input id="server" type="url" inputmode="url" placeholder="https://a-tunneled.trycloudflare.com" autocomplete="off" spellcheck="false"></label>
+    <label>Térképkulcs<input id="key" type="text" placeholder="hagyd üresen, ha nem állítottál be" autocomplete="off" spellcheck="false"></label>
+    <p id="connErr" class="err" role="alert"></p>
+    <div class="row">
+      <button type="submit" id="doConnect" class="primary" value="connect">Csatlakozás</button>
+      <button type="button" id="useDemo">Demó mutatása</button>
+      <button type="button" id="share" title="Link másolása ezzel a címmel és kulccsal">Megosztó link másolása</button>
+    </div>
+  </form>
+</dialog>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="/assets/leaflet/leaflet.js"></script>
+<script src="/assets/map.js"></script>
+</body>
+</html>

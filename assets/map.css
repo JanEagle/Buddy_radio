@@ -15,6 +15,8 @@ html, body { margin:0; height:100%; background:#14202a; color:var(--lit); font:1
 #clock { color:var(--lit-2); font-variant-numeric:tabular-nums; }
 .sp { flex:1; }
 #bar button, #bar select { background:#363c42; color:var(--lit); border:1px solid var(--line); border-radius:4px; padding:7px 10px; font:inherit; font-weight:600; cursor:pointer; }
+#bar a.lang { color:var(--lit); text-decoration:none; font-weight:600; border:1px solid var(--line); border-radius:4px; padding:7px 10px; }
+#bar a.lang:hover { color:var(--deck); }
 #bar button[aria-pressed="true"], #bar button[aria-expanded="true"] { border-color:var(--deck); color:var(--deck); }
 #bar button:focus-visible, #bar select:focus-visible, dialog :focus-visible { outline:2px solid var(--deck); outline-offset:2px; }
 .status { border-radius:20px !important; padding:5px 12px !important; }
