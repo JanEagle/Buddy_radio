@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What's new: Buddy Radio</title>
+<meta name="description" content="What changed in each Buddy Radio beta.">
+<meta property="og:image" content="/assets/img/og.png">
+<link rel="alternate" hreflang="en" href="/changes">
+<link rel="alternate" hreflang="hu" href="/hu/changes">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="5" fill="#2b3035"/><path d="M5 17h4l3-8 4 15 3-11 2 4h6" fill="none" stroke="#f2b705" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/></svg>Buddy Radio</a>
+    <nav aria-label="Main">
+      <a href="/">Home</a>
+      <a href="/guide">Radio guide</a>
+      <a href="/setup">Setup</a>
+      <a href="/faq">FAQ</a>
+      <a href="/map">Live map</a>
+      <a class="lang" href="/hu/changes" hreflang="hu" lang="hu">Magyar</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap doc">
+  <nav class="toc" aria-label="Versions">
+    <a href="#beta3"><span class="f">Beta 3</span>19 November 2026</a>
+    <a href="#beta2"><span class="f">Beta 2</span>19 November 2026</a>
+    <a href="#beta1"><span class="f">Beta 1</span>16 November 2026</a>
+  </nav>
+
+  <article>
+    <section id="top">
+      <h1 style="font-size:clamp(44px,6vw,72px);margin-bottom:.4em">What's new</h1>
+      <p>Every beta comes as a new installer on our <a href="https://discord.gg/kqw8F5fNe6">Discord</a>. Close Buddy Radio and run the new installer: your settings, stations and keys stay. What's planned next is on the <a href="/#next">home page</a>.</p>
+    </section>
+
+    <section id="beta3">
+      <div class="station-head"><span class="f">0.9.0 beta 3</span><h2>Tankers</h2></div>
+      <ul class="plain">
+        <li>"Overlord, request tanker" gives the nearest friendly tanker that suits your aircraft, boom or basket, with bearing, range, angels, TACAN and frequency. "Request tankers" lists up to three. See <a href="/guide#tankers">Tankers</a>.</li>
+        <li>Tanker frequencies and TACAN are read from the mission file, including tankers spawned by MOOSE and similar scripts.</li>
+        <li>The app updates the bridge in your DCS profile by itself. Restart DCS once after installing.</li>
+      </ul>
+    </section>
+
+    <section id="beta2">
+      <div class="station-head"><span class="f">0.9.0 beta 2</span><h2>A tower for every airfield</h2></div>
+      <ul class="plain">
+        <li>One Tower on 251.500 serves every airfield on every map. Name the airfield, or just say Tower for the one you're nearest.</li>
+        <li>ATIS on request: "Tower, request information."</li>
+        <li>Beta 1's Rosh Pina tower and ATIS switch over by themselves. Towers set up for one airfield keep working.</li>
+        <li>The precision approach uses your radio callsign.</li>
+        <li>The status column on the Radio page no longer runs off the window.</li>
+      </ul>
+    </section>
+
+    <section id="beta1">
+      <div class="station-head"><span class="f">0.9.0 beta 1</span><h2>The Windows app</h2></div>
+      <ul class="plain">
+        <li>A Windows installer with a setup page for each part: DCS, SRS, Claude, Discord, stations and the map.</li>
+        <li>Keys are kept in Windows Credential Manager.</li>
+        <li>The DCS bridge and the scripting change are set up from the app.</li>
+      </ul>
+    </section>
+  </article>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div>
+      <p><b>Buddy Radio</b> is a community project for DCS World groups, free to use with your own Claude key.</p>
+      <p class="foot-links"><a href="/faq">FAQ</a> <a href="/missions">For mission makers</a> <a href="/changes">What's new</a> <a href="https://discord.gg/kqw8F5fNe6">Discord</a> <a href="/#support">Support the project</a></p>
+      <p>Not affiliated with Eagle Dynamics or the DCS-SRS project.</p>
+    </div>
+    <div>
+      <p>Built on the SRS External AWACS Mode protocol as documented by SkyEye (MIT), ideas from AI_ATC by Avalanche110 (CC0), faster-whisper, Piper, Leaflet and OpenStreetMap.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

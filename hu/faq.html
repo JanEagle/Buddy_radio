@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GYIK: Buddy Radio</title>
+<meta name="description" content="Kérdések a Buddy Radióról: mennyibe kerül, mi hagyja el a gépedet, miért kér rendszergazdai jogot, és hol kapsz segítséget.">
+<meta property="og:image" content="/assets/img/og.png">
+<link rel="alternate" hreflang="en" href="/faq">
+<link rel="alternate" hreflang="hu" href="/hu/faq">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="/hu/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="5" fill="#2b3035"/><path d="M5 17h4l3-8 4 15 3-11 2 4h6" fill="none" stroke="#f2b705" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/></svg>Buddy Radio</a>
+    <nav aria-label="Fő navigáció">
+      <a href="/hu/">Főoldal</a>
+      <a href="/hu/guide">Rádiós útmutató</a>
+      <a href="/hu/setup">Telepítés</a>
+      <a href="/hu/faq" aria-current="page">GYIK</a>
+      <a href="/hu/map">Élő térkép</a>
+      <a class="lang" href="/faq" hreflang="en" lang="en">English</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap doc">
+  <nav class="toc" aria-label="Témák">
+    <a href="#basics"><span class="f">Alapok</span>Ingyenes, mi kell hozzá</a>
+    <a href="#costs"><span class="f">Költség</span>A Claude számlád</a>
+    <a href="#privacy"><span class="f">Adatvédelem</span>Mi hagyja el a gépedet</a>
+    <a href="#safety"><span class="f">Biztonság</span>Rendszergazdai jog, figyelmeztetések</a>
+    <a href="#help"><span class="f">Segítség</span>Hibák és kérdések</a>
+  </nav>
+
+  <article>
+    <section id="basics">
+      <h1 style="font-size:clamp(44px,6vw,72px);margin-bottom:.4em">Kérdések</h1>
+      <h3>Ingyenes?</h3>
+      <p>Igen. Az alkalmazás ingyen letölthető és használható. A saját API kulcsoddal beszél a Claude-dal, így közvetlenül az Anthropicnak fizetsz azért, amit a csapatod használ, és a számládat senki más nem látja. Ha segítenél a fejlődésében, lásd: <a href="/hu/#support">A projekt támogatása</a>.</p>
+      <h3>A pilótáknak kell bármit telepíteniük?</h3>
+      <p>Nem. Csak a küldetést futtató gépen fut a Buddy Radio. A pilóták a szokásos SRS klienst használják, és behangolják a frekvenciát.</p>
+      <h3>Mi kell a futtatásához?</h3>
+      <p>Egy Windows 10 vagy 11 gép, amin a DCS vagy a DCS szerver fut, egy SRS szerver, és egy Claude API kulcs néhány dollár kerettel. A <a href="/hu/setup">telepítési oldalon</a> megtalálod a teljes listát és minden lépést.</p>
+      <h3>Működik, ha a saját játékomból hosztolok?</h3>
+      <p>Igen. Futtasd a Buddy Radiót ugyanazon a gépen, mint a DCS-t és az SRS szervert, és az alkalmazás DCS oldalán a szerverprofil helyett a szokásos DCS profilodat válaszd.</p>
+      <h3>Mely térképekkel és gépekkel működik?</h3>
+      <p>Minden térképpel. A torony az éppen futó térkép repülőtereit szolgálja ki, Overlord a gépedhez illő gémes vagy kosaras tankert választja, Paddles pedig a DCS repülőgép-hordozóival működik. A rádióhívások angolul mennek.</p>
+      <h3>Beszélhet egyszerre több pilóta?</h3>
+      <p>Igen. Minden állomás önállóan dolgozik, így egy Overlordnak és egy a toronynak szóló hívásra egyszerre jön válasz. Ugyanannak az állomásnak szóló hívásokra egymás után válaszol, mint egy valódi irányító.</p>
+      <h3>Futhat a SkyEye, a LotATC vagy más SRS eszközök mellett?</h3>
+      <p>A Buddy úgy csatlakozik az SRS-hez, mint egy AWACS játékos, így más eszközök más frekvenciákon osztozhatnak a szerveren. Két irányítót ne tegyél ugyanarra a frekvenciára. Nem teszteltünk minden kombinációt, ezért írd meg Discordon, nálad hogyan működik.</p>
+    </section>
+
+    <section id="costs">
+      <div class="station-head"><span class="f">Költség</span><h2>A Claude számlád</h2></div>
+      <h3>Mennyibe kerül a futtatása?</h3>
+      <p>A legtöbb hívást a géped számolja ki, és semmibe sem kerül: bogey dope, helyzetkép, tankerhívás, gurulás, ATIS, fenyegetés-figyelmeztetések, levezetés, koordináták és az egész Paddles oktató. Csak a saját szavaiddal feltett kérdések mennek a Claude-hoz, a leggyorsabb és legolcsóbb Haiku modellel. Egy esti repülés általában néhány cent.</p>
+      <h3>Hogyan tartom kordában?</h3>
+      <p>Vegyél előre fizetett keretet a Claude konzolban, és hagyd kikapcsolva az automatikus feltöltést, így soha nem költhetsz többet, mint amennyit vettél. A konzol napról napra mutatja a felhasználást.</p>
+    </section>
+
+    <section id="privacy">
+      <div class="station-head"><span class="f">Adatvédelem</span><h2>Mi hagyja el a gépedet</h2></div>
+      <ul class="plain">
+        <li><b>A hangok a gépeden maradnak.</b> A beszédfelismerés és az állomások hangja helyben fut. Semmilyen hang nem megy sehova.</li>
+        <li><b>A Claude csak azt kapja, ami a kérdéshez kell.</b> A Claude-hoz menő hívásoknál a hívás leírt szövege, a pilóta SRS neve és hívójele, valamint a hívához szükséges küldetésadat (pozíciók, reptér, időjárás) megy az Anthropic API-jához a te kulcsoddal. Buddy rövid részleteket is küld a mappájában lévő kézikönyvekből, ha utánanéz valaminek.</li>
+        <li><b>Discord csak ha beállítod.</b> Webhookokkal a célkoordináták és a hordozós értékelések a csatornáidba kerülnek.</li>
+        <li><b>Az élő térkép az otthoni hálózatodon marad</b>, hacsak egy tunnellel nem teszed ki az internetre. A térképkulccsal csak azok látják, akikkel megosztod.</li>
+        <li><b>Az első indításkor</b> letölti a beszédmodellt és a hangokat a Hugging Face-ről.</li>
+        <li><b>Hozzánk semmi sem jut el.</b> Nincs fiók, nincs analitika, nincs használati adat.</li>
+      </ul>
+      <h3>Hol vannak a kulcsaim?</h3>
+      <p>A Windows Hitelesítőadat-kezelőjében, BuddyRadio néven. Soha nem kerülnek fájlba, és az alkalmazás soha többé nem mutatja meg őket.</p>
+    </section>
+
+    <section id="safety">
+      <div class="station-head"><span class="f">Biztonság</span><h2>Rendszergazdai jog és figyelmeztetések</h2></div>
+      <h3>Miért kér rendszergazdai jogot?</h3>
+      <p>Háromszor, mindegyiket egy feladathoz: a telepítő a Program Files mappába teszi az alkalmazást, az <b>Allow scripting</b> egy fájlt módosít a DCS telepítési mappájában, az <b>Allow tablets through the firewall</b> pedig engedi, hogy a hálózatodon lévő telefonok és tabletek megnyissák az élő térképet.</p>
+      <h3>Mit módosít az Allow scripting?</h3>
+      <p>A DCS nem engedi, hogy a küldetésszkriptek fájlokat és hálózatot használjanak, hacsak a <code>MissionScripting.lua</code> meg nem engedi. A bridge-nek hálózat kell, hogy a küldetésadatot átadja a gépeden futó alkalmazásnak, ezért a Buddy kikapcsolja ezeket a korlátokat, az eredetit pedig <code>MissionScripting.lua.buddy-backup</code> néven megtartja. Sok szervereszköz ugyanezt a módosítást kéri.</p>
+      <p>Ez az adott DCS minden küldetésére vonatkozik, ezért csak olyan küldetést futtass, amiben megbízol. A DCS frissítések visszaállítják az eredeti fájlt, és az alkalmazás DCS oldala jelzi, mikor kell újra engedélyezni a szkriptelést.</p>
+      <h3>Miért írja a Windows, hogy megvédte a gépemet?</h3>
+      <p>A béta még nincs kódaláíró tanúsítvánnyal aláírva, ezért a Windows nem ismeri a kiadót. Válaszd a További információ, majd a Futtatás mindenképp lehetőséget, de csak a tőlünk, Discordon kapott telepítőnél. A támogatásokból elsőként tanúsítványt veszünk.</p>
+      <h3>A vírusirtóm jelezte. Biztonságos?</h3>
+      <p>A gépi kódra fordított, aláíratlan alkalmazásokat a vírusirtók néha tévesen jelzik. Csak a Discordunkról kapott telepítőt futtasd, és írd meg, melyik vírusirtó jelezte, hogy bejelenthessük a téves riasztást.</p>
+      <h3>Megnézhetem, mi fut a DCS-ben?</h3>
+      <p>Igen. A bridge egy olvasható Lua szkript: <code>Scripts\Buddy\buddy_bridge.lua</code> a DCS Saved Games mappádban, és a <code>Scripts\Hooks\buddy_bridge_hook.lua</code> tölti be.</p>
+    </section>
+
+    <section id="help">
+      <div class="station-head"><span class="f">Segítség</span><h2>Hibák és kérdések</h2></div>
+      <p>Kérdezz a <a href="https://discord.gg/kqw8F5fNe6">Discordunk</a> segítség csatornáján. Hibánál írd meg, mit mondtál a rádióba és mi történt, és másold be az alkalmazás Radio oldalán lévő napló utolsó sorait. Az API kulcsodat és a webhook címeket soha ne másold be.</p>
+      <p>Küldetést építesz egy csapatnak, amelyik Buddy Radiót használ? Lásd: <a href="/hu/missions">Küldetéskészítőknek</a>.</p>
+    </section>
+  </article>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div>
+      <p>A <b>Buddy Radio</b> közösségi projekt DCS World csapatoknak, a saját Claude kulcsoddal ingyen használható.</p>
+      <p class="foot-links"><a href="/hu/faq">GYIK</a> <a href="/hu/missions">Küldetéskészítőknek</a> <a href="/hu/changes">Újdonságok</a> <a href="https://discord.gg/kqw8F5fNe6">Discord</a> <a href="/hu/#support">A projekt támogatása</a></p>
+      <p>Nem kapcsolódik az Eagle Dynamicshez vagy a DCS-SRS projekthez.</p>
+    </div>
+    <div>
+      <p>Az SRS External AWACS Mode protokollra épül a SkyEye (MIT) leírása alapján, ötletek az Avalanche110 AI_ATC projektjéből (CC0). Felhasznált eszközök: faster-whisper, Piper, Leaflet és OpenStreetMap.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

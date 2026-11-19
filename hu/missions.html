@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Küldetéskészítőknek: Buddy Radio</title>
+<meta name="description" content="Hogyan állítsd be a tankereket, repülőtereket, hordozókat és fenyegetéseket a DCS küldetésszerkesztőben, hogy a Buddy Radio állomásai a legjobban működjenek.">
+<meta property="og:image" content="/assets/img/og.png">
+<link rel="alternate" hreflang="en" href="/missions">
+<link rel="alternate" hreflang="hu" href="/hu/missions">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="/hu/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="5" fill="#2b3035"/><path d="M5 17h4l3-8 4 15 3-11 2 4h6" fill="none" stroke="#f2b705" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/></svg>Buddy Radio</a>
+    <nav aria-label="Fő navigáció">
+      <a href="/hu/">Főoldal</a>
+      <a href="/hu/guide">Rádiós útmutató</a>
+      <a href="/hu/setup">Telepítés</a>
+      <a href="/hu/faq">GYIK</a>
+      <a href="/hu/map">Élő térkép</a>
+      <a class="lang" href="/missions" hreflang="en" lang="en">English</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap doc">
+  <nav class="toc" aria-label="Témák">
+    <a href="#any"><span class="f">Kezdés</span>Bármelyik küldetés jó</a>
+    <a href="#tankers"><span class="f">Tankerek</span>Frekvencia és TACAN</a>
+    <a href="#airfields"><span class="f">Repterek</span>Tornyok és FARP-ok</a>
+    <a href="#carriers"><span class="f">Hordozók</span>Paddleshez</a>
+    <a href="#threats"><span class="f">Fenyegetések</span>Mit lát Overlord</a>
+  </nav>
+
+  <article>
+    <section id="any">
+      <h1 style="font-size:clamp(44px,6vw,72px);margin-bottom:.4em">Küldetéskészítőknek</h1>
+      <p>A Buddy Radio bármelyik küldetéssel működik, nem kell triggert vagy szkriptet hozzáadni. A bridge a DCS-en belül fut, és menet közben olvassa a küldetést. Néhány döntés a küldetésszerkesztőben jobbá teszi az állomásokat.</p>
+    </section>
+
+    <section id="tankers">
+      <div class="station-head"><span class="f">Tankerek</span><h2>Frekvencia és TACAN</h2></div>
+      <p>Overlord a küldetésfájlból olvassa ki a tanker rádiófrekvenciáját és TACAN-ját. Állítsd be őket a szerkesztőben, és a pilóták minden "request tanker" hívásra megkapják.</p>
+      <ul class="plain">
+        <li><b>Feladat:</b> add a csoportnak a Refueling feladatot, ahogy minden DCS tankernek kell.</li>
+        <li><b>Rádió:</b> állítsd be a csoport frekvenciáját a szerkesztőben. Olyat válassz, amit a csapat másra nem használ.</li>
+        <li><b>TACAN:</b> tegyél egy fordulópontra Activate Beacon parancsot csatornával és X vagy Y móddal. Overlord kiolvassa a csatornát és a módot.</li>
+        <li><b>Hívójel:</b> a Texaco, Arco és Shell így hangzik: "Texaco 1-1".</li>
+        <li><b>Gém vagy kosár</b> a típustól függ: a KC-135-nek gémje van, a KC-135 MPRS-nek, a KC-130-nak, az S-3B tankernek és az Il-78-nak kosara. Ha a csapatod mindkét fajta géppel repül, tegyél fel mindkettőből egyet.</li>
+      </ul>
+      <h3>Szkripttel létrehozott tankerek</h3>
+      <p>MOOSE, MIST és a Foothold-hoz hasonló küldetések esetén tarts meg egy későn aktivált sablon csoportot ezekkel a beállításokkal. A <code>Texaco#001</code> mintájú másolatokat a sablonjukhoz párosítja. A küldetés közben szkripttel beállított frekvenciát vagy TACAN-t nem látja, ezért Overlord kihagyja.</p>
+    </section>
+
+    <section id="airfields">
+      <div class="station-head"><span class="f">Repterek</span><h2>Tornyok és FARP-ok</h2></div>
+      <p>A torony beállítás nélkül kiszolgálja a térkép minden repülőterét. A használt pálya, a szél, a légnyomás és az ATIS az élő küldetés időjárásából jön.</p>
+      <ul class="plain">
+        <li><b>Saját frekvenciájú reptér:</b> az alkalmazás Stations oldalán válaszd az Add a tower and ATIS gombot, és írd be a reptér nevét pontosan úgy, ahogy a DCS mutatja.</li>
+        <li><b>FARP-ok:</b> a baráti FARP-on álló helikopter azzal a FARP-pal beszél.</li>
+        <li><b>Időjárás:</b> a szerkesztőben beállított szél és felhőzet megváltoztatja a használt pályát és az ATIS-t, így egy szeles küldetés másképp szól, mint egy szélcsendes.</li>
+      </ul>
+    </section>
+
+    <section id="carriers">
+      <div class="station-head"><span class="f">Hordozók</span><h2>Paddleshez</h2></div>
+      <p>Paddles bármelyik koalíciós hordozó élő pozícióját, irányát, sebességét és szélét használja. A jó Case I leszállásokhoz vezesd a hordozót szélbe, olyan sebességgel, hogy nagyjából 25 csomó legyen a fedélzeti szél, és adj neki hosszú egyenes szakaszt a fogadás idejére.</p>
+    </section>
+
+    <section id="threats">
+      <div class="station-head"><span class="f">Fenyegetések</span><h2>Mit lát Overlord</h2></div>
+      <ul class="plain">
+        <li>Overlord a küldetés minden aktív ellenséges egységét ismeri. A radarészlelést nem modellezi, ezért a meglepetéseket késleltetett aktiválással rejtsd el, ne domborzattal.</li>
+        <li>A későn aktivált csoportok az aktiválásukkor jelennek meg.</li>
+        <li>A SAM és légvédelmi tüzérségi figyelmeztetések nagyjából 30 típus hatótávolságát ismerik, az SA-2-től és SA-10-től a Silkáig és a vállról indítható rakétákig.</li>
+        <li>Az Overlord által felolvasott célkoordináták jelölésként a kérő kötelék F10 térképén is megjelennek.</li>
+      </ul>
+    </section>
+  </article>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div>
+      <p>A <b>Buddy Radio</b> közösségi projekt DCS World csapatoknak, a saját Claude kulcsoddal ingyen használható.</p>
+      <p class="foot-links"><a href="/hu/faq">GYIK</a> <a href="/hu/missions">Küldetéskészítőknek</a> <a href="/hu/changes">Újdonságok</a> <a href="https://discord.gg/kqw8F5fNe6">Discord</a> <a href="/hu/#support">A projekt támogatása</a></p>
+      <p>Nem kapcsolódik az Eagle Dynamicshez vagy a DCS-SRS projekthez.</p>
+    </div>
+    <div>
+      <p>Az SRS External AWACS Mode protokollra épül a SkyEye (MIT) leírása alapján, ötletek az Avalanche110 AI_ATC projektjéből (CC0). Felhasznált eszközök: faster-whisper, Piper, Leaflet és OpenStreetMap.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

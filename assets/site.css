@@ -144,6 +144,8 @@ section { padding: clamp(48px, 7vw, 84px) 0; border-top: 2px solid var(--ink); }
 .station-head { display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap; margin-bottom: 14px; }
 .station-head .f { font: 800 clamp(40px, 5vw, 60px)/1 var(--display); font-variant-numeric: tabular-nums; }
 .station-head h2 { margin: 0; }
+.doc article section > h3 { margin-top: 30px; }
+.doc article section > h1 + h3, .doc article section > .station-head + h3 { margin-top: 8px; }
 
 .says { width: 100%; border-collapse: collapse; margin: 18px 0 22px; font-size: 15.5px; }
 .says th { text-align: left; font-size: 14px; color: var(--ink-2); padding: 0 12px 8px 0; border-bottom: 2px solid var(--ink); }
@@ -181,6 +183,9 @@ pre .c { color: var(--lit-2); }
 .site-foot { border-top: 2px solid var(--ink); padding: 28px 0 40px; font-size: 14.5px; color: var(--ink-2); }
 .site-foot .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; }
 .site-foot p { margin: 0 0 .5em; }
+.site-foot .foot-links { display: flex; flex-wrap: wrap; gap: 4px 16px; }
+.site-foot .foot-links a { color: var(--ink); font-weight: 600; }
+.muted { color: var(--ink-2); }
 
 /* ---------- small screens ---------- */
 @media (max-width: 900px) {

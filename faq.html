@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FAQ: Buddy Radio</title>
+<meta name="description" content="Questions about Buddy Radio: what it costs, what leaves your PC, why it asks for admin rights, and where to get help.">
+<meta property="og:image" content="/assets/img/og.png">
+<link rel="alternate" hreflang="en" href="/faq">
+<link rel="alternate" hreflang="hu" href="/hu/faq">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="5" fill="#2b3035"/><path d="M5 17h4l3-8 4 15 3-11 2 4h6" fill="none" stroke="#f2b705" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/></svg>Buddy Radio</a>
+    <nav aria-label="Main">
+      <a href="/">Home</a>
+      <a href="/guide">Radio guide</a>
+      <a href="/setup">Setup</a>
+      <a href="/faq" aria-current="page">FAQ</a>
+      <a href="/map">Live map</a>
+      <a class="lang" href="/hu/faq" hreflang="hu" lang="hu">Magyar</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap doc">
+  <nav class="toc" aria-label="Topics">
+    <a href="#basics"><span class="f">Basics</span>Free, what you need</a>
+    <a href="#costs"><span class="f">Costs</span>Your Claude bill</a>
+    <a href="#privacy"><span class="f">Privacy</span>What leaves your PC</a>
+    <a href="#safety"><span class="f">Safety</span>Admin rights, warnings</a>
+    <a href="#help"><span class="f">Help</span>Bugs and questions</a>
+  </nav>
+
+  <article>
+    <section id="basics">
+      <h1 style="font-size:clamp(44px,6vw,72px);margin-bottom:.4em">Questions</h1>
+      <h3>Is it free?</h3>
+      <p>Yes. The app is free to download and use. It talks to Claude with your own API key, so you pay Anthropic directly for what your group uses, and nobody else sees your bill. If you'd like to help it grow, see <a href="/#support">Support the project</a>.</p>
+      <h3>Do pilots need to install anything?</h3>
+      <p>No. Only the PC that hosts the mission runs Buddy Radio. Pilots use the normal SRS client and tune the frequency.</p>
+      <h3>What do I need to run it?</h3>
+      <p>A Windows 10 or 11 PC that runs DCS or the DCS server, an SRS server, and a Claude API key with a few dollars of credit. The <a href="/setup">setup page</a> has the full list and every step.</p>
+      <h3>Does it work when I host from my own game?</h3>
+      <p>Yes. Run Buddy Radio on the same PC as DCS and the SRS server, and choose your normal DCS profile on the app's DCS page instead of the server one.</p>
+      <h3>Which maps and aircraft does it work with?</h3>
+      <p>Every map. Tower serves the airfields of whichever map is running, Overlord picks a boom or basket tanker to suit your aircraft, and Paddles works with the carriers in DCS. Radio calls are in English.</p>
+      <h3>Can several pilots talk at once?</h3>
+      <p>Yes. Every station works on its own, so a call to Overlord and a call to Tower are answered at the same time. Calls to the same station are answered one after another, like a real controller.</p>
+      <h3>Can it run next to SkyEye, LotATC or other SRS tools?</h3>
+      <p>Buddy joins SRS like an AWACS player, so other tools can share the server on other frequencies. Don't put two controllers on the same frequency. We haven't tested every combination, so tell us on Discord how yours goes.</p>
+    </section>
+
+    <section id="costs">
+      <div class="station-head"><span class="f">Costs</span><h2>Your Claude bill</h2></div>
+      <h3>What does it cost to run?</h3>
+      <p>Most calls are worked out on your PC and cost nothing: bogey dope, picture, tanker calls, taxi, ATIS, threat warnings, talk-downs, coordinates and the whole Paddles trainer. Only questions in your own words go to Claude, using Haiku, the fastest and cheapest model. An evening's flying usually comes to cents.</p>
+      <h3>How do I keep it in check?</h3>
+      <p>Buy prepaid credit in the Claude Console and leave auto-reload off, so the credit you bought is the most you can spend. The console shows your usage day by day.</p>
+    </section>
+
+    <section id="privacy">
+      <div class="station-head"><span class="f">Privacy</span><h2>What leaves your PC</h2></div>
+      <ul class="plain">
+        <li><b>Voices stay on your PC.</b> Speech recognition and the station voices run locally. No audio is sent anywhere.</li>
+        <li><b>Claude gets what a question needs.</b> For calls that go to Claude, the written text of the call, the pilot's SRS name and callsign, and the mission data for that call (positions, airfield, weather) go to Anthropic's API under your key. Buddy also sends short passages from the manuals in its folder when it looks something up.</li>
+        <li><b>Discord only if you set it up.</b> With webhooks added, target coordinates and carrier grades are posted to your channels.</li>
+        <li><b>The live map stays on your network</b> unless you put it online with a tunnel. A map key keeps it to the people you share it with.</li>
+        <li><b>First start downloads</b> the speech model and the voices from Hugging Face.</li>
+        <li><b>Nothing comes to us.</b> No accounts, no analytics, no usage data.</li>
+      </ul>
+      <h3>Where are my keys kept?</h3>
+      <p>In Windows Credential Manager, under BuddyRadio. They're never written to a file, and the app never shows them again.</p>
+    </section>
+
+    <section id="safety">
+      <div class="station-head"><span class="f">Safety</span><h2>Admin rights and warnings</h2></div>
+      <h3>Why does it ask for admin rights?</h3>
+      <p>Three times, each for one job: the installer puts the app in Program Files, <b>Allow scripting</b> changes one file in your DCS install folder, and <b>Allow tablets through the firewall</b> lets phones and tablets on your network open the live map.</p>
+      <h3>What does Allow scripting change?</h3>
+      <p>DCS stops mission scripts from using files and the network unless its <code>MissionScripting.lua</code> allows it. The bridge needs the network to pass mission data to the app on your PC, so Buddy turns those limits off and keeps the original as <code>MissionScripting.lua.buddy-backup</code>. Many server tools ask for the same change.</p>
+      <p>It applies to every mission on that DCS, so only run missions you trust. DCS updates put the original file back, and the app's DCS page shows when to allow scripting again.</p>
+      <h3>Why does Windows say it protected my PC?</h3>
+      <p>The beta isn't signed with a code-signing certificate yet, so Windows doesn't know the publisher. Choose More info, then Run anyway, and only for the installer you got from our Discord. A certificate is the first thing support for the project pays for.</p>
+      <h3>My antivirus flagged it. Is it safe?</h3>
+      <p>Unsigned apps built into machine code are sometimes flagged by mistake. Only run the installer from our Discord, and tell us which antivirus flagged it so we can report the false alarm.</p>
+      <h3>Can I see what runs inside DCS?</h3>
+      <p>Yes. The bridge is a plain Lua script you can read: <code>Scripts\Buddy\buddy_bridge.lua</code> in your DCS Saved Games folder, loaded by <code>Scripts\Hooks\buddy_bridge_hook.lua</code>.</p>
+    </section>
+
+    <section id="help">
+      <div class="station-head"><span class="f">Help</span><h2>Bugs and questions</h2></div>
+      <p>Ask in the help channel on our <a href="https://discord.gg/kqw8F5fNe6">Discord</a>. For a bug, say what you called and what happened, and paste the last lines of the log from the app's Radio page. Never paste your API key or webhook addresses.</p>
+      <p>Building missions for a group that uses Buddy Radio? See <a href="/missions">For mission makers</a>.</p>
+    </section>
+  </article>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div>
+      <p><b>Buddy Radio</b> is a community project for DCS World groups, free to use with your own Claude key.</p>
+      <p class="foot-links"><a href="/faq">FAQ</a> <a href="/missions">For mission makers</a> <a href="/changes">What's new</a> <a href="https://discord.gg/kqw8F5fNe6">Discord</a> <a href="/#support">Support the project</a></p>
+      <p>Not affiliated with Eagle Dynamics or the DCS-SRS project.</p>
+    </div>
+    <div>
+      <p>Built on the SRS External AWACS Mode protocol as documented by SkyEye (MIT), ideas from AI_ATC by Avalanche110 (CC0), faster-whisper, Piper, Leaflet and OpenStreetMap.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

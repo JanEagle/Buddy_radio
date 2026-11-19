@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>For mission makers: Buddy Radio</title>
+<meta name="description" content="How to set up tankers, airfields, carriers and threats in the DCS mission editor so Buddy Radio's stations work at their best.">
+<meta property="og:image" content="/assets/img/og.png">
+<link rel="alternate" hreflang="en" href="/missions">
+<link rel="alternate" hreflang="hu" href="/hu/missions">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="5" fill="#2b3035"/><path d="M5 17h4l3-8 4 15 3-11 2 4h6" fill="none" stroke="#f2b705" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/></svg>Buddy Radio</a>
+    <nav aria-label="Main">
+      <a href="/">Home</a>
+      <a href="/guide">Radio guide</a>
+      <a href="/setup">Setup</a>
+      <a href="/faq">FAQ</a>
+      <a href="/map">Live map</a>
+      <a class="lang" href="/hu/missions" hreflang="hu" lang="hu">Magyar</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap doc">
+  <nav class="toc" aria-label="Topics">
+    <a href="#any"><span class="f">Start</span>Any mission works</a>
+    <a href="#tankers"><span class="f">Tankers</span>Frequency and TACAN</a>
+    <a href="#airfields"><span class="f">Airfields</span>Towers and FARPs</a>
+    <a href="#carriers"><span class="f">Carriers</span>For Paddles</a>
+    <a href="#threats"><span class="f">Threats</span>What Overlord sees</a>
+  </nav>
+
+  <article>
+    <section id="any">
+      <h1 style="font-size:clamp(44px,6vw,72px);margin-bottom:.4em">For mission makers</h1>
+      <p>Buddy Radio works with any mission, with no triggers or scripts to add. The bridge runs inside DCS and reads the mission as it plays. A few choices in the mission editor make the stations sound better.</p>
+    </section>
+
+    <section id="tankers">
+      <div class="station-head"><span class="f">Tankers</span><h2>Frequency and TACAN</h2></div>
+      <p>Overlord reads out a tanker's radio frequency and TACAN from the mission file. Set them in the editor and pilots get them with every "request tanker".</p>
+      <ul class="plain">
+        <li><b>Task:</b> give the group the Refueling task, as every DCS tanker needs.</li>
+        <li><b>Radio:</b> set the group's frequency in the editor. Pick one the group doesn't use for anything else.</li>
+        <li><b>TACAN:</b> add an Activate Beacon command on a waypoint, with channel and X or Y. Overlord reads the channel and mode.</li>
+        <li><b>Callsign:</b> Texaco, Arco and Shell are read as "Texaco 1-1".</li>
+        <li><b>Boom or basket</b> comes from the type: the KC-135 has a boom; the KC-135 MPRS, KC-130, S-3B tanker and Il-78 have baskets. Put one of each up if your group flies both kinds of jet.</li>
+      </ul>
+      <h3>Tankers spawned by scripts</h3>
+      <p>For MOOSE, MIST and missions like Foothold, keep a late-activated template group with these settings. Spawned copies named like <code>Texaco#001</code> are matched to their template. A frequency or TACAN set by a script while the mission runs can't be seen, so Overlord leaves it out.</p>
+    </section>
+
+    <section id="airfields">
+      <div class="station-head"><span class="f">Airfields</span><h2>Towers and FARPs</h2></div>
+      <p>Tower serves every airfield on the map with no setup. The runway in use, wind, altimeter and ATIS come from the live mission weather.</p>
+      <ul class="plain">
+        <li><b>An airfield with its own frequency:</b> on the app's Stations page, choose Add a tower and ATIS and write the airfield name exactly as DCS shows it.</li>
+        <li><b>FARPs:</b> a helicopter standing on a friendly FARP talks to that FARP.</li>
+        <li><b>Weather:</b> wind and cloud set in the editor change the runway in use and the ATIS, so a windy mission sounds different from a calm one.</li>
+      </ul>
+    </section>
+
+    <section id="carriers">
+      <div class="station-head"><span class="f">Carriers</span><h2>For Paddles</h2></div>
+      <p>Paddles uses the carrier's live position, heading, speed and wind, on any coalition carrier. For good Case I passes, route the carrier into the wind fast enough for about 25 knots over the deck, and give it a long straight leg during recovery.</p>
+    </section>
+
+    <section id="threats">
+      <div class="station-head"><span class="f">Threats</span><h2>What Overlord sees</h2></div>
+      <ul class="plain">
+        <li>Overlord knows every active enemy unit in the mission. It doesn't model radar detection, so hide surprises with late activation rather than terrain.</li>
+        <li>Late-activated groups appear as soon as they're activated.</li>
+        <li>SAM and triple-A warnings know the engagement range of around 30 types, from the SA-2 and SA-10 down to Shilkas and MANPADS.</li>
+        <li>Target coordinates that Overlord reads out also appear as a mark on the requesting flight's F10 map.</li>
+      </ul>
+    </section>
+  </article>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div>
+      <p><b>Buddy Radio</b> is a community project for DCS World groups, free to use with your own Claude key.</p>
+      <p class="foot-links"><a href="/faq">FAQ</a> <a href="/missions">For mission makers</a> <a href="/changes">What's new</a> <a href="https://discord.gg/kqw8F5fNe6">Discord</a> <a href="/#support">Support the project</a></p>
+      <p>Not affiliated with Eagle Dynamics or the DCS-SRS project.</p>
+    </div>
+    <div>
+      <p>Built on the SRS External AWACS Mode protocol as documented by SkyEye (MIT), ideas from AI_ATC by Avalanche110 (CC0), faster-whisper, Piper, Leaflet and OpenStreetMap.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
