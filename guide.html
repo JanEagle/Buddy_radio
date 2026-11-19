@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Radio guide: Buddy Radio</title>
-<meta name="description" content="What to say to Overlord, the tower, ATIS, Buddy and Paddles, and what they say back.">
+<meta name="description" content="What to say to Overlord, the tower, Buddy and Paddles, and what they say back: picture, tanker, taxi, ATIS and carrier calls.">
 <meta property="og:image" content="/assets/img/og.png">
 <link rel="alternate" hreflang="en" href="/guide">
 <link rel="alternate" hreflang="hu" href="/hu/guide">
@@ -31,7 +31,8 @@
     <a href="#basics"><span class="f">Basics</span>How to call</a>
     <a href="#overlord"><span class="f">251.000</span>Overlord</a>
     <a href="#tower"><span class="f">251.500</span>Tower</a>
-    <a href="#atis"><span class="f">251.750</span>ATIS</a>
+    <a href="#tankers"><span class="f">251.000</span>Tankers</a>
+    <a href="#atis"><span class="f">On request</span>ATIS</a>
     <a href="#buddy"><span class="f">252.000</span>Buddy</a>
     <a href="#paddles"><span class="f">253.000</span>Paddles</a>
     <a href="#extras"><span class="f">Extras</span>Map and Discord</a>
@@ -61,6 +62,7 @@
           <tr><td>Overlord, Kupi 3-1, picture.</td><td>All groups in range, nearest first, with BRAA, altitude, aspect and count.</td></tr>
           <tr><td>Overlord, Kupi 3-1, ground threats.</td><td>The three nearest hostile ground groups by bearing and range, then "stand by to copy coordinates" for the nearest.</td></tr>
           <tr><td>Overlord, Kupi 3-1, request coordinates two.</td><td>Coordinates for the second threat on that list.</td></tr>
+          <tr><td>Overlord, Kupi 3-1, request tanker.</td><td>The nearest friendly tanker that suits your jet, with bearing, range, angels, TACAN and frequency (see <a href="#tankers">Tankers</a>).</td></tr>
           <tr><td>Overlord, Kupi 3-1, say friendlies.</td><td>Where the other friendly flights are, by bearing, range and altitude.</td></tr>
           <tr><td>Overlord, Kupi 3-1, threat warnings off. <em>(or on)</em></td><td>Stops or restarts the automatic warnings, for you only.</td></tr>
         </tbody>
@@ -76,13 +78,29 @@
       <div class="callout">Enemy aircraft are always called by their reporting names: Fishbed, Fulcrum, Flanker, Frogfoot, Hind, Hip. "Threat" on its own means ground threats; ask for bogey dope or picture for air.</div>
     </section>
 
+    <section id="tankers">
+      <div class="station-head"><span class="f">251.000</span><h2>Tankers</h2></div>
+      <p>Ask Overlord for gas. It finds every friendly tanker in the air, on any map, and gives you the nearest one your jet can use: a boom tanker for the Viper, Strike Eagle and Hog, a basket tanker for the Hornet, Tomcat, Harrier and Mirage.</p>
+      <table class="says">
+        <thead><tr><th scope="col">You say</th><th scope="col">Overlord answers</th></tr></thead>
+        <tbody>
+          <tr><td>Overlord, Lama 1-1, request tanker.</td><td>Lama 1-1, Overlord, Arco 1-1, KC-135, basket, bearing one-niner-four, 25 miles, angels 15, TACAN 52 X-ray, frequency two six one decimal zero.</td></tr>
+          <tr><td>Overlord, Lama 1-1, request tankers.</td><td>Up to three tankers, nearest first, each with boom or basket, bearing, range, angels and TACAN.</td></tr>
+          <tr><td>Overlord, Lama 1-1, where's Texaco?</td><td>Questions in your own words work too.</td></tr>
+        </tbody>
+      </table>
+      <p>If only the wrong kind of tanker is up, Overlord says so and still gives you the nearest one. The frequency and TACAN come from the mission file. If a mission script sets them while the mission runs, Overlord leaves out what it can't see.</p>
+      <div class="callout">For now you still join the tanker the DCS way, with the radio menu or by flying into position. A voice boom operator on the tanker's own frequency is <a href="/#next">coming next</a>.</div>
+    </section>
+
     <section id="tower">
       <div class="station-head"><span class="f">251.500</span><h2>Tower</h2></div>
-      <p>Ground and tower for one airfield in a single station (Rosh Pina by default; add more airfields in the settings). Tower answers every call on its frequency, so the station name is optional.</p>
+      <p>One station is ground and tower for every airfield on every map: Caucasus, Syria, Nevada, the Persian Gulf, Marianas and the rest. Say the airfield's name and Tower answers as that airfield. Say just "Tower" and it answers for the airfield you last talked to, or the one you're nearest. Tower answers every call on its frequency, so the station name is optional.</p>
       <table class="says">
         <thead><tr><th scope="col">You say</th><th scope="col">Tower answers</th></tr></thead>
         <tbody>
-          <tr><td>Rosh Pina Tower, Lama 1-1, request start-up.</td><td>Start-up approved, runway in use, wind, altimeter.</td></tr>
+          <tr><td>Kutaisi Tower, Lama 1-1, request start-up.</td><td>Start-up approved, runway in use, wind, altimeter, as Kutaisi Tower.</td></tr>
+          <tr><td>Tower, Lama 1-1, request information.</td><td>The airfield's ATIS: information letter, runway, wind, visibility, clouds, temperature, altimeter.</td></tr>
           <tr><td>Tower, Lama 1-1, request taxi.</td><td>Taxi to holding point runway three three, wind, altimeter, hold short runway three three.</td></tr>
           <tr><td>Lama 1-1, ready for takeoff.</td><td>Cleared for takeoff, or hold short with the reason (traffic on the runway or on final).</td></tr>
           <tr><td>Tower, Lama 1-1, inbound for landing, with information Bravo.</td><td>Runway, wind, altimeter and your place in the landing sequence.</td></tr>
@@ -103,9 +121,10 @@
     </section>
 
     <section id="atis">
-      <div class="station-head"><span class="f">251.750</span><h2>ATIS</h2></div>
-      <p>A recorded-style weather broadcast on a loop, built from the live mission: information letter, zulu time, runway in use, wind, visibility, clouds, temperature and altimeter. The letter changes every hour and whenever the runway in use changes. It only transmits while someone is tuned in.</p>
-      <p>Listen before you call Tower, then report the letter: "with information Bravo." If yours is out of date, Tower tells you the current one.</p>
+      <div class="station-head"><span class="f">On request</span><h2>ATIS</h2></div>
+      <p>The airfield weather, built from the live mission: information letter, zulu time, runway in use, wind, visibility, clouds, temperature and altimeter. The letter changes every hour and whenever the runway in use changes.</p>
+      <p>Ask Tower for it before you call in: "Tower, Lama 1-1, request information." Then report the letter: "inbound for landing, with information Golf." If yours is out of date, Tower tells you the current one.</p>
+      <p>A server can also give an airfield its own tower and ATIS frequency on the app's Stations page. That ATIS broadcasts on a loop while someone is tuned in.</p>
     </section>
 
     <section id="buddy">

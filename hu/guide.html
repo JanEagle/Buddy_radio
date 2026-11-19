@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rádiós útmutató: Buddy Radio</title>
-<meta name="description" content="Mit mondj Overlordnak, a toronynak, az ATIS-nak, Buddynak és Paddlesnek, és mit válaszolnak.">
+<meta name="description" content="Mit mondj Overlordnak, a toronynak, Buddynak és Paddlesnek, és mit válaszolnak: helyzetkép, tanker, gurulás, ATIS és hordozós hívások.">
 <meta property="og:image" content="/assets/img/og.png">
 <link rel="alternate" hreflang="en" href="/hu/guide">
 <link rel="alternate" hreflang="hu" href="/hu/guide">
@@ -31,7 +31,8 @@
     <a href="#basics"><span class="f">Alapok</span>Hogyan hívj</a>
     <a href="#overlord"><span class="f">251.000</span>Overlord</a>
     <a href="#tower"><span class="f">251.500</span>Torony</a>
-    <a href="#atis"><span class="f">251.750</span>ATIS</a>
+    <a href="#tankers"><span class="f">251.000</span>Tankerek</a>
+    <a href="#atis"><span class="f">Kérésre</span>ATIS</a>
     <a href="#buddy"><span class="f">252.000</span>Buddy</a>
     <a href="#paddles"><span class="f">253.000</span>Paddles</a>
     <a href="#extras"><span class="f">Extrák</span>Térkép és Discord</a>
@@ -61,6 +62,7 @@
           <tr><td>Overlord, Kupi 3-1, picture.</td><td>Minden csoport a hatótávon belül, a legközelebbivel kezdve: BRAA, magasság, aspektus és darabszám.</td></tr>
           <tr><td>Overlord, Kupi 3-1, ground threats.</td><td>A három legközelebbi ellenséges földi csoport iránnyal és távolsággal, majd "stand by to copy coordinates" a legközelebbihez.</td></tr>
           <tr><td>Overlord, Kupi 3-1, request coordinates two.</td><td>A lista második fenyegetésének koordinátái.</td></tr>
+          <tr><td>Overlord, Kupi 3-1, request tanker.</td><td>A legközelebbi baráti tanker, ami a gépedhez illik, irányszöggel, távolsággal, magassággal, TACAN-nal és frekvenciával (lásd <a href="#tankers">Tankerek</a>).</td></tr>
           <tr><td>Overlord, Kupi 3-1, say friendlies.</td><td>Hol vannak a többi saját kötelékek: irány, távolság és magasság.</td></tr>
           <tr><td>Overlord, Kupi 3-1, threat warnings off. <em>(vagy on)</em></td><td>Kikapcsolja vagy visszakapcsolja az automatikus figyelmeztetéseket, csak neked.</td></tr>
         </tbody>
@@ -76,13 +78,29 @@
       <div class="callout">Az ellenséges gépeket mindig a NATO kódnevükön mondja: Fishbed, Fulcrum, Flanker, Frogfoot, Hind, Hip. A "threat" önmagában földi fenyegetést jelent, a légi helyzethez kérj bogey dope-ot vagy picture-t.</div>
     </section>
 
+    <section id="tankers">
+      <div class="station-head"><span class="f">251.000</span><h2>Tankerek</h2></div>
+      <p>Kérj üzemanyagot Overlordtól. Bármelyik térképen megtalálja az összes levegőben lévő baráti tankert, és a legközelebbit adja, amit a géped használni tud: gémes (boom) tankert a Vipernek, a Strike Eagle-nek és a Hognak, kosaras (basket) tankert a Hornetnek, a Tomcatnek, a Harriernek és a Mirage-nak.</p>
+      <table class="says">
+        <thead><tr><th scope="col">Te mondod</th><th scope="col">Overlord válasza</th></tr></thead>
+        <tbody>
+          <tr><td>Overlord, Lama 1-1, request tanker.</td><td>Lama 1-1, Overlord, Arco 1-1, KC-135, basket, bearing one-niner-four, 25 miles, angels 15, TACAN 52 X-ray, frequency two six one decimal zero.</td></tr>
+          <tr><td>Overlord, Lama 1-1, request tankers.</td><td>Legfeljebb három tanker, a legközelebbivel kezdve, mindegyiknél gém vagy kosár, irányszög, távolság, magasság és TACAN.</td></tr>
+          <tr><td>Overlord, Lama 1-1, where's Texaco?</td><td>A saját szavaiddal feltett kérdések is működnek.</td></tr>
+        </tbody>
+      </table>
+      <p>Ha csak nem megfelelő típusú tanker van fent, Overlord ezt megmondja, és a legközelebbit így is megadja. A frekvencia és a TACAN a küldetésfájlból jön. Ha egy küldetésszkript menet közben állítja be őket, Overlord kihagyja, amit nem lát.</p>
+      <div class="callout">Egyelőre a tankerhez még a DCS módján csatlakozol, a rádiómenüvel vagy úgy, hogy pozícióba repülsz. A hangvezérelt boom operátor a tanker saját frekvenciáján <a href="/hu/#next">hamarosan jön</a>.</div>
+    </section>
+
     <section id="tower">
       <div class="station-head"><span class="f">251.500</span><h2>Torony</h2></div>
-      <p>Föld és torony egy repülőtérhez, egyetlen állomásban (alapból Rosh Pina, a beállításokban adhatsz hozzá másikat). A torony minden hívásra válaszol a frekvenciáján, így az állomás nevét nem kötelező mondani.</p>
+      <p>Egyetlen állomás a föld és a torony minden térkép minden repülőterén: Kaukázus, Szíria, Nevada, Perzsa-öböl, Marianas és a többi. Mondd a reptér nevét, és a torony annak a reptérnek a nevében válaszol. Ha csak annyit mondasz, hogy "Tower", akkor az a reptér válaszol, amelyikkel utoljára beszéltél, vagy amelyikhez a legközelebb vagy. A torony minden hívásra válaszol a frekvenciáján, így az állomás nevét nem kötelező mondani.</p>
       <table class="says">
         <thead><tr><th scope="col">Te mondod</th><th scope="col">A torony válasza</th></tr></thead>
         <tbody>
-          <tr><td>Rosh Pina Tower, Lama 1-1, request start-up.</td><td>Indítás engedélyezve, használt pálya, szél, légnyomás.</td></tr>
+          <tr><td>Kutaisi Tower, Lama 1-1, request start-up.</td><td>Indítás engedélyezve, használt pálya, szél, légnyomás, Kutaisi Tower nevében.</td></tr>
+          <tr><td>Tower, Lama 1-1, request information.</td><td>A reptér ATIS-a: információs betűjel, pálya, szél, látástávolság, felhőzet, hőmérséklet, légnyomás.</td></tr>
           <tr><td>Tower, Lama 1-1, request taxi.</td><td>Gurulás a 33-as pálya várópontjához, szél, légnyomás, várakozás a pálya előtt.</td></tr>
           <tr><td>Lama 1-1, ready for takeoff.</td><td>Felszállás engedélyezve, vagy várakozás az okkal együtt (forgalom a pályán vagy a végső egyenesen).</td></tr>
           <tr><td>Tower, Lama 1-1, inbound for landing, with information Bravo.</td><td>Pálya, szél, légnyomás és a helyed a leszállási sorrendben.</td></tr>
@@ -103,9 +121,10 @@
     </section>
 
     <section id="atis">
-      <div class="station-head"><span class="f">251.750</span><h2>ATIS</h2></div>
-      <p>Folyamatosan ismétlődő időjárás-adás az élő küldetésből: információs betűjel, zulu idő, használt pálya, szél, látástávolság, felhőzet, hőmérséklet és légnyomás. A betűjel óránként és a használt pálya változásakor vált. Csak akkor ad, ha valaki rá van hangolva.</p>
-      <p>Hallgasd meg, mielőtt hívod a tornyot, és mondd be a betűjelet: "with information Bravo." Ha a tiéd elavult, a torony megmondja az aktuálisat.</p>
+      <div class="station-head"><span class="f">Kérésre</span><h2>ATIS</h2></div>
+      <p>A reptér időjárása az élő küldetésből: információs betűjel, zulu idő, használt pálya, szél, látástávolság, felhőzet, hőmérséklet és légnyomás. A betűjel óránként és a használt pálya változásakor vált.</p>
+      <p>Kérd el a toronytól, mielőtt bejelentkezel: "Tower, Lama 1-1, request information." Utána mondd be a betűjelet: "inbound for landing, with information Golf." Ha a tiéd elavult, a torony megmondja az aktuálisat.</p>
+      <p>Egy szerver az alkalmazás Stations oldalán saját torony- és ATIS-frekvenciát is adhat egy reptérnek. Az az ATIS folyamatosan ismétlődik, amíg valaki rá van hangolva.</p>
     </section>
 
     <section id="buddy">

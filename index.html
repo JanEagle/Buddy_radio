@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Buddy Radio: AI radio controllers for DCS World</title>
-<meta name="description" content="Overlord GCI, airfield tower and ATIS, a Case I landing trainer and a helpful wingman, talking to your whole flight on SRS with live mission data.">
+<meta name="description" content="Overlord GCI with tanker calls, a tower for every airfield on every map, a Case I landing trainer and a helpful wingman, talking to your whole flight on SRS with live mission data.">
 <meta property="og:title" content="Buddy Radio">
 <meta property="og:description" content="AI radio controllers for your DCS World server, on SRS, with live mission data.">
 <meta property="og:image" content="/assets/img/og.png">
@@ -33,7 +33,7 @@
   <div class="wrap">
     <div>
       <h1>Your DCS server, on the radio.</h1>
-      <p class="lede">Buddy Radio puts AI controllers on your group's SRS frequencies. Ask Overlord for a picture, get taxi from the tower, learn the carrier break from Paddles. Every number comes from the live mission.</p>
+      <p class="lede">Buddy Radio puts AI controllers on your group's SRS frequencies. Ask Overlord for a picture or the nearest tanker, get taxi from any airfield's tower, learn the carrier break from Paddles. Every number comes from the live mission.</p>
       <div class="actions">
         <a class="btn primary" href="/guide">Read the radio guide</a>
         <a class="btn" href="/setup">Set it up</a>
@@ -44,7 +44,6 @@
       <ul class="channels" role="tablist" aria-label="Stations" data-channels>
         <li><button role="tab" data-key="overlord" aria-selected="true"><span class="f">251.000</span><span class="n">Overlord</span></button></li>
         <li><button role="tab" data-key="tower" aria-selected="false" tabindex="-1"><span class="f">251.500</span><span class="n">Tower</span></button></li>
-        <li><button role="tab" data-key="atis" aria-selected="false" tabindex="-1"><span class="f">251.750</span><span class="n">ATIS</span></button></li>
         <li><button role="tab" data-key="buddy" aria-selected="false" tabindex="-1"><span class="f">252.000</span><span class="n">Buddy</span></button></li>
         <li><button role="tab" data-key="paddles" aria-selected="false" tabindex="-1"><span class="f">253.000</span><span class="n">Paddles</span></button></li>
       </ul>
@@ -67,7 +66,7 @@
     <dl class="facts">
       <div><dt>The whole flight hears it</dt><dd>The stations join your SRS server like any other radio. Everyone tuned in hears the call, and each pilot is tracked on their own, by name.</dd></div>
       <div><dt>Real numbers, not guesses</dt><dd>Bearings, ranges, altitudes, runways, wind and coordinates are calculated from the mission as it runs. The AI only puts them into words.</dd></div>
-      <div><dt>Most calls cost nothing</dt><dd>Bogey dope, taxi, ATIS, threat warnings, talk-downs, coordinates and the whole landing trainer run in code. Claude is used only for free-form questions, which comes to cents per evening.</dd></div>
+      <div><dt>Most calls cost nothing</dt><dd>Bogey dope, tanker calls, taxi, ATIS, threat warnings, talk-downs, coordinates and the whole landing trainer run in code. Claude is used only for free-form questions, which comes to cents per evening.</dd></div>
       <div><dt>Free speech, no menus</dt><dd>Talk the way you would to a real controller. No F10 menu, no VoiceAttack profile, no fixed phrases to learn.</dd></div>
     </dl>
   </div>
@@ -76,14 +75,13 @@
 <section id="stations">
   <div class="wrap">
     <h2>The stations</h2>
-    <p>Frequencies are the defaults; change them, add towers for other airfields, or switch stations off in one settings file.</p>
+    <p>Frequencies are the defaults. Change them, give an airfield its own tower and ATIS frequency, or switch stations off on the app's Stations page.</p>
     <div class="table-scroll">
     <table class="comm">
       <thead><tr><th scope="col">Frequency</th><th scope="col">Station</th><th scope="col">Ask it for</th><th scope="col">Calls it makes on its own</th></tr></thead>
       <tbody>
-        <tr><td class="f">251.000</td><td class="s"><a href="/guide#overlord">Overlord</a></td><td>Picture, bogey dope, ground threats, target coordinates, vectors</td><td>Air threats inside 25 and 10 miles, SAM and triple-A zones</td></tr>
-        <tr><td class="f">251.500</td><td class="s"><a href="/guide#tower">Tower</a></td><td>Start-up, taxi, takeoff, landing, traffic, precision approach</td><td>Hold position, go around, airborne hand-off, traffic alerts</td></tr>
-        <tr><td class="f">251.750</td><td class="s"><a href="/guide#atis">ATIS</a></td><td>Just listen</td><td>Runway, wind, visibility, clouds, temperature, altimeter</td></tr>
+        <tr><td class="f">251.000</td><td class="s"><a href="/guide#overlord">Overlord</a></td><td>Picture, bogey dope, the nearest tanker, ground threats, target coordinates, vectors</td><td>Air threats inside 25 and 10 miles, SAM and triple-A zones</td></tr>
+        <tr><td class="f">251.500</td><td class="s"><a href="/guide#tower">Tower</a></td><td>Every airfield on every map: start-up, taxi, takeoff, landing, ATIS information, traffic, precision approach</td><td>Hold position, go around, airborne hand-off, traffic alerts</td></tr>
         <tr><td class="f">252.000</td><td class="s"><a href="/guide#buddy">Buddy</a></td><td>Mission briefing, nearest airfields, weapon and system how-tos</td><td>Nothing; Buddy waits to be asked</td></tr>
         <tr><td class="f">253.000</td><td class="s"><a href="/guide#paddles">Paddles</a></td><td>BRC, wind over the deck, a debrief of your last pass</td><td>Case I pattern coaching, groove calls, wave-offs, grades</td></tr>
       </tbody>
@@ -124,7 +122,7 @@
   <text x="318" y="210" fill="#e6ecdc">Hears: Whisper</text>
   <text x="318" y="234" fill="#e6ecdc">Thinks: code first</text>
   <text x="318" y="258" fill="#e6ecdc">Speaks: Piper voices</text>
-  <text x="318" y="290" fill="#a9b2a6" font-size="13">Overlord, Tower, ATIS,</text>
+  <text x="318" y="290" fill="#a9b2a6" font-size="13">Overlord, Tower,</text>
   <text x="318" y="306" fill="#a9b2a6" font-size="13">Buddy, Paddles</text>
   <!-- right side -->
   <rect x="570" y="40" width="170" height="80" rx="6" fill="none" stroke="#16191b" stroke-width="2"/>
@@ -162,6 +160,19 @@
       <div class="shot"><img src="/assets/img/map.png" alt="The live map: aircraft with altitude and speed labels, an SA-6 with its range ring, a carrier and the side panel with airfields and frequencies." width="1180" height="760" loading="lazy"></div>
       <figcaption>The map in demo mode. Connected to Radio Ops it shows your mission as it runs.</figcaption>
     </figure>
+  </div>
+</section>
+
+<section id="next">
+  <div class="wrap split">
+    <div>
+      <h2>Coming next</h2>
+      <p>Buddy Radio is in beta and keeps growing. These are the next big steps. Ideas and bug reports are welcome on our <a href="https://discord.gg/kqw8F5fNe6">Discord</a>.</p>
+    </div>
+    <dl class="facts">
+      <div><dt>A boom operator on the tanker frequency</dt><dd>Call the tanker yourself instead of using the F10 menu: "Texaco, Lama 1-1, intent to refuel." The tanker answers "cleared pre-contact", then talks you in from your real position behind it: "cleared contact", "forward five", "up two", "stabilised", "disconnect".</dd></div>
+      <div><dt>Each airfield on its own frequency</dt><dd>As well as the one Tower for every airfield, an option to give every airfield its real tower frequency from DCS, picked up automatically on every map. Call Kutaisi on Kutaisi's frequency and Batumi on Batumi's, just like the kneeboard says.</dd></div>
+    </dl>
   </div>
 </section>
 

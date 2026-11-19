@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Buddy Radio: AI rádiós irányítók DCS Worldhöz</title>
-<meta name="description" content="Overlord GCI, repülőtéri torony és ATIS, Case I leszállásoktató és egy segítőkész szárnytárs, akik SRS-en beszélnek az egész köteléggel, élő küldetésadatokkal.">
+<meta name="description" content="Overlord GCI tankerhívásokkal, torony minden térkép minden repülőterén, Case I leszállásoktató és egy segítőkész szárnytárs, akik SRS-en beszélnek az egész köteléggel, élő küldetésadatokkal.">
 <meta property="og:title" content="Buddy Radio">
 <meta property="og:description" content="AI rádiós irányítók a DCS World szerveredre, SRS-en, élő küldetésadatokkal.">
 <meta property="og:image" content="/assets/img/og.png">
@@ -33,7 +33,7 @@
   <div class="wrap">
     <div>
       <h1>A DCS szervered, a rádión.</h1>
-      <p class="lede">A Buddy Radio AI irányítókat tesz a csapatod SRS frekvenciáira. Kérj helyzetképet Overlordtól, gurulási engedélyt a toronytól, tanuld meg a hordozós breaket Paddlestől. Minden szám az élő küldetésből jön.</p>
+      <p class="lede">A Buddy Radio AI irányítókat tesz a csapatod SRS frekvenciáira. Kérj helyzetképet vagy a legközelebbi tankert Overlordtól, gurulási engedélyt bármelyik reptér tornyától, tanuld meg a hordozós breaket Paddlestől. Minden szám az élő küldetésből jön.</p>
       <div class="actions">
         <a class="btn primary" href="/hu/guide">Rádiós útmutató</a>
         <a class="btn" href="/hu/setup">Telepítés</a>
@@ -44,7 +44,6 @@
       <ul class="channels" role="tablist" aria-label="Állomások" data-channels>
         <li><button role="tab" data-key="overlord" aria-selected="true"><span class="f">251.000</span><span class="n">Overlord</span></button></li>
         <li><button role="tab" data-key="tower" aria-selected="false" tabindex="-1"><span class="f">251.500</span><span class="n">Torony</span></button></li>
-        <li><button role="tab" data-key="atis" aria-selected="false" tabindex="-1"><span class="f">251.750</span><span class="n">ATIS</span></button></li>
         <li><button role="tab" data-key="buddy" aria-selected="false" tabindex="-1"><span class="f">252.000</span><span class="n">Buddy</span></button></li>
         <li><button role="tab" data-key="paddles" aria-selected="false" tabindex="-1"><span class="f">253.000</span><span class="n">Paddles</span></button></li>
       </ul>
@@ -67,7 +66,7 @@
     <dl class="facts">
       <div><dt>Az egész kötelék hallja</dt><dd>Az állomások úgy csatlakoznak az SRS szerveredhez, mint bármelyik másik rádió. Mindenki hallja, aki a frekvencián van, és minden pilótát külön, név szerint követnek.</dd></div>
       <div><dt>Valódi számok, nem tippek</dt><dd>Az irányszögek, távolságok, magasságok, pályák, szél és koordináták a futó küldetésből számolódnak. Az AI csak szavakba önti őket.</dd></div>
-      <div><dt>A legtöbb hívás ingyenes</dt><dd>A bogey dope, a gurulás, az ATIS, a fenyegetés-figyelmeztetések, a levezetés, a koordináták és az egész leszállásoktató programkódból fut. Claude csak a szabad kérdésekhez kell, ez esténként néhány cent.</dd></div>
+      <div><dt>A legtöbb hívás ingyenes</dt><dd>A bogey dope, a tankerhívás, a gurulás, az ATIS, a fenyegetés-figyelmeztetések, a levezetés, a koordináták és az egész leszállásoktató programkódból fut. Claude csak a szabad kérdésekhez kell, ez esténként néhány cent.</dd></div>
       <div><dt>Szabad beszéd, nincs menü</dt><dd>Úgy beszélj, ahogy egy valódi irányítóval. Nincs F10 menü, nincs VoiceAttack profil, nincsenek bemagolandó mondatok.</dd></div>
     </dl>
   </div>
@@ -76,14 +75,13 @@
 <section id="stations">
   <div class="wrap">
     <h2>Az állomások</h2>
-    <p>Ezek az alapértelmezett frekvenciák. Egyetlen beállításfájlban módosíthatod őket, adhatsz hozzá tornyot más repülőterekhez, vagy kikapcsolhatsz állomásokat.</p>
+    <p>Ezek az alapértelmezett frekvenciák. Az alkalmazás Stations oldalán módosíthatod őket, adhatsz egy reptérnek saját torony- és ATIS-frekvenciát, vagy kikapcsolhatsz állomásokat.</p>
     <div class="table-scroll">
     <table class="comm">
       <thead><tr><th scope="col">Frekvencia</th><th scope="col">Állomás</th><th scope="col">Mit kérhetsz tőle</th><th scope="col">Magától mit mond</th></tr></thead>
       <tbody>
-        <tr><td class="f">251.000</td><td class="s"><a href="/hu/guide#overlord">Overlord</a></td><td>Helyzetkép (picture), bogey dope, földi fenyegetések, célkoordináták, vektorok</td><td>Légi fenyegetés 25 és 10 mérföldön belül, SAM és légvédelmi tüzérségi zónák</td></tr>
-        <tr><td class="f">251.500</td><td class="s"><a href="/hu/guide#tower">Torony</a></td><td>Hajtóműindítás, gurulás, felszállás, leszállás, forgalom, precíziós megközelítés</td><td>Állj meg, átstartolás, átadás felszállás után, forgalmi figyelmeztetés</td></tr>
-        <tr><td class="f">251.750</td><td class="s"><a href="/hu/guide#atis">ATIS</a></td><td>Csak hallgasd</td><td>Pálya, szél, látástávolság, felhőzet, hőmérséklet, légnyomás</td></tr>
+        <tr><td class="f">251.000</td><td class="s"><a href="/hu/guide#overlord">Overlord</a></td><td>Helyzetkép (picture), bogey dope, a legközelebbi tanker, földi fenyegetések, célkoordináták, vektorok</td><td>Légi fenyegetés 25 és 10 mérföldön belül, SAM és légvédelmi tüzérségi zónák</td></tr>
+        <tr><td class="f">251.500</td><td class="s"><a href="/hu/guide#tower">Torony</a></td><td>Minden térkép minden repülőtere: hajtóműindítás, gurulás, felszállás, leszállás, ATIS információ, forgalom, precíziós megközelítés</td><td>Állj meg, átstartolás, átadás felszállás után, forgalmi figyelmeztetés</td></tr>
         <tr><td class="f">252.000</td><td class="s"><a href="/hu/guide#buddy">Buddy</a></td><td>Eligazítás, legközelebbi repülőterek, fegyver- és rendszerhasználat lépésről lépésre</td><td>Semmit, Buddy megvárja, amíg kérdezel</td></tr>
         <tr><td class="f">253.000</td><td class="s"><a href="/hu/guide#paddles">Paddles</a></td><td>BRC, fedélzeti szél, az utolsó leszállásod értékelése</td><td>Case I kör oktatása, groove hívások, wave-off, osztályzat</td></tr>
       </tbody>
@@ -124,7 +122,7 @@
   <text x="318" y="210" fill="#e6ecdc">Hall: Whisper</text>
   <text x="318" y="234" fill="#e6ecdc">Gondolkodik: előbb kód</text>
   <text x="318" y="258" fill="#e6ecdc">Beszél: Piper hangok</text>
-  <text x="318" y="290" fill="#a9b2a6" font-size="13">Overlord, Torony, ATIS,</text>
+  <text x="318" y="290" fill="#a9b2a6" font-size="13">Overlord, Torony,</text>
   <text x="318" y="306" fill="#a9b2a6" font-size="13">Buddy, Paddles</text>
   <!-- right side -->
   <rect x="570" y="40" width="170" height="80" rx="6" fill="none" stroke="#16191b" stroke-width="2"/>
@@ -162,6 +160,19 @@
       <div class="shot"><img src="/assets/img/map.png" alt="Az élő térkép: repülőgépek magasság- és sebességcímkével, egy SA-6 a hatótávkörével, egy hordozó és az oldalpanel a repterekkel és frekvenciákkal." width="1180" height="760" loading="lazy"></div>
       <figcaption>A térkép demó módban. A Radio Opshoz csatlakozva a futó küldetésedet mutatja.</figcaption>
     </figure>
+  </div>
+</section>
+
+<section id="next">
+  <div class="wrap split">
+    <div>
+      <h2>Hamarosan</h2>
+      <p>A Buddy Radio bétában van, és folyamatosan fejlődik. Ezek a következő nagy lépések. Ötleteket és hibajelentéseket szívesen fogadunk a <a href="https://discord.gg/kqw8F5fNe6">Discordunkon</a>.</p>
+    </div>
+    <dl class="facts">
+      <div><dt>Boom operátor a tanker frekvenciáján</dt><dd>Az F10 menü helyett te magad hívod a tankert: "Texaco, Lama 1-1, intent to refuel." A tanker azt feleli, "cleared pre-contact", aztán a mögötte elfoglalt valódi helyzeted alapján vezet be: "cleared contact", "forward five", "up two", "stabilised", "disconnect".</dd></div>
+      <div><dt>Minden reptér a saját frekvenciáján</dt><dd>Az egy, minden reptérre érvényes torony mellett egy opció, hogy minden reptér a DCS-ből vett valódi toronyfrekvenciáján szóljon, minden térképen automatikusan. Kutaisit Kutaisi frekvenciáján hívod, Batumit Batumién, ahogy a kneeboard is mutatja.</dd></div>
+    </dl>
   </div>
 </section>
 
