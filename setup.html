@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Setup: Buddy Radio</title>
-<meta name="description" content="Install Buddy Radio on a DCS World server: SRS, mission scripting, Python, the API key, Discord and the live map.">
+<meta name="description" content="Install Buddy Radio on the PC that hosts your DCS World missions: what you need, the installer, and the first-time setup, step by step.">
 <meta property="og:image" content="/assets/img/og.png">
 <link rel="alternate" hreflang="en" href="/setup">
 <link rel="alternate" hreflang="hu" href="/hu/setup">
@@ -29,67 +29,150 @@
 <main>
   <div class="wrap" style="padding-top:clamp(32px,5vw,56px)">
     <h1 style="font-size:clamp(44px,6vw,72px);margin-bottom:.4em">Setup</h1>
-    <p>Everything runs on one Windows PC next to your DCS server: the server itself, the SRS server and Buddy's Radio Ops. Pilots install nothing.</p>
-    <div class="callout" style="margin:20px 0 8px">The program files aren't published yet. This guide is for groups testing Buddy Radio.</div>
+    <p>Buddy Radio is a Windows app. Install it on the PC that hosts your missions, next to the DCS server and the SRS server. Pilots install nothing: they just tune their radios.</p>
+    <div class="access">
+      <div>
+        <h2>Get the installer</h2>
+        <p>Buddy Radio is in a closed beta. Join our Discord and ask for early access, and we'll send you the installer.</p>
+      </div>
+      <a class="btn primary" href="https://discord.gg/kqw8F5fNe6">Ask for early access</a>
+    </div>
   </div>
 
   <section style="border-top:0;padding-top:28px">
     <div class="wrap split">
       <div>
         <h2>What you need</h2>
-        <p>A PC that can host DCS. Speech recognition runs on the processor whenever someone talks, so a stronger CPU means quicker replies.</p>
+        <p>Check these before you install. Speech recognition runs on the processor whenever someone talks, so a stronger CPU means quicker replies.</p>
       </div>
       <dl class="facts">
-        <div><dt>Memory</dt><dd>16 GB at least, 32 GB is comfortable with a big mission like Foothold.</dd></div>
-        <div><dt>Software</dt><dd>DCS World Server, the DCS-SRS server, and Python 3.11 or newer.</dd></div>
-        <div><dt>Claude API key</dt><dd>From console.anthropic.com with a few dollars of prepaid credit. A busy evening with five pilots costs well under a dollar.</dd></div>
-        <div><dt>Optional</dt><dd>A Discord server for target and greenie-board posts, and a tablet for the live map.</dd></div>
+        <div><dt>A Windows PC</dt><dd>Windows 10 or 11, 64-bit, the one that runs your DCS server or hosts your multiplayer missions. 16 GB of memory at least, 32 GB is comfortable with a big mission like Foothold.</dd></div>
+        <div><dt>DCS World</dt><dd>The DCS World dedicated server, or DCS itself if you host from your own game.</dd></div>
+        <div><dt>The SRS server</dt><dd>DCS-SRS with its server running on the same PC or your network. Pilots connect to it with the normal SRS client.</dd></div>
+        <div><dt>A Claude API key</dt><dd>Your own key from console.anthropic.com with a few dollars of prepaid credit. A busy evening with five pilots costs well under a dollar. Step 1 shows how to get one.</dd></div>
+        <div><dt>Disk and internet</dt><dd>About 2 GB free. The first start downloads the speech model and the voices, so it needs internet and takes a few minutes.</dd></div>
+        <div><dt>Optional</dt><dd>A Discord server for target and greenie-board posts, and a tablet or phone for the live map.</dd></div>
       </dl>
     </div>
   </section>
 
   <section>
     <div class="wrap">
-      <h2>Install</h2>
+      <h2>Before you install</h2>
       <ol class="steps">
         <li>
+          <h3>Get a Claude API key</h3>
+          <p>Go to <a href="https://console.anthropic.com">console.anthropic.com</a> and make an account. Under <b>Billing</b>, buy a few dollars of credit and leave auto-reload off, so the credit you bought is the most you can ever spend. Then open <b>API Keys</b>, choose <b>Create Key</b> and copy it.</p>
+          <p>The key is shown only once. Keep it in a password manager until the app asks for it, and never post it in Discord or a chat: anyone with the key spends your credit.</p>
+        </li>
+        <li>
           <h3>Turn on External AWACS Mode in SRS</h3>
-          <p>In the SRS server settings, switch External AWACS Mode on and set a password for each coalition. The Buddy stations join SRS this way, like an AWACS client.</p>
+          <p>In the SRS server's settings, switch <b>External AWACS Mode</b> on and set a password for each side. The Buddy stations join SRS this way, like an AWACS player. You'll type the blue password into the app in step 5.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Install the app</h2>
+      <ol class="steps" style="counter-reset:step 2">
+        <li>
+          <h3>Run the installer</h3>
+          <p>Double-click <code>BuddyRadio-Setup.exe</code>. Because the beta isn't signed with a certificate yet, Windows warns you first. Choose <b>More info</b>, then <b>Run anyway</b>.</p>
+          <figure class="figure">
+            <svg class="smartscreen" viewBox="0 0 760 270" role="img" aria-label="The Windows protected your PC warning: first choose More info, then Run anyway.">
+              <g>
+                <rect x="1" y="1" width="368" height="268" rx="6" fill="#1d5a8c"/>
+                <text x="24" y="50" fill="#fff" font-size="22" font-weight="700">Windows protected your PC</text>
+                <rect x="24" y="74" width="300" height="9" rx="4" fill="#ffffff55"/>
+                <rect x="24" y="92" width="250" height="9" rx="4" fill="#ffffff55"/>
+                <rect x="16" y="118" width="102" height="34" rx="4" fill="none" stroke="#f2b705" stroke-width="3"/>
+                <text x="26" y="141" fill="#fff" font-size="16" text-decoration="underline">More info</text>
+                <rect x="232" y="214" width="116" height="36" rx="3" fill="#ffffff22" stroke="#ffffff88"/>
+                <text x="290" y="237" fill="#fff" font-size="15" text-anchor="middle">Don't run</text>
+                <circle cx="134" cy="135" r="15" fill="#f2b705"/><text x="134" y="141" font-size="17" font-weight="800" text-anchor="middle" fill="#16191b">1</text>
+              </g>
+              <g transform="translate(390 0)">
+                <rect x="1" y="1" width="368" height="268" rx="6" fill="#1d5a8c"/>
+                <text x="24" y="50" fill="#fff" font-size="22" font-weight="700">Windows protected your PC</text>
+                <rect x="24" y="74" width="300" height="9" rx="4" fill="#ffffff55"/>
+                <text x="24" y="124" fill="#ffffffcc" font-size="14">App: BuddyRadio-Setup-0.9.0-beta.1.exe</text>
+                <text x="24" y="146" fill="#ffffffcc" font-size="14">Publisher: Unknown publisher</text>
+                <rect x="104" y="214" width="116" height="36" rx="3" fill="#ffffff22" stroke="#ffffff88"/>
+                <text x="162" y="237" fill="#fff" font-size="15" text-anchor="middle">Run anyway</text>
+                <rect x="98" y="208" width="128" height="48" rx="5" fill="none" stroke="#f2b705" stroke-width="3"/>
+                <rect x="232" y="214" width="116" height="36" rx="3" fill="#ffffff22" stroke="#ffffff88"/>
+                <text x="290" y="237" fill="#fff" font-size="15" text-anchor="middle">Don't run</text>
+                <circle cx="80" cy="232" r="15" fill="#f2b705"/><text x="80" y="238" font-size="17" font-weight="800" text-anchor="middle" fill="#16191b">2</text>
+              </g>
+            </svg>
+            <figcaption>A sketch of the warning. Only run the installer you got from us on Discord.</figcaption>
+          </figure>
+          <p>When Windows asks whether the app can make changes to your device, choose <b>Yes</b>. Then click through the installer: keep the suggested folder, tick the desktop shortcut if you want one, choose <b>Install</b>, and leave <b>Start Buddy Radio</b> ticked at the end.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>First-time setup in the app</h2>
+      <p style="max-width:var(--measure)">The first time it opens, the app walks you through its setup pages in order. A yellow <b>!</b> in the left column marks a page that still needs something. Press <b>Save and continue</b> at the bottom of each page to go to the next.</p>
+      <ol class="steps" style="counter-reset:step 3">
+        <li>
+          <h3>DCS: install the bridge</h3>
+          <p>The bridge is a small script that sends the mission's positions, airfields and weather to the app. Check both folders:</p>
+          <ul class="plain">
+            <li><b>DCS profile</b> is the Saved Games folder of the DCS that runs your missions. For a dedicated server that's usually <code>DCS.dcs_serverrelease</code>. If you host from your own game, it's <code>DCS</code>.</li>
+            <li><b>DCS install folder</b> is where that DCS is installed, for example <code>C:\Program Files\Eagle Dynamics\DCS World Server</code>.</li>
+          </ul>
+          <figure class="figure"><a href="/assets/img/setup/app-first-start.png"><img class="shot" src="/assets/img/setup/app-first-start.png" width="1040" height="700" loading="lazy" alt="The DCS page on first start: both folders filled in, two red lights, and the Install the bridge and Allow scripting buttons."></a><figcaption>First start: both lights are red.</figcaption></figure>
+          <p>Press <b>Install the bridge</b>. Then press <b>Allow scripting</b> and choose <b>Yes</b> when Windows asks. Both lights turn green. Restart the DCS server once so it loads the bridge.</p>
+          <figure class="figure"><a href="/assets/img/setup/app-dcs.png"><img class="shot" src="/assets/img/setup/app-dcs.png" width="1040" height="700" loading="lazy" alt="The DCS page with both lights green: the bridge is installed and mission scripting allows it."></a><figcaption>Done: both lights green.</figcaption></figure>
+          <p>DCS updates undo the scripting change. If Buddy stops getting mission data after an update, come back to this page and press Allow scripting again.</p>
         </li>
         <li>
-          <h3>Let missions talk to Buddy</h3>
-          <p>Open <code>Scripts\MissionScripting.lua</code> in the DCS server's install folder and comment out three lines, so the block reads:</p>
-<pre>sanitizeModule('os')
---sanitizeModule('io')
---sanitizeModule('lfs')
---_G['require'] = nil
-_G['loadlib'] = nil
---_G['package'] = nil</pre>
-          <p>DCS updates put this file back. If the log ever says <code>attempt to index global 'lfs'</code>, make the edit again.</p>
+          <h3>SRS: connect to your SRS server</h3>
+          <p>Leave the address as <code>127.0.0.1:5002</code> if SRS runs on this PC. Type the External AWACS Mode password from step 2, pick the side the stations work for, and press <b>Test the connection</b>.</p>
+          <figure class="figure"><a href="/assets/img/setup/app-srs.png"><img class="shot" src="/assets/img/setup/app-srs.png" width="1040" height="700" loading="lazy" alt="The SRS page: server address, the hidden password, Blue selected, and a green message saying the SRS server answers."></a></figure>
         </li>
         <li>
-          <h3>Copy Buddy into the server profile</h3>
-          <p>Put the <code>Buddy</code> folder in <code>Saved Games\&lt;server profile&gt;\Scripts\</code> and <code>buddy_bridge_hook.lua</code> in <code>Scripts\Hooks\</code>. The hook loads the bridge into every mission, including campaigns like Foothold. Restart the DCS server once so it picks up the hook.</p>
+          <h3>Claude: paste your API key</h3>
+          <p>Paste the key from step 1 and keep <b>Haiku</b> selected: it's the fastest and cheapest. Press <b>Test the key</b>. "The key works" in green means you're done.</p>
+          <figure class="figure"><a href="/assets/img/setup/app-claude.png"><img class="shot" src="/assets/img/setup/app-claude.png" width="1040" height="700" loading="lazy" alt="The Claude page: the hidden API key, Haiku selected, and the green message The key works."></a></figure>
+          <p>The key is stored in Windows Credential Manager, never in a file. If Anthropic says the account has no credit, add some under Billing in the console.</p>
         </li>
         <li>
-          <h3>Install Python and the packages</h3>
-          <p>Install Python from python.org and tick "Add Python to PATH". Then in PowerShell:</p>
-<pre>pip install anthropic faster-whisper piper-tts av numpy sounddevice keyboard pypdf</pre>
+          <h3>Discord: post targets and grades (optional)</h3>
+          <p>In Discord, open <b>Server Settings</b>, <b>Integrations</b>, <b>Webhooks</b>. Make a <b>New Webhook</b> for your targets channel, choose <b>Copy Webhook URL</b> and paste it in the app. Do the same for your greenie-board channel. Press <b>Send a test</b> next to each one.</p>
+          <figure class="figure"><a href="/assets/img/setup/app-discord.png"><img class="shot" src="/assets/img/setup/app-discord.png" width="1040" height="700" loading="lazy" alt="The Discord page: two hidden webhook addresses with Send a test buttons, and the green message Sent."></a></figure>
+          <p>Leave a box empty to skip that channel. Anyone with a webhook address can post in that channel, so keep them private.</p>
         </li>
         <li>
-          <h3>Store your API key</h3>
-          <p>The key never goes in a file. This asks for it without showing what you paste:</p>
-<pre>$s = Read-Host "Paste your Anthropic API key" -AsSecureString
-[Environment]::SetEnvironmentVariable("ANTHROPIC_API_KEY", [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($s)), "User")</pre>
-          <p>Keep auto-reload off in the Anthropic console, so the credit you bought is the most you can spend.</p>
+          <h3>Stations: check the frequencies</h3>
+          <p>The five stations come ready to use. Double-click one to change its frequency or voice. To add a tower for another airfield, press <b>Add a tower and ATIS</b> and write the airfield name exactly as DCS shows it, for example Kutaisi or Nellis.</p>
+          <figure class="figure"><a href="/assets/img/setup/app-stations.png"><img class="shot" src="/assets/img/setup/app-stations.png" width="1040" height="700" loading="lazy" alt="The Stations page: Overlord 251.000, Rosh Pina Tower 251.500, Rosh Pina ATIS 251.750, Paddles 253.000 and Buddy 252.000, with the speech recognition choice below."></a></figure>
+          <p>Speech recognition: <b>small.en</b> suits most PCs. Pick base.en if replies feel slow.</p>
         </li>
         <li>
-          <h3>Connect Discord (optional)</h3>
-          <p>Create webhooks for a <code>#targets</code> and a <code>#greenie-board</code> channel (Server Settings, Integrations, Webhooks) and store each address the same way, as <code>BUDDY_DISCORD_TARGETS</code> and <code>BUDDY_DISCORD_GREENIE</code>. Test with <code>python discord_post.py targets "Hello"</code>.</p>
+          <h3>Map: tablets on your network (optional)</h3>
+          <p>Leave <b>Serve the live map</b> ticked. To open the map on a tablet or phone at home, press <b>Allow tablets through the firewall</b> and choose <b>Yes</b> when Windows asks.</p>
+          <figure class="figure"><a href="/assets/img/setup/app-map.png"><img class="shot" src="/assets/img/setup/app-map.png" width="1040" height="700" loading="lazy" alt="The Map page: Serve the live map ticked, port 8080, the map key field with a Make one button, and the firewall button."></a></figure>
         </li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Go on the air</h2>
+      <ol class="steps" style="counter-reset:step 9">
         <li>
-          <h3>Start in this order</h3>
-          <p>The DCS server running a mission, then the SRS server, then <code>Start Overlord.bat</code> in the Buddy folder. The window lists every station under "On the air" and prints the address of the tablet map. The first start downloads the speech model and voices.</p>
+          <h3>Start everything in this order</h3>
+          <p>First the DCS server with a mission running, then the SRS server, then <b>Start the stations</b> on the app's Radio page. Every light turns green within a minute. The very first start takes longer while it downloads the speech model and voices.</p>
+          <figure class="figure"><a href="/assets/img/setup/app-radio.png"><img class="shot" src="/assets/img/setup/app-radio.png" width="1240" height="700" loading="lazy" alt="The Radio page with every light green: DCS mission data live, SRS connected, and each station on the air, above the log of calls and replies."></a><figcaption>Every light green. The log underneath shows each call the stations heard and what they answered.</figcaption></figure>
+          <p>Now get in a jet, tune 251.000 and call <i>"Overlord, [your callsign], radio check"</i>. The <a href="/guide">radio guide</a> lists everything you can ask each station.</p>
         </li>
       </ol>
     </div>
@@ -98,17 +181,14 @@ _G['loadlib'] = nil
   <section>
     <div class="wrap split">
       <div>
-        <h2>Change the stations</h2>
-        <p>Every station lives in <code>stations.json</code> next to the program. Change a frequency or voice, add a tower for another airfield, or remove a station you don't use. Restart Radio Ops after editing.</p>
+        <h2>Updates and removal</h2>
+        <p>Each new beta comes as a new installer on our Discord.</p>
       </div>
-<pre>{
-  "type": "tower",
-  "name": "Ramat David Tower",
-  "airfield": "Ramat David",
-  "freq": 250.950,
-  "mod": "AM",
-  "voice": "en_US-ryan-medium"
-}</pre>
+      <ul class="plain">
+        <li>To update, close Buddy Radio and run the new installer. Your settings, stations and keys stay.</li>
+        <li>Settings and the downloaded voices are in <code>%LOCALAPPDATA%\BuddyRadio</code>. Your keys are in Windows Credential Manager under BuddyRadio.</li>
+        <li>To remove it, use Windows Settings, Apps, Buddy Radio, Uninstall. The bridge stays in your DCS profile, in <code>Scripts\Buddy</code> and <code>Scripts\Hooks</code>; delete those two files if you want DCS back exactly as it was.</li>
+      </ul>
     </div>
   </section>
 
@@ -116,14 +196,13 @@ _G['loadlib'] = nil
     <div class="wrap split">
       <div>
         <h2>Put the live map online</h2>
-        <p>On your home network the map is at the address Radio Ops prints. To open it from this website, Radio Ops needs a secure public address. A tunnel gives it one without opening ports on your router.</p>
+        <p>On your home network the map opens from the Radio page with <b>Open the live map</b>. To open it from this website, wherever your pilots are, the app needs a secure public address. A tunnel gives it one without opening ports on your router.</p>
       </div>
       <div>
         <ol class="steps" style="max-width:none">
           <li>
-            <h3>Pick an access key</h3>
-            <p>Add a line to <code>stations.json</code> so only people with the key see your mission:</p>
-<pre>"map_key": "pick-any-word"</pre>
+            <h3>Make a map key</h3>
+            <p>On the app's Map page, press <b>Make one</b> next to Map key, so only people with the key see your mission. Restart the stations.</p>
           </li>
           <li>
             <h3>Start a tunnel</h3>
@@ -146,16 +225,19 @@ _G['loadlib'] = nil
       <h2>When something's wrong</h2>
       <div class="table-scroll">
       <table class="comm">
-        <thead><tr><th scope="col">You see</th><th scope="col">What it means</th></tr></thead>
+        <thead><tr><th scope="col">You see</th><th scope="col">What to do</th></tr></thead>
         <tbody>
-          <tr><td><code>no DCS data yet</code></td><td>No mission is running, or the bridge didn't load. Check the DCS log for "BuddyBridge started"; if it's missing, redo step 2 and restart the server.</td></tr>
-          <tr><td><code>Cannot reach the SRS server</code></td><td>Start the SRS server first, and check <code>srs_server</code> in stations.json.</td></tr>
-          <tr><td><code>(not for Buddy)</code> in the log</td><td>The station heard a call that wasn't addressed to it. The text shows what it heard, which tells you if the name got clipped.</td></tr>
-          <tr><td><code>Port 10081 is busy</code></td><td>Another copy of Radio Ops is already running. Close it.</td></tr>
-          <tr><td>A station says "say again"</td><td>It couldn't make sense of the call. Read the <code>rx</code> line to see what it heard, and keep calls short.</td></tr>
+          <tr><td>DCS mission data stays at <b>waiting for a mission</b></td><td>The bridge isn't sending. Check that the DCS profile on the DCS page belongs to the DCS that runs the mission (server or game), and restart DCS once after installing the bridge. The DCS log in that profile's <code>Logs</code> folder should say "BuddyBridge started".</td></tr>
+          <tr><td>SRS server: <b>not reachable, is SRS running?</b></td><td>Start the SRS server first, then check the address on the SRS page.</td></tr>
+          <tr><td>A station says <b>wrong SRS password or side</b></td><td>The password on the SRS page must match the External AWACS Mode password of the side you picked.</td></tr>
+          <tr><td>A station says <b>turn on External AWACS Mode in SRS</b></td><td>Do step 2 in the SRS server settings, then start the stations again.</td></tr>
+          <tr><td><code>Port 10081 is busy</code> in the log</td><td>Another copy of Buddy is already running, for example an older version started by hand. Close it.</td></tr>
+          <tr><td>A station says "say again"</td><td>It couldn't make sense of the call. Read the <code>rx</code> line in the log to see what it heard, and keep calls short.</td></tr>
+          <tr><td>The DCS page says scripting is blocked again</td><td>A DCS update put the original file back. Press Allow scripting again.</td></tr>
         </tbody>
       </table>
       </div>
+      <p style="margin-top:20px">Still stuck? Ask in the help channel on our Discord and paste the last lines of the log from the Radio page. Never paste your API key or webhook addresses.</p>
     </div>
   </section>
 </main>
