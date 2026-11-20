@@ -228,7 +228,7 @@
       <table class="comm">
         <thead><tr><th scope="col">You see</th><th scope="col">What to do</th></tr></thead>
         <tbody>
-          <tr><td>DCS mission data stays at <b>waiting for a mission</b></td><td>The bridge isn't sending. Check that the DCS profile on the DCS page belongs to the DCS that runs the mission (server or game), and restart DCS once after installing the bridge. The DCS log in that profile's <code>Logs</code> folder should say "BuddyBridge started".</td></tr>
+          <tr><td>DCS mission data stays at <b>waiting for a mission</b></td><td>Bridge installed while the DCS server was running? Restart the DCS server once: DCS only loads the bridge when it starts. Still waiting? Check that a mission is loaded and not paused (a server set to pause without clients sends nothing until someone joins), and that the DCS profile on the DCS page belongs to the DCS that runs the mission. The DCS log in that profile's <code>Logs</code> folder should say "BuddyBridge started".</td></tr>
           <tr><td>SRS server: <b>not reachable, is SRS running?</b></td><td>Start the SRS server first, then check the address on the SRS page.</td></tr>
           <tr><td>A station says <b>wrong SRS password or side</b></td><td>The password on the SRS page must match the External AWACS Mode password of the side you picked.</td></tr>
           <tr><td>A station says <b>turn on External AWACS Mode in SRS</b></td><td>Do step 2 in the SRS server settings, then start the stations again.</td></tr>

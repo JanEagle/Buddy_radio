@@ -228,7 +228,7 @@
       <table class="comm">
         <thead><tr><th scope="col">Ezt látod</th><th scope="col">Mit tegyél</th></tr></thead>
         <tbody>
-          <tr><td>A DCS mission data sorban végig ez áll: <b>waiting for a mission</b></td><td>A bridge nem küld adatot. Ellenőrizd, hogy a DCS oldalon megadott profil ahhoz a DCS-hez tartozik-e, amelyik a küldetést futtatja (szerver vagy játék), és a bridge telepítése után egyszer indítsd újra a DCS-t. A profil <code>Logs</code> mappájában lévő DCS naplóban szerepelnie kell ennek: "BuddyBridge started".</td></tr>
+          <tr><td>A DCS mission data sorban végig ez áll: <b>waiting for a mission</b></td><td>A bridge-et akkor telepítetted, amikor már futott a DCS szerver? Indítsd újra egyszer a DCS szervert: a DCS csak induláskor tölti be a bridge-et. Még mindig vár? Ellenőrizd, hogy van-e betöltött küldetés, és nincs-e szüneteltetve (a kliensek nélkül szünetelő szerver semmit sem küld, amíg valaki be nem lép), és hogy a DCS oldalon megadott profil ahhoz a DCS-hez tartozik-e, amelyik a küldetést futtatja. A profil <code>Logs</code> mappájában lévő DCS naplóban szerepelnie kell ennek: "BuddyBridge started".</td></tr>
           <tr><td>SRS server: <b>not reachable, is SRS running?</b></td><td>Előbb indítsd el az SRS szervert, aztán ellenőrizd a címet az SRS oldalon.</td></tr>
           <tr><td>Egy állomásnál ez áll: <b>wrong SRS password or side</b></td><td>Az SRS oldalon megadott jelszónak egyeznie kell a kiválasztott oldal External AWACS Mode jelszavával.</td></tr>
           <tr><td>Egy állomásnál ez áll: <b>turn on External AWACS Mode in SRS</b></td><td>Csináld meg a 2. lépést az SRS szerver beállításaiban, aztán indítsd újra az állomásokat.</td></tr>
